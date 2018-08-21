@@ -3,12 +3,8 @@
 
 	include'../../Layout/header.php';
 	include'../../Layout/header2.php';
-					echo '<div id="logosahel">';
-						 	//echo'<img src="../../Images/sahel.png" width="100%" height="100%" alt="">';
-					echo '</div>';
-					echo '<div id="logoyogo">';
-						 	//echo'<img src="../../Images/yogotte.jpg" width="100%" height="100%" alt="">';
-					echo '</div>';
+	include'../../Layout/retour.php';
+
 					echo '<div id="menu2">';
 						 /*	echo'<img src="../../Images/stocks.png" width="60%" height="20%" alt="">';*/
 					echo '</div>';
@@ -17,7 +13,7 @@
 
 				echo'<div id="content">';
 
-				echo'<h3 class="titrecform textgau">Etat de stock des produits </h3><br/>';
+				echo'<h3 class="titrecform textgau">Etat de stock des articles </h3><br/>';
 				echo'<table cellpadding="13" class="w90">';
 				echo'<tr class="thtable">';
 				echo'<th colspan="5" class="textdro thtable"></th></a></th>';

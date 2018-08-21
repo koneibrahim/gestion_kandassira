@@ -1,13 +1,9 @@
 <?php
 	 		/* -----Debut Liste.php----------- */
 	include'../../Layout/header.php';
-	  echo'<div id="logosahel">';
-		 	//	 echo'<img src="../../Images/sahel.png" width="100%" height="100%" alt="">';
-		echo'</div>';
-		echo'<div id="logoyogo">';
-//echo'<img src="../../Images/yogotte.jpg" width="100%" height="100%" alt="">';
-		echo'</div>';
 	include'../../Layout/header2.php';
+	include'../../Layout/retour.php';
+
 	  echo '<div id="menu2">';
 		 /*   	echo'<img src="../../Images/fournisseurs.png" width="60%" height="20%" alt="">';*/
 		echo '</div>';
