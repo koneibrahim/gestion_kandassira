@@ -1,6 +1,6 @@
 
 /*body{background:#CDE9FF;font-family: Garuda;}*/
-body{background:#b8e8b6;font-family: Garuda;
+body{background:#b8e8b6;font-family: Trebuchet MS;
 }
 /* -----------Layout----------*/
 
@@ -45,7 +45,7 @@ overflow: auto ; border: 0px solid #4488C7;overflow: auto }
 	text-align: center;overflow: auto;}
 
 
-#logosahel{position: absolute;background: rgba(170, 205, 168  ,0.4);height: 8.0%;top: 0.5%;right: 0.5%;left: 84.3%;
+#retour{position: absolute;background: rgba(170, 205, 168  ,0.4);height: 8.0%;top: 0.5%;right: 0.5%;left: 84.3%;
 	text-align: center;
 	   	}
 #logoyogo{position: absolute;background: rgba(170, 205, 168  ,0.4);height: 8.0%;top: 9.0%;right: 0.5%;left: 84.3%;
@@ -60,12 +60,12 @@ overflow: auto ; border: 0px solid #4488C7;overflow: auto }
 
 /* ------Button menu1 menu2---------------*/
 
-.bm2{border-color: blue;text-align: center;margin-top:10px;width: 95%;padding: 10px;
-	background: rgba(0,0,0,0.1);color:#000000;font-size: 18px;box-shadow:2px 2px 1px #000;
-	text-transform: capitalize;margin-bottom: 5px;}
-
-.bm2:hover{cursor: pointer;background: rgba(0,0,0,0.7);padding:7px 2px;font-size: 25px 4px;
-	border-bottom: ;	box-shadow:2px 2px 2px white;color: #FFFFFF;}
+.bm2{border:none;text-align: center;margin-top:10px;width: 95%;padding: 10px;
+	background: rgba(170, 205, 168  ,0.9);color:#000000;font-size: 18px;text-transform: capitalize;
+}
+.bm2:hover{cursor: pointer;background: rgba(170, 205, 168  ,0.9);padding:7px 2px;font-size: 25px 4px;
+	box-shadow:2px 2px 2px solid #000000;border-bottom:1px solid #000000 ;border-top:1px solid #000000;
+}
 
 /* ------Button de base des menus Header2---------------*/
 
@@ -74,7 +74,7 @@ overflow: auto ; border: 0px solid #4488C7;overflow: auto }
 	border:none; }
 
 .bmh2:hover{cursor: pointer;background: rgba(170, 205, 168  ,0.9);padding:7px 2px;font-size: 25px 4px;
-box-shadow:2px 2px 2px solid #000000;}
+box-shadow:2px 2px 2px solid #000000;border-bottom:1px solid #000000;border-top:1px solid #000000;}
 
 /* --------Titre texte-------------*/
 
@@ -116,7 +116,7 @@ box-shadow:2px 2px 2px solid #000000;}
 
 
 
-.butmenu2{text-align: center;margin-top:5px;width: 90%;padding: 2px;background: rgba(170, 205, 168  ,0.4);
+.butmenu2{text-align: center;margin-top:5px;width: 90%;padding: 2px;background: rgba(170, 205, 168  ,0.9);
 	color:#000000;font-size: 16px;text-transform: capitalize;border:none; }
 
 .butmenu2:hover{cursor: pointer;background: rgba(170, 205, 168  ,0.9);padding:7px 2px;font-size: 18px 4px;
@@ -192,6 +192,20 @@ z-index: 1000;border-radius: 20px;}
 #sfooter{ left:25%;right:20.0%;bottom: 35%;height:6%;position: fixed;z-index: 1001;border-radius:
  0px 0px 20px 20px;background:rgba(170, 205, 168  ,0.9);border-top: 1px solid #666;text-align:right;color:#fff;
  border-top: 1px solid #fff; }
+
+ /*------------Formulaire Idenfification-------------*/
+ #iform{position: fixed;background-image: url('../Images/bg22.jpg');background:#b8e8b6;
+ top:20%;bottom:40%;left:20%;right:20%;z-index: 1000;box-shadow:1px 1px 5px 1px #000000;border-radius: 20px;}
+
+ #iform2{position: fixed;background:rgba(170, 205, 168  ,0.4);top:20%;bottom:40%;left:20%;right: 20%;
+ z-index: 1000;border-radius: 20px;}
+
+ #iheader{ left:20%;right:20%;top:20%;height:6%;position: fixed;z-index: 1001;border-radius:
+ 20px 20px 0px 0px; background:rgba(170, 205, 168  ,10);border-bottom: 1px solid #fff;text-align: center;  }
+
+ #ifooter{ left:20%;right:20%;bottom: 40%;height:6%;position: fixed;z-index: 1001;border-radius:
+  0px 0px 20px 20px;background:rgba(170, 205, 168  ,0.9);text-align:right;color:#fff;
+  border-top: 1px solid #fff; }
 
 /* ----------Fvalider---------------*/
 
