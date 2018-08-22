@@ -33,7 +33,7 @@
 
 	echo'<tr>';
 	echo'<th class="thtable textcen">N°</th>';
-	echo'<th class="thtable textcen">Matières </th>';
+	echo'<th class="thtable textcen">Article </th>';
 	echo'<th class="thtable textcen">Quantité achetée</th>';
 	echo'<th class="thtable textcen">Quantité livrée</th>';
 	echo'<th class="thtable textcen colspan="2">Action</th>';

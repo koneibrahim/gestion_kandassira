@@ -5,10 +5,9 @@
 	include'../../Layout/retour.php';
 
 	  echo '<div id="menu2">';
-		    	/*echo'<img src="../../Images/livraisons.png" width="60%" height="20%" alt="">';*/
-					echo'<a href="/Src/Clients/liste.php"> <button class="butmenu2">Clients</button> </a>';
-					echo'<a href="/Src/Articles/liste.php"> <button class="butmenu2">Stock des produits</button> </a>';
-
+				echo ' <a href="/Src/Reservations/liste.php"><button class="bm2">Reservations</button> </a>';
+				echo ' <a href="/Src/Mariages/liste.php"> <button class="bm2">Kodumani</button> </a>';
+				echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Prestations</button> </a>';
 		echo '</div>';
 	include'CRUD.php';
 	echo'<div id="content">';
@@ -24,7 +23,7 @@
 							echo'<th class="thtable textgau">Prénom </th>';
 							echo'<th class="thtable textcen">Téléphone 1 </th>';
 							echo'<th class="thtable textcen">Téléphone 2 </th>';
-							echo'<th class="thtable textcen">Addresse </th>';
+							echo'<th class="thtable textcen">Adresse </th>';
 							echo'<th colspan="2" class="thtable">Action</th>';
 							echo'</tr>';
 							$i=1;

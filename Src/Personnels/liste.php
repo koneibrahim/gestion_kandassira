@@ -5,7 +5,9 @@
 	include'../../Layout/retour.php';
 
 	  echo '<div id="menu2">';
-		 /*   	echo'<img src="../../Images/fournisseurs.png" width="60%" height="20%" alt="">';*/
+					echo ' <a href="/Src/Reservations/liste.php"><button class="bm2">Reservations</button> </a>';
+					echo ' <a href="/Src/Mariages/liste.php"> <button class="bm2">Kodumani</button> </a>';
+					echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Prestations</button> </a>';
 		echo '</div>';
 
 	include'CRUD.php';

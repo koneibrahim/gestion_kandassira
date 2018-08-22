@@ -10,12 +10,7 @@
 	    include 'CRUD.php';
 
 	     echo'<div id="menu2">';
-       echo'<br>';
-       echo'<a href="/Src/Clients/liste.php"> <button class="butmenu2">Clients</button> </a>';
-       echo'<a href="/Src/Articles/liste.php"> <button class="butmenu2">Stock des produits</button> </a>';
-
-       echo'<br>';
-       echo'<br>';
+      
 
 		 	       echo'<a href="Vajouter.php">
           	<img src="/Images/ajouter.png" width="25px"height="25px"

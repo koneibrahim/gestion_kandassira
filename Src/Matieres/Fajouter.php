@@ -27,6 +27,9 @@
 	echo '<option value="16Go">16 Giga</option>';
 	echo '<option value="32Go">32 Giga</option>';
 	echo '<option value="64Go">64 Giga</option>';
+	echo '<option value="CD"> CD_R</option>';
+	echo '<option value="DVD"> DVD-R</option>';
+
 	echo'</select></td></tr>';
 
 	echo'	<tr><td class="textinput">Prix achat</td><td><input type="text" name="prix_ma" class="labinput"></td></tr>';

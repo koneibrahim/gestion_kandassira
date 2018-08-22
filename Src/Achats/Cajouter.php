@@ -15,7 +15,7 @@
 	echo' <input type="hidden" name="libele" value="'.$libele.'"/>';
 	echo '<table cellpadding="3" class="w95">';
 	//Composant Liste déroulante matières
-	echo '<tr><td class="textinput">Nom</td><td><select name="id_ma" class="labinput">';
+	echo '<tr><td class="textinput">Article</td><td><select name="id_ma" class="labinput">';
 	while ($ligne=pg_fetch_assoc($ajouter)) {
 	echo '<option value="'.$ligne['id_ma'].'">'.$ligne['nom_ma'].'</option>';
 	}

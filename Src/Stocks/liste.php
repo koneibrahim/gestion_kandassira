@@ -6,7 +6,9 @@
 	include'../../Layout/retour.php';
 
 					echo '<div id="menu2">';
-						 /*	echo'<img src="../../Images/stocks.png" width="60%" height="20%" alt="">';*/
+								echo ' <a href="/Src/Reservations/liste.php"><button class="bm2">Reservations</button> </a>';
+								echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Kodumani</button> </a>';
+								echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Prestations</button> </a>';
 					echo '</div>';
 				include'CRUD.php';
 				if($_SESSION['group']=='3'||$_SESSION['group']=='2') {
@@ -21,10 +23,10 @@
 
 				echo'<tr>';
 				echo'<th class="thtable textcen">N°</th>';
-				echo'<th class="thtable textgau">Nom matière </th>';
+				echo'<th class="thtable textgau">Nom article </th>';
 				echo'<th class="thtable textcen">Unité </th>';
-				echo'<th class="thtable textcen">Quantité virtuele</th>';
-				echo'<th class="thtable textcen">Quantité réele</th>';
+				echo'<th class="thtable textcen">Quantité vendue</th>';
+				echo'<th class="thtable textcen">Quantité restante</th>';
 
 				echo'</tr>';
 				$i=1;
