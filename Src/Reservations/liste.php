@@ -1,4 +1,6 @@
 <?php
+$id_pres=$_GET['id_pres'];
+
 	 		/* -----Debut Liste.php----------- */
 	include'../../Layout/header.php';
 	include'../../Layout/header2.php';
@@ -9,15 +11,20 @@
 					echo ' <a href="/Src/Mariages/liste.php"> <button class="bm2">Kodumani</button> </a>';
 					echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Prestations</button> </a>';
 
-					echo '<h4 class="titreh4"> Liste des prestations </h4><br/>';
-					while($ligne=pg_fetch_assoc($lpres))
-							{
-							echo '<a href="liste.php?id_pres='.$ligne['id_pres'].'">
-							<button class="butmenu2" title="'.$ligne['nom_pres'].''.$ligne['prix'].'">
-							<b class="t18"x>'.$ligne['nom_pres'].' '.$ligne['prix'].'</b>
-							</button></a>';
-							}
+//---------------------------------------------------------------------------
+		echo'<h3 class="titrecform textgau">Liste des prestations</h3><br/>';
+					$a=1;
+					while($ligne=pg_fetch_assoc($lp))
+					{
+					echo'<tr class="ld'.($a%2).'">';
+					echo'<td class="textcen">'.$a.'</td>';
+					echo'<td class="textgau">'.$ligne['nom_pres'].'</td>';
 
+					echo'</tr>';
+					$a++;
+					}
+
+//--------------------------------------------------------------------
 		echo '</div>';
 
 		include'CRUD.php';

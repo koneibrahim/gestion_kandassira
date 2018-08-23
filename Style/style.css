@@ -194,6 +194,7 @@ z-index: 1000;border-radius: 20px;}
  border-top: 1px solid #fff; }
 
  /*------------Formulaire Idenfification-------------*/
+
  #iform{position: fixed;background-image: url('../Images/bg22.jpg');background:#b8e8b6;
  top:20%;bottom:40%;left:20%;right:20%;z-index: 1000;box-shadow:1px 1px 5px 1px #000000;border-radius: 20px;}
 
@@ -207,7 +208,7 @@ z-index: 1000;border-radius: 20px;}
   0px 0px 20px 20px;background:rgba(170, 205, 168  ,0.9);text-align:right;color:#fff;
   border-top: 1px solid #fff; }
 
-/* ----------Fvalider---------------*/
+/* ----------Formulaire valider---------------*/
 
 #vform{position: fixed;background-image: url('../Images/bg22.jpg');top:35%;background:#89BBFF;
 bottom:35%;left:25%;right:20%;z-index: 1000;box-shadow:1px 1px 5px 2px #000000;border-radius: 20px;}
@@ -221,6 +222,20 @@ z-index: 1000;border-radius: 20px;}
 #vfooter{ left:25%;right:20.0%;bottom: 35%;height:6%;position: fixed;z-index: 1001;border-radius:
  0px 0px 20px 20px;background:rgba(67,169,255,10);border-top: 1px solid #666;text-align:right;color:#fff;
  border-top: 1px solid #fff; }
+
+/*-----------------Formulaire mariages (Kodumani)---*/
+
+#kform{position: fixed;background-image: url('../Images/b22.jpg');top:10%;bottom:10%;left:30%;
+	right:20%;z-index: 1000;box-shadow:1px 1px 5px 1px #000000;border-radius: 20px;background:#b8e8b6;}
+
+#kform2{position: fixed;background:rgba(170, 205, 168  ,0.4);top:10%;bottom:10%;left:30%;right:20%;
+	z-index: 1000;border-radius: 20px;}
+
+#kheader{left:30%;right: 20%;top: 10%;height:6.0%;position: fixed;z-index: 1001;border-radius:
+20px 20px 0px 0px; background:rgba(170, 205, 168  ,0.9);border-bottom: 1px solid #fff;color:#000000;text-align: center;}
+
+#kfooter{left:30%;right: 20%;bottom: 10%;height:6.0%;position: fixed;z-index: 1001;border-radius:
+ 0px 0px 20px 20px;background:rgba(170, 205, 168  ,0.9);text-align: right;color:#000000;border-top: 1px solid #fff;}
 
   /* ---------Bputton Valider et Annuler------------*/
 

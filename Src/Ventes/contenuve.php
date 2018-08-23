@@ -3,10 +3,13 @@
   $date_ve=$_GET['date_ve'];
   $libele=$_GET['libele'];
   $etat=$_GET['etat'];
-  //$id_cve=$_GET['id_cve'];
-  $id_pro=$_GET['id_pro'];
+  $id_cve=$_GET['id_cve'];
+  $id_ma=$_GET['id_ma'];
+  $id_pres=$_GET['id_pres'];
+  $qte_v=$_GET['qte_v'];
+
   include'vente.php';
-  
+
 			/*-------Debut Contenuac-----------*/
   echo'<div id="contvert2">';
   echo'<h3 class="titrecform textcen">Contenu de la vente de '.$libele.' '.$date_ve.' </h3><br/>';
@@ -20,8 +23,9 @@
       	//}
       	echo'<tr>';
           	echo'<th class="thtable textcen">N°</th>';
-          	echo'<th class="thtable textcen">Nom produit</th>';
+          	echo'<th class="thtable textcen">Nom article ou prestaion</th>';
           	echo'<th class="thtable textcen">Prix </th>';
+            echo'<th class="thtable textcen">Quantité</th>';
           	echo'<th class="thtable textcen">Quantité Achetée</th>';
             echo'<th class="thtable textcen">Quantité Livrée</th>';
           	//	if ($etat==0) {
@@ -40,16 +44,19 @@
               // Modification le contenu de la vente
                echo'<td class="textcen"><a href="Vmodifier.php?id_ve='.$id_ve.
                    '&id_cve='.$ligne['id_cve'].
-                   '&id_pro='.$ligne['id_pro'].
-                   '&nom_pro='.$ligne['nom_pro'].
+                   '&id_ma='.$ligne['id_ma'].
+                   '&nom_ma='.$ligne['nom_ma'].
+                   '&id_pres='.$ligne['id_pres'].
+                   '&nom_pres='.$ligne['nom_pres'].
                    '&qte_v='.$ligne['qte_v'].
             			 '"><img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
                echo'<td class="textcen"><a href="Vsupprimer.php?id_ve='.$id_ve.
                    '&id_cve='.$ligne['id_cve'].
-                   '&id_pro='.$ligne['id_pro'].
-                   '&nom_pro='.$ligne['nom_pro'].
+                   '&id_ma='.$ligne['id_ma'].
+                   '&nom_ma='.$ligne['nom_ma'].
+                   '&id_pres='.$ligne['id_pres'].
+                   '&nom_pres='.$ligne['nom_pres'].
                    '&qte_v='.$ligne['qte_v'].
-                   '&date_ve='.$ligne['date_ve'].
             			'"><img src="/Images/supprimer.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
        echo'</tr>';
       	$i++;

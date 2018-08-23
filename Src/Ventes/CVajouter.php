@@ -1,11 +1,7 @@
 <?php
-  $id_ve=$_GET['id_ve'];
-  // $id_cve=$_GET['id_cve'];
-//  $id_pro=$_GET['id_pro'];
-//  $nom_pro=$_GET['nom_pro'];
-  // $qte_v=$_GET['qte_v'];
- $libele=$_GET['libele'];
-   //$date_ve=$_GET['date_ve'];
+    $id_ve=$_GET['id_ve'];
+    $libele=$_GET['libele'];
+
       	include'contenuve.php';
       	/*-----Debut Cajouter.php------------*/
     echo '<div id="contvert2">';
@@ -15,14 +11,19 @@
           	echo' <input type="hidden" name="mas" value="CVA"/>';
           	echo' <input type="hidden" name="id_ve" value="'.$id_ve.'"/>';
             echo' <input type="hidden" name="libele" value="'.$libele.'"/>';
-        //    echo' <input type="hidden" name="id_pro" value="'.$id_pro.'"/>';
-          //  echo' <input type="hidden" name="id_cve" value="'.$id_cve.'"/>';
           	echo '<table cellpadding="3" class="w95">';
-          	//Composant Liste déroulante des produits
-          	echo '<tr><td class="textinput">Nom</td><td><select name="id_pro" class="labinput">';
-          	while ($ligne=pg_fetch_assoc($lproduit)) {
-          	echo '<option value="'.$ligne['id_pro'].'">'.$ligne['nom_pro'].'</option>';
+          	// Liste déroulante des articles
+          	echo '<tr><td class="textinput">Nom article</td><td><select name="id_ma" class="labinput">';
+          	while ($ligne=pg_fetch_assoc($larticle)) {
+          	echo '<option value="'.$ligne['id_ma'].'">'.$ligne['nom_ma'].'</option>';
           	}
+
+            // Liste déroulante des prestations
+            echo '<tr><td class="textinput">Nom prestation</td><td><select name="id_pres" class="labinput">';
+            while ($ligne=pg_fetch_assoc($lprestation)) {
+            echo '<option value="'.$ligne['id_pres'].'">'.$ligne['nom_pres'].'</option>';
+            }
+
           	echo'	<tr><td class="textinput">Prix</td><td><input type="text" name="qte_v" class="labinput"></td></tr>';
             echo'	<tr><td class="textinput">Quantité</td><td><input type="text" name="prix" class="labinput"></td></tr>';
           	echo '</table>';

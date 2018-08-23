@@ -261,7 +261,7 @@ elseif($_POST['mas']=='PS')
 	 $requete5="select * from contenu_acha natural join matieres";
 	 $jointure=pg_query($dbconn,$requete5);
 
-	 $requete6="select id_ma,prix_ma,nom_ma from matieres" ;
+	 $requete6="select id_ma,prix_ma,nom_ma from matieres";
 	 $ajouter=pg_query($dbconn,$requete6);
 
 	 $requete7="select id_fo,nom_fo from fournisseurs";

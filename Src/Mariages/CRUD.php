@@ -2,14 +2,15 @@
 if($_SESSION['group']=='3') {
 	if($_POST['mas']=='A')
 	 {
-	$id_p=$_POST['id_p'];
-	$nom_p=$_POST['nom_p'];
-	$prenom_p=$_POST['prenom_p'];
-	$fonction=$_POST['fonction'];
-	$tel=$_POST['tel'];
+	$id_m=$_POST['id_m'];
+	$nom_m=$_POST['nom_m'];
+	$prenom_m=$_POST['prenom_m'];
+	//$contact=$_POST['contact'];
+	$nom_f=$_POST['nom_f'];
+	$prenom_f=$_POST['prenom_f'];
 	$adresse=$_POST['adresse'];
-	$requete="insert into personnels (nom_p,prenom_p,fonction,tel,adresse)";
-	$requete.=" values ('$nom_p','$prenom_p','$fonction','$tel','$adresse')";
+	$requete="insert into mariages (nom_m,prenom_m,nom_f,prenom_f,adresse)";
+	$requete.=" values ('$nom_m','$prenom_m','$nom_f','$prenom_f','$adresse')";
 			if($_POST['valider']=='Valider')
 	$resultat=pg_query($dbconn,$requete);
 	 }
@@ -18,14 +19,15 @@ if($_SESSION['group']=='3') {
 
 elseif($_POST['mas']=='M')
 	 {
-		$id_p=$_POST['id_p'];
-	 	$nom_p=$_POST['nom_p'];
-	 	$prenom_p=$_POST['prenom_p'];
-	 	$fonction=$_POST['fonction'];
-	 	$tel=$_POST['tel'];
-	 	$adresse=$_POST['adresse'];
-	$requete="update personnels set nom_p='$nom_p',prenom_p='$prenom_p',fonction='$fonction',tel='$tel',adresse='$adresse'";
-	$requete.="  where id_p='$id_p'";
+		 $id_m=$_POST['id_m'];
+ 		$nom_m=$_POST['nom_m'];
+ 		$prenom_m=$_POST['prenom_m'];
+ 		//$contact=$_POST['contact'];
+ 		$nom_f=$_POST['nom_f'];
+ 		$prenom_f=$_POST['prenom_f'];
+ 		$adresse=$_POST['adresse'];
+	$requete="update mariages set nom_m='$nom_m',prenom_m='$prenom_m',nom_f='$nom_f',prenom_f='$prenom_f',adresse='$adresse'";
+	$requete.="  where id_m='$id_m'";
 			if($_POST['valider']=='Valider')
 	$resultat=pg_query($dbconn,$requete);
 	 }
@@ -34,15 +36,15 @@ elseif($_POST['mas']=='M')
 
 elseif($_POST['mas']=='S')
 	{
-	$id_p=$_POST['id_p'];
+	$id_m=$_POST['id_m'];
 	$valider=$_POST['valider'];
  if($valider=='Oui') {
-	$requete="delete from personnels where id_p='$id_p'";
+	$requete="delete from mariages where id_m='$id_m'";
 	$resultat=pg_query($dbconn,$requete);
 
 	 		}
 	 	 }
-	$requete="select * from mariages order by nom_m ASC";
+	$requete="select * from mariages";
 	$resultat=pg_query($dbconn,$requete);
 }
 ?>

@@ -10,8 +10,8 @@ if($_SESSION['group']=='3') {
 	$libele=$_POST['libele'];
 	$date_tr=$_POST['date_tr'];
 	$lieu=$_POST['lieu'];
-	$requete="insert into reservations (id_res,id_cli,id_p,id_pres,date_res,libele,date_tr,lieu)";
-	$requete.=" values ($id_res','$id_cli','$id_p',$id_pres','$date_res','$libele','$id_cli','$id_p','$id_pres','$lieu')";
+	$requete="insert into reservations (id_cli,id_p,id_pres,date_res,libele,date_tr,lieu)";
+	$requete.=" values ('$id_cli','$id_p','$id_pres','$date_res','$libele','$lieu')";
 			if($_POST['valider']=='Valider')
 	$resultat=pg_query($dbconn,$requete);
 	 }
@@ -44,8 +44,7 @@ elseif($_POST['mas']=='S')
 
 	 		}
 	 	 }
-	//$requete="select *  from reservations order by date_res ASC";
-	//$resultat2=pg_query($dbconn,$requete);
+
 	$requete7="select id_cli,nom_cli from clients";
 	$lclient=pg_query($dbconn,$requete7);
 
@@ -55,8 +54,8 @@ elseif($_POST['mas']=='S')
 	$requete9="select id_p,nom_p from personnels";
 	$lpersonnel=pg_query($dbconn,$requete9);
 
-	$requete10="select * from prestations";
-	$lpres=pg_query($dbconn,$requete10);
+	$requete="select * from prestations";
+	$lp=pg_query($dbconn,$requete);
 
 	$requete="select id_res,id_cli,id_pres,id_p,date_res,libele,date_tr,lieu,nom_cli,pre_cli,tel
 	from reservations natural join clients  order by id_res";

@@ -55,16 +55,16 @@ if($_POST['valider']=='Valider')
   }
 // -----LES SELECTS---------//
 
-	 $requete="select id_ve,date_ve,libele,etat from ventes order by id_ve";
+	 $requete="select id_ve,tel,nom_cli,date_ve,libele,etat from ventes natural join clients order by id_ve";
       $listeve=pg_query($dbconn,$requete);
-   $requete2="select id_ve,id_cli,date_ve,libele,nom_cli,montant,montant_paye,montant_res,etat from
+   $requete2="select id_ve,id_cli,date_ve,libele,nom_cli,pre_cli,tel,montant,montant_paye,montant_res,etat from
 	             ventes natural join clients where id_ve=$id_ve";
 	    $vente=pg_query($dbconn,$requete2);
-   $requete3="select id_cli,nom_cli,adresse_cli from clients";
+   $requete3="select id_cli,nom_cli,pre_cli,adresse_cli from clients";
       $lclient=pg_query($dbconn,$requete3);
 
-	 $requete4="select id_ve,id_cve,id_pro,nom_pro,prix,qte_v,qte_liv from
-	 		contenu_ve natural join produits natural join ventes where id_ve=$id_ve ";
+	 $requete4="select id_ve,id_cve,id_ma,nom_ma,prix,qte_v,qte_liv from
+	 		contenu_ve natural join matieres natural join prestation natural join ventes where id_ve=$id_ve ";
 			$contenuve=pg_query($dbconn,$requete4);
 
    $requete5="select id_liv,id_ve,date_liv,libele from liv_vente";
@@ -82,4 +82,10 @@ if($_POST['valider']=='Valider')
 
 	$requete10="select prix from produits" ;
 			$lprix=pg_query($dbconn,$requete10);
+
+	$requete11="select id_ma,prix_ma,nom_ma from matieres";
+	 	 $larticle=pg_query($dbconn,$requete11);
+
+		 $requete12="select id_pres,nom_pres,prix from prestations";
+	 	 	 $lprestation=pg_query($dbconn,$requete12);
 ?>

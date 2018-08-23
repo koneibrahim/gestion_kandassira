@@ -21,8 +21,9 @@
                       <td><input type="text" name="libele" class="labinput"></td></tr>';
                    echo'<tr><td class="textinput">Client</td><td><select name="id_cli" class="labinput">';
                    while ($ligne=pg_fetch_assoc($lclient)) {
-                   echo'<option value="'.$ligne['id_cli'].'">'.$ligne['nom_cli'].'</option>';
+                   echo'<option value="'.$ligne['id_cli'].'">'.$ligne['nom_cli'].' => '.$ligne['pre_cli'].'</option>';
                     }
+                    
                echo'</table>';
                echo'<div id="cfooter" class="textdro">';
                echo'<input type="submit" name="valider" value="Valider"  class="bvalid">&nbsp;&nbsp;

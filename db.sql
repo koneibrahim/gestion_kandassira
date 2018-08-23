@@ -249,20 +249,22 @@ ALTER SEQUENCE public.contenu_liv_vente_id_cliv_seq OWNED BY public.contenu_liv_
 
 
 --
--- Name: contenu_ve; Type: TABLE; Schema: public; Owner: ikone
+-- Name: contenu_vente; Type: TABLE; Schema: public; Owner: ikone
 --
 
-CREATE TABLE public.contenu_ve (
+CREATE TABLE public.contenu_vente (
     id_cve integer NOT NULL,
     id_ve integer,
     id_pro integer,
     qte_v integer,
     prix integer,
-    qte_liv integer
+    qte_liv integer,
+    id_ma integer,
+    id_pres integer
 );
 
 
-ALTER TABLE public.contenu_ve OWNER TO ikone;
+ALTER TABLE public.contenu_vente OWNER TO ikone;
 
 --
 -- Name: contenu_ve_id_cve_seq; Type: SEQUENCE; Schema: public; Owner: ikone
@@ -282,7 +284,7 @@ ALTER TABLE public.contenu_ve_id_cve_seq OWNER TO ikone;
 -- Name: contenu_ve_id_cve_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ikone
 --
 
-ALTER SEQUENCE public.contenu_ve_id_cve_seq OWNED BY public.contenu_ve.id_cve;
+ALTER SEQUENCE public.contenu_ve_id_cve_seq OWNED BY public.contenu_vente.id_cve;
 
 
 --
@@ -432,7 +434,10 @@ CREATE TABLE public.mariages (
     id_m integer NOT NULL,
     nom_m character varying(25),
     prenom_m character varying(25),
-    contact public.hstore
+    contact public.hstore,
+    nom_f character varying(25),
+    prenom_f character varying(25),
+    adresse character varying(50)
 );
 
 
@@ -652,6 +657,7 @@ CREATE TABLE public.produits (
     prix_pro integer,
     qte_reel integer,
     qte_vir integer,
+    type_pro character varying(50),
     CONSTRAINT check1 CHECK ((qte_pro > 0)),
     CONSTRAINT check_qtep CHECK ((qte_pro > 0))
 );
@@ -832,7 +838,7 @@ ALTER TABLE ONLY public.contenu_liv_vente ALTER COLUMN id_cliv SET DEFAULT nextv
 -- Name: id_cve; Type: DEFAULT; Schema: public; Owner: ikone
 --
 
-ALTER TABLE ONLY public.contenu_ve ALTER COLUMN id_cve SET DEFAULT nextval('public.contenu_ve_id_cve_seq'::regclass);
+ALTER TABLE ONLY public.contenu_vente ALTER COLUMN id_cve SET DEFAULT nextval('public.contenu_ve_id_cve_seq'::regclass);
 
 
 --
@@ -941,6 +947,7 @@ COPY public.achats (id_ac, date_ac, montant, montant_paye, id_fo, etat_liv, libe
 171	2018-08-21	60000	60000	97	T	Achat Duniya	1
 172	2018-08-21	6000	6000	98	T	Fatoumata	1
 173	2018-08-22	60000	60000	96	T	Achat fourniture	1
+174	2018-08-23	\N	0	98	N	Beneko	0
 \.
 
 
@@ -948,7 +955,7 @@ COPY public.achats (id_ac, date_ac, montant, montant_paye, id_fo, etat_liv, libe
 -- Name: achats_id_ac_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.achats_id_ac_seq', 173, true);
+SELECT pg_catalog.setval('public.achats_id_ac_seq', 174, true);
 
 
 --
@@ -1028,18 +1035,18 @@ SELECT pg_catalog.setval('public.contenu_liv_vente_id_cliv_seq', 1, false);
 
 
 --
--- Data for Name: contenu_ve; Type: TABLE DATA; Schema: public; Owner: ikone
---
-
-COPY public.contenu_ve (id_cve, id_ve, id_pro, qte_v, prix, qte_liv) FROM stdin;
-\.
-
-
---
 -- Name: contenu_ve_id_cve_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
 SELECT pg_catalog.setval('public.contenu_ve_id_cve_seq', 20, true);
+
+
+--
+-- Data for Name: contenu_vente; Type: TABLE DATA; Schema: public; Owner: ikone
+--
+
+COPY public.contenu_vente (id_cve, id_ve, id_pro, qte_v, prix, qte_liv, id_ma, id_pres) FROM stdin;
+\.
 
 
 --
@@ -1116,9 +1123,10 @@ SELECT pg_catalog.setval('public.livraisons_id_liv_seq', 99, true);
 -- Data for Name: mariages; Type: TABLE DATA; Schema: public; Owner: ikone
 --
 
-COPY public.mariages (id_m, nom_m, prenom_m, contact) FROM stdin;
-1	Adama	DOUMBIA	"cel"=>"50209052", "tel"=>"66979576"
-2	Moussa	TRAORE	"cel"=>"20224600", "tel"=>"66160123"
+COPY public.mariages (id_m, nom_m, prenom_m, contact, nom_f, prenom_f, adresse) FROM stdin;
+2	Moussa	TRAORE	"cel"=>"20224600", "tel"=>"66160123"	Kadidjatou	SIDIBE	Medina Coura
+7	Moussa	COULIBALY	\N	Aminata	BAMBA	Djicoroni para
+4	Samba	MARICO	\N	Assmaou	SOGORE	Daoudavougouss
 \.
 
 
@@ -1126,7 +1134,7 @@ COPY public.mariages (id_m, nom_m, prenom_m, contact) FROM stdin;
 -- Name: mariages_id_m_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.mariages_id_m_seq', 2, true);
+SELECT pg_catalog.setval('public.mariages_id_m_seq', 11, true);
 
 
 --
@@ -1150,7 +1158,7 @@ COPY public.matieres (id_ma, nom_ma, prix_ma, unite, qte_vir, qte_reel) FROM std
 -- Name: matieres_id_ma_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.matieres_id_ma_seq', 150, true);
+SELECT pg_catalog.setval('public.matieres_id_ma_seq', 152, true);
 
 
 --
@@ -1195,6 +1203,8 @@ COPY public.personnels (id_p, nom_p, prenom_p, fonction, tel, adresse) FROM stdi
 15	Ibrahim	KONE	Directeur	66 16 01 23	Faladiè Socoro
 16	Sambou	SIDIBE	Directeur Adjoint	66 44 29 30	Lafiabougou
 17	Neant	Neant	Neutre	20 22 46 00	Kandassira
+18	Bonkana	MAÎGA	Agent Marketing	69 59  89 53	Sébénicoro
+19					Faladiè Socoro
 \.
 
 
@@ -1202,7 +1212,7 @@ COPY public.personnels (id_p, nom_p, prenom_p, fonction, tel, adresse) FROM stdi
 -- Name: personnels_id_p_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.personnels_id_p_seq', 17, true);
+SELECT pg_catalog.setval('public.personnels_id_p_seq', 19, true);
 
 
 --
@@ -1218,6 +1228,9 @@ COPY public.prestations (id_pres, nom_pres, prix) FROM stdin;
 14	Sonorisation moyen	15000
 16	Animation mariage A3	15000
 15	Animation mariage A4	30000
+17	Seminaire kodumani	3000
+18	Tafsir mp3	200
+19	Neant	0
 \.
 
 
@@ -1225,14 +1238,14 @@ COPY public.prestations (id_pres, nom_pres, prix) FROM stdin;
 -- Name: prestations_id_pre_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.prestations_id_pre_seq', 16, true);
+SELECT pg_catalog.setval('public.prestations_id_pre_seq', 19, true);
 
 
 --
 -- Data for Name: produits; Type: TABLE DATA; Schema: public; Owner: ikone
 --
 
-COPY public.produits (id_pro, nom_pro, qte_pro, prix_pro, qte_reel, qte_vir) FROM stdin;
+COPY public.produits (id_pro, nom_pro, qte_pro, prix_pro, qte_reel, qte_vir, type_pro) FROM stdin;
 \.
 
 
@@ -1283,7 +1296,9 @@ SELECT pg_catalog.setval('public.users_id_user_seq', 4, true);
 --
 
 COPY public.ventes (id_ve, date_ve, libele, id_cli, montant, montant_paye, montant_res, etat) FROM stdin;
-16	2018-08-21	Vente test	26	\N	\N	0	0
+17	2018-08-23	Test Vente	19	\N	\N	0	0
+18	2018-08-23	Vente	12	\N	\N	0	0
+16	2018-08-21	Animation mariage	19	\N	\N	0	0
 \.
 
 
@@ -1291,7 +1306,7 @@ COPY public.ventes (id_ve, date_ve, libele, id_cli, montant, montant_paye, monta
 -- Name: ventes_id_ve_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.ventes_id_ve_seq', 16, true);
+SELECT pg_catalog.setval('public.ventes_id_ve_seq', 19, true);
 
 
 --
@@ -1378,7 +1393,7 @@ ALTER TABLE ONLY public.matieres
 -- Name: p_key; Type: CONSTRAINT; Schema: public; Owner: ikone
 --
 
-ALTER TABLE ONLY public.contenu_ve
+ALTER TABLE ONLY public.contenu_vente
     ADD CONSTRAINT p_key PRIMARY KEY (id_cve);
 
 
@@ -1522,7 +1537,7 @@ ALTER TABLE ONLY public.contenu_liv
 -- Name: f_key1; Type: FK CONSTRAINT; Schema: public; Owner: ikone
 --
 
-ALTER TABLE ONLY public.contenu_ve
+ALTER TABLE ONLY public.contenu_vente
     ADD CONSTRAINT f_key1 FOREIGN KEY (id_ve) REFERENCES public.ventes(id_ve);
 
 
@@ -1539,7 +1554,7 @@ ALTER TABLE ONLY public.liv_vente
 --
 
 ALTER TABLE ONLY public.contenu_liv_vente
-    ADD CONSTRAINT f_key1 FOREIGN KEY (id_cve) REFERENCES public.contenu_ve(id_cve);
+    ADD CONSTRAINT f_key1 FOREIGN KEY (id_cve) REFERENCES public.contenu_vente(id_cve);
 
 
 --
@@ -1554,7 +1569,7 @@ ALTER TABLE ONLY public.pay_vente
 -- Name: f_key2; Type: FK CONSTRAINT; Schema: public; Owner: ikone
 --
 
-ALTER TABLE ONLY public.contenu_ve
+ALTER TABLE ONLY public.contenu_vente
     ADD CONSTRAINT f_key2 FOREIGN KEY (id_pro) REFERENCES public.produits(id_pro);
 
 
@@ -1564,6 +1579,22 @@ ALTER TABLE ONLY public.contenu_ve
 
 ALTER TABLE ONLY public.contenu_liv_vente
     ADD CONSTRAINT f_key2 FOREIGN KEY (id_liv) REFERENCES public.liv_vente(id_liv);
+
+
+--
+-- Name: f_key3; Type: FK CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.contenu_vente
+    ADD CONSTRAINT f_key3 FOREIGN KEY (id_ma) REFERENCES public.matieres(id_ma) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: f_key4; Type: FK CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.contenu_vente
+    ADD CONSTRAINT f_key4 FOREIGN KEY (id_pres) REFERENCES public.prestations(id_pres) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --

@@ -38,9 +38,6 @@
 					 echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Kodumani</button> </a>';
 					 echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Prestations</button> </a>';
 
-
-  	echo'</div>';
-
 	include'./Layout/footer.php';
 
 ?>

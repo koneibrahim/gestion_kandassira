@@ -24,8 +24,12 @@
                echo '<td>'.$ligne['libele'].'</td>';
            echo '</tr>';
            echo '<tr>';
-               echo '<td>Clients</td>';
-               echo '<td>'.$ligne['nom_cli'].'</td>';
+               echo '<td>Client</td>';
+               echo '<td>'.$ligne['nom_cli'].' '.$ligne['pre_cli'].'</td>';
+           echo '</tr>';
+           echo '<tr>';
+               echo '<td>Téléphone</td>';
+               echo '<td>'.$ligne['tel'].'</td>';
            echo '</tr>';
            echo '<tr>';
                echo '<td>Montant</td>';
@@ -54,7 +58,8 @@
                <img src="/Images/imprim.png" width="35px"height="35px" class="img" title="Imprimé"></a>';
                 //   if($ligne['etat']==0) {
            echo'<a href="Vsupprimer.php?id_ve='.$ligne['id_ve'].
-               '&date_ve='.$ligne['date_ve'].'&libele='.$ligne['libele'].'">
+               '&date_ve='.$ligne['date_ve'].'&libele='.$ligne['libele'].
+               '&nom_cli='.$ligne['nom_cli'].'&pre_cli='.$ligne['pre_cli'].'">
                <img src="/Images/supprimer.png" width="25px"height="25px" class="img" title="Supprimer"></a></td>';
               //  }
            echo'</tr>';

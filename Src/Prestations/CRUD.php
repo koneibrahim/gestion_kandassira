@@ -36,7 +36,7 @@ elseif($_POST['mas']=='S')
 
 	 		}
 	 	 }
-	$requete="select * from prestations order by nom_pres ASC";
+	$requete="select * from prestations order by nom_pres";
 	$resultat=pg_query($dbconn,$requete);
 }
 ?>
