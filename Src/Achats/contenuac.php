@@ -38,7 +38,7 @@
       	echo'<td class="textgau">'.$ligne['nom_ma'].'</td>';
       	echo'<td class="textcen">'.$ligne['prix'].'</td>';
       	echo'<td class="textcen">'.$ligne['qte_ma'].'</td>';
-         echo'<td class="textcen">'.$ligne['qte_liv'].'</td>';
+        echo'<td class="textcen">'.$ligne['qte_liv'].'</td>';
 
       	if ($etat==0) {
          echo'<td class="textcen"><a href="Cmodifier.php?id_ac='.$id_ac.

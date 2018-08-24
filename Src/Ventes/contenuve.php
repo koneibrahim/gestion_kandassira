@@ -24,9 +24,8 @@
       	echo'<tr>';
           	echo'<th class="thtable textcen">N°</th>';
           	echo'<th class="thtable textcen">Nom article ou prestaion</th>';
-          	echo'<th class="thtable textcen">Prix </th>';
+          	echo'<th class="thtable textcen">Prix vente </th>';
             echo'<th class="thtable textcen">Quantité</th>';
-          	echo'<th class="thtable textcen">Quantité Achetée</th>';
             echo'<th class="thtable textcen">Quantité Livrée</th>';
           	//	if ($etat==0) {
           	echo'<th class="thtable textcen" colspan="2">Action</th>';
@@ -35,10 +34,11 @@
       	$i=1;
             	while($ligne=pg_fetch_assoc($contenuve))
             	{
-       	echo'<tr class="ld'.($i%2).'">';
+       	      echo'<tr class="ld'.($i%2).'">';
             	echo'<td class="textcen">'.$i.'</td>';
-            	echo'<td class="textgau">'.$ligne['nom_pro'].'</td>';
-              echo'<td class="textcen">'.$ligne['prix'].'</td>';
+            	echo'<td class="textgau">'.$ligne['nom_ma'].'</td>';
+              echo'<td class="textcen">'.$ligne['prix_v'].'</td>';
+              echo'<td class="textcen">'.$ligne['nom_pres'].'</td>';
             	echo'<td class="textcen">'.$ligne['qte_v'].'</td>';
               echo'<td class="textcen">'.$ligne['qte_liv'].'</td>';
               // Modification le contenu de la vente
@@ -62,6 +62,6 @@
       	$i++;
       	      }
     echo'</table>';
-  echo'</div>';
+    echo'</div>';
       	include'../../Layout/footer.php';
 ?>

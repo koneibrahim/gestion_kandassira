@@ -48,7 +48,7 @@ overflow: auto ; border: 0px solid #4488C7;overflow: auto }
 #retour{position: absolute;background: rgba(170, 205, 168  ,0.4);height: 8.0%;top: 0.5%;right: 0.5%;left: 84.3%;
 	text-align: center;
 	   	}
-#logoyogo{position: absolute;background: rgba(170, 205, 168  ,0.4);height: 8.0%;top: 9.0%;right: 0.5%;left: 84.3%;
+#logo{position: absolute;background: rgba(170, 205, 168  ,0.4);height: 8.0%;top: 9.0%;right: 0.5%;left: 84.3%;
 	text-align: center;
 	   	}
 #logoprod{position: absolute;background: rgba(170, 205, 168  ,0.4);height: 8.0%;top: 9.0%;right: 84.3%;left: 0.5%;

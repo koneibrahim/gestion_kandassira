@@ -1,5 +1,5 @@
 <?php
-//-----COURS ACHAT
+//-----VENTES
 if($_POST['mas']=='VA')
 	 {
 		$date_ve=$_POST['date_ve'];
@@ -36,26 +36,37 @@ elseif($_POST['mas']=='VS')
 if($_POST['mas']=='CVA')
 	 {
 		$id_cve=$_POST['id_cve'];
-		$id_pro=$_POST['id_pro'];
-		$nom_pro=$_POST['nom_pro'];
+		$id_ma=$_POST['id_ma'];
+		$nom_ma=$_POST['nom_ma'];
 		$qte_v=$_POST['qte_v'];
+		$prix_v=$_POST['prix_v'];
+
+		$id_pres=$_POST['id_pres'];
+		$nom_pres_pres=$_POST['nom_pres'];
+
 			//$rprix="select prix_pro from produits where id_pro=$id_pro";
 			//$eprix=pg_query($dbconn,$rprix);
 			//$ligne=pg_fetch_assoc($eprix);
 			//$prix_pro=$ligne['prix_pro'];
-			$requete11="insert into contenu_ve (id_ve,id_cve,nom_pro,qte_v,prix_pro) values ($id_ve,$id_cve,$nom_pro,$qte_v,$prix_pro)";
+			$requete11="insert into contenu_vente (id_ve,id_cve,id_ma,id_pres,nom_ma,nom_pres,qte_v,prix_v)
+			values ($id_ve,$id_cve,$nom_pro,$qte_v,$prix_pro)";
 if($_POST['valider']=='Valider')
 	{
 		$cvajouter=pg_query($dbconn,$requete11);
 
 		$requete="update ventes set montant= t.smontant from (select sum(prix*qte_v) as smontant from
-		contenu_ve where id_ve=$id_ve) as t where id_ve=$id_ve";
+		contenu_vente where id_ve=$id_ve) as t where id_ve=$id_ve";
 		$cajouter=pg_query($dbconn,$requete);
 	}
   }
-// -----LES SELECTS---------//
 
-	 $requete="select id_ve,tel,nom_cli,date_ve,libele,etat from ventes natural join clients order by id_ve";
+
+
+
+
+// -----LES DIFFERENTS SELECTS---------//
+
+	 $requete="select id_ve,tel,nom_cli,date_ve,libele,etat from ventes natural join clients order by id_ve desc";
       $listeve=pg_query($dbconn,$requete);
    $requete2="select id_ve,id_cli,date_ve,libele,nom_cli,pre_cli,tel,montant,montant_paye,montant_res,etat from
 	             ventes natural join clients where id_ve=$id_ve";
@@ -64,11 +75,11 @@ if($_POST['valider']=='Valider')
       $lclient=pg_query($dbconn,$requete3);
 
 	 $requete4="select id_ve,id_cve,id_ma,nom_ma,prix,qte_v,qte_liv from
-	 		contenu_ve natural join matieres natural join prestation natural join ventes where id_ve=$id_ve ";
+	 		contenu_ve natural join matieres natural join prestations natural join ventes where id_ve=$id_ve ";
 			$contenuve=pg_query($dbconn,$requete4);
 
    $requete5="select id_liv,id_ve,date_liv,libele from liv_vente";
-			$lvente=pg_query($dbconn,$requete5);
+			$livvente=pg_query($dbconn,$requete5);
 
    $requete6="select id_pro,id_ve,id_cve,id_cliv,nom_pro,qte_pro,qte_liv,id_liv
 			 from contenu_liv_vente  join contenu_liv_vente using  (id_cve) join produits using(id_pro)  where id_liv=$id_liv order by nom_pro";

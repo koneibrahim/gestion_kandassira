@@ -42,7 +42,7 @@ elseif($_POST['mas']=='S')
 
 	 		}
 	 	 }
-	$requete="select * from personnels order by nom_p ASC";
+	$requete="select * from personnels order by id_p ASC";
 	$resultat=pg_query($dbconn,$requete);
 }
 ?>

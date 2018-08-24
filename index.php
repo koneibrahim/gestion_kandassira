@@ -9,7 +9,7 @@
 				//	echo'<img src="Images/bgone.jpg" width="100%" height="100%" alt="">';
 
 				if($_SESSION['utilisateur']!='Identifie') {
-					echo '<div id="ifrom"><div id="iform2"><div id="iheader" class="centre">Authentification</div><br/><br/><br/>';
+					echo '<div id="ifrom"><div id="iform2"><div id="iheader" class="centre">Authentification</div><br/><br/><br/><br/>';
 				  echo '<form action="index.php" method="post">';
 					echo '<input type="hidden" name="amd" value="AU">';
 					echo '<table cellpadding="5" class="w90">';
@@ -37,6 +37,7 @@
 					 echo ' <a href="/Src/Reservations/liste.php"><button class="bm2">Reservations</button> </a>';
 					 echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Kodumani</button> </a>';
 					 echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Prestations</button> </a>';
+					 echo'</div>';
 
 	include'./Layout/footer.php';
 

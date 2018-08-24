@@ -12,7 +12,7 @@
       	class="img" title="Ajouter"></a>';
       	echo '<h4 class="titreh4"> Faire une livraison </h4><br/>';
       	//}
-      	while($ligne=pg_fetch_assoc($lvente))
+      	while($ligne=pg_fetch_assoc($livvente))
       	{
       	echo '<a href="livraison.php?id_ve='.$id_ve.
       				'&id_liv='.$ligne['id_liv'].

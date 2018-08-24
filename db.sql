@@ -257,7 +257,7 @@ CREATE TABLE public.contenu_vente (
     id_ve integer,
     id_pro integer,
     qte_v integer,
-    prix integer,
+    prix_v integer,
     qte_liv integer,
     id_ma integer,
     id_pres integer
@@ -726,6 +726,45 @@ ALTER SEQUENCE public.reservatuions_id_res_seq OWNED BY public.reservations.id_r
 
 
 --
+-- Name: seminaires; Type: TABLE; Schema: public; Owner: ikone
+--
+
+CREATE TABLE public.seminaires (
+    id_s integer NOT NULL,
+    libele character varying(25),
+    date date,
+    heure time without time zone,
+    lieu character varying(50),
+    montant integer,
+    montant_paye integer,
+    etat integer
+);
+
+
+ALTER TABLE public.seminaires OWNER TO ikone;
+
+--
+-- Name: seminaires_id_s_seq; Type: SEQUENCE; Schema: public; Owner: ikone
+--
+
+CREATE SEQUENCE public.seminaires_id_s_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seminaires_id_s_seq OWNER TO ikone;
+
+--
+-- Name: seminaires_id_s_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ikone
+--
+
+ALTER SEQUENCE public.seminaires_id_s_seq OWNED BY public.seminaires.id_s;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: ikone
 --
 
@@ -926,6 +965,13 @@ ALTER TABLE ONLY public.reservations ALTER COLUMN id_res SET DEFAULT nextval('pu
 
 
 --
+-- Name: id_s; Type: DEFAULT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.seminaires ALTER COLUMN id_s SET DEFAULT nextval('public.seminaires_id_s_seq'::regclass);
+
+
+--
 -- Name: id_user; Type: DEFAULT; Schema: public; Owner: ikone
 --
 
@@ -947,7 +993,7 @@ COPY public.achats (id_ac, date_ac, montant, montant_paye, id_fo, etat_liv, libe
 171	2018-08-21	60000	60000	97	T	Achat Duniya	1
 172	2018-08-21	6000	6000	98	T	Fatoumata	1
 173	2018-08-22	60000	60000	96	T	Achat fourniture	1
-174	2018-08-23	\N	0	98	N	Beneko	0
+174	2018-08-23	30000	0	97	N	Beneko	0
 \.
 
 
@@ -991,6 +1037,7 @@ COPY public.contenu_acha (id_cac, id_ac, id_ma, prix, qte_ma, qte_liv) FROM stdi
 263	171	135	6000	10	10
 264	172	135	6000	1	1
 265	173	135	6000	10	10
+266	174	135	6000	5	0
 \.
 
 
@@ -998,7 +1045,7 @@ COPY public.contenu_acha (id_cac, id_ac, id_ma, prix, qte_ma, qte_liv) FROM stdi
 -- Name: contenu_acha_id_cac_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 265, true);
+SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 266, true);
 
 
 --
@@ -1045,7 +1092,7 @@ SELECT pg_catalog.setval('public.contenu_ve_id_cve_seq', 20, true);
 -- Data for Name: contenu_vente; Type: TABLE DATA; Schema: public; Owner: ikone
 --
 
-COPY public.contenu_vente (id_cve, id_ve, id_pro, qte_v, prix, qte_liv, id_ma, id_pres) FROM stdin;
+COPY public.contenu_vente (id_cve, id_ve, id_pro, qte_v, prix_v, qte_liv, id_ma, id_pres) FROM stdin;
 \.
 
 
@@ -1057,6 +1104,8 @@ COPY public.fournisseurs (id_fo, nom_fo, telephone, addresse) FROM stdin;
 98	WAGADOUGOU	77 99 00 00	Dabanani
 97	DUNIYA ELECTRONICS	90 90 90 90	Marché Dibidani
 96	STALLION INFORMATIQUE	66 77 79 99	Dabanani Marché
+99	CHINOIS	20 88 88 88	Marché Dibidani
+100	TOURE	50 50 88 00	Marché Dabanani
 \.
 
 
@@ -1064,7 +1113,7 @@ COPY public.fournisseurs (id_fo, nom_fo, telephone, addresse) FROM stdin;
 -- Name: fournisseurs_id_fo_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.fournisseurs_id_fo_seq', 98, true);
+SELECT pg_catalog.setval('public.fournisseurs_id_fo_seq', 100, true);
 
 
 --
@@ -1142,7 +1191,7 @@ SELECT pg_catalog.setval('public.mariages_id_m_seq', 11, true);
 --
 
 COPY public.matieres (id_ma, nom_ma, prix_ma, unite, qte_vir, qte_reel) FROM stdin;
-135	CARTE MEMOIRE sd16	6000	16Go	10	10
+135	CARTE MEMOIRE sd16	6000	16Go	15	10
 136	CLE USB T16	7000	16Go	0	0
 137	CARTE MEMOIRE sd4	2000	4Go	0	0
 138	CLE USB T8	5000	8Go	0	0
@@ -1204,7 +1253,10 @@ COPY public.personnels (id_p, nom_p, prenom_p, fonction, tel, adresse) FROM stdi
 16	Sambou	SIDIBE	Directeur Adjoint	66 44 29 30	Lafiabougou
 17	Neant	Neant	Neutre	20 22 46 00	Kandassira
 18	Bonkana	MAÎGA	Agent Marketing	69 59  89 53	Sébénicoro
-19					Faladiè Socoro
+20	Moussa	KEÎTA	Reporter	61 73 78 85	Faladiè Socoro
+21	Mahamadou	CAMARA	Reporter	66 83 28 74	Lafiabougou
+22	Adama	DOUMBIA	Reporter	66 97 95 76	Lafiabougou
+23	Djibril	SIDIBE	Reporter	71 38 83 44	Lafiabougou
 \.
 
 
@@ -1212,7 +1264,7 @@ COPY public.personnels (id_p, nom_p, prenom_p, fonction, tel, adresse) FROM stdi
 -- Name: personnels_id_p_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.personnels_id_p_seq', 19, true);
+SELECT pg_catalog.setval('public.personnels_id_p_seq', 24, true);
 
 
 --
@@ -1273,6 +1325,23 @@ SELECT pg_catalog.setval('public.reservatuions_id_res_seq', 3, true);
 
 
 --
+-- Data for Name: seminaires; Type: TABLE DATA; Schema: public; Owner: ikone
+--
+
+COPY public.seminaires (id_s, libele, date, heure, lieu, montant, montant_paye, etat) FROM stdin;
+2	Bara muso	2018-08-26	19:30:00	CICB new	\N	\N	\N
+4	Mpana Mpana first	2018-08-24	12:08:20	Salle Ok	\N	\N	\N
+\.
+
+
+--
+-- Name: seminaires_id_s_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
+--
+
+SELECT pg_catalog.setval('public.seminaires_id_s_seq', 4, true);
+
+
+--
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: ikone
 --
 
@@ -1299,6 +1368,9 @@ COPY public.ventes (id_ve, date_ve, libele, id_cli, montant, montant_paye, monta
 17	2018-08-23	Test Vente	19	\N	\N	0	0
 18	2018-08-23	Vente	12	\N	\N	0	0
 16	2018-08-21	Animation mariage	19	\N	\N	0	0
+20	2018-08-23	Reportage	22	\N	\N	0	0
+21	2018-08-23	Reportage	22	\N	\N	0	0
+22	2018-08-23	Luminosite	26	\N	\N	0	0
 \.
 
 
@@ -1306,7 +1378,7 @@ COPY public.ventes (id_ve, date_ve, libele, id_cli, montant, montant_paye, monta
 -- Name: ventes_id_ve_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.ventes_id_ve_seq', 19, true);
+SELECT pg_catalog.setval('public.ventes_id_ve_seq', 22, true);
 
 
 --
@@ -1419,6 +1491,14 @@ ALTER TABLE ONLY public.payements
 
 ALTER TABLE ONLY public.personnels
     ADD CONSTRAINT personnel_pkey PRIMARY KEY (id_p);
+
+
+--
+-- Name: pkey; Type: CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.seminaires
+    ADD CONSTRAINT pkey PRIMARY KEY (id_s);
 
 
 --
