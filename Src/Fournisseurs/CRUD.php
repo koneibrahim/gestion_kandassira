@@ -38,7 +38,7 @@ elseif($_POST['mas']=='S')
 
 	 		}
 	 	 }
-	$requete="select * from fournisseurs order by id_fo";
-	$resultat=pg_query($dbconn,$requete);
-}
+
+		 $requete="select nom,prenom,tel,adresse FROM personnes natural join categorie_perso where id_cat= 2";
+	 	$personnefour=pg_query($dbconn,$requete);
 ?>

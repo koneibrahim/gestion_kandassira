@@ -17,7 +17,7 @@
 							  		<td><input type="text" name="nom_m" class="labinput"></td></tr>';
 							echo'	<tr><td class="textinput">Prénom mari</td>
 										<td><input type="text" name="prenom_m" class="labinput"></td></tr>';
-						//	echo'	<tr><td class="textinput">Contact</td>      <td><input type="text" name="contact" class="labinput"></td></tr>';
+							echo'	<tr><td class="textinput">Contact</td>      <td><input type="text" name="contact" class="labinput"></td></tr>';
 				echo '</table>';
 			echo'</fieldset>';
 

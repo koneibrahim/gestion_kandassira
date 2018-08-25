@@ -81,11 +81,11 @@
 
          //---------Contenu seminaire------------------------
          echo'<tr>';
-         echo'<td colspan="2  class="textgau"><a href="contenusem.php?id_ac='.$id_ac.
-             '&date_ac='.$ligne['date_ac'].
+         echo'<td colspan="2  class="textgau"><a href="contenusemi.php?id_s='.$id_s.
+             '&date='.$ligne['date'].
              '&libele='.$ligne['libele'].
              '&etat='.$ligne['etat'].
-             '"><button class="butachat">Contenu</button></a></td>';
+             '"><button class="butachat">Participant de seminaire</button></a></td>';
          echo'</tr>';
 
          //if($ligne['etat']==1) {

@@ -36,7 +36,7 @@
 				$resultat=pg_query($dbconn,$requete3);
 				 		}
 				 	 }
-			$requete12="select * from clients ";
-			$client=pg_query($dbconn,$requete12);
+					$requete="select nom,prenom,tel,tel2,adresse FROM personnes natural join categorie_perso where id_cat= 1";
+		 			$personnecli=pg_query($dbconn,$requete);
 
 ?>
