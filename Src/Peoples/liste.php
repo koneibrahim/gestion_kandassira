@@ -5,13 +5,7 @@
 	include'../../Layout/retour.php';
 
 	  echo '<div id="menu2">';
-					//echo ' <a href="/Src/Reservations/liste.php"><button class="bm2">Reservations</button> </a>';
-					//echo ' <a href="/Src/Seminaires/liste.php"> <button class="bm2">Seminaires</button> </a>';
-					echo ' <a href="/Src/Clients/liste.php"> <button class="bm2">Clients</button> </a>';
-					echo ' <a href="/Src/Mariages/liste.php"> <button class="bm2">Mariages</button> </a>';
-					echo ' <a href="/Src/Fournisseurs/liste.php"> <button class="bm2">fournisseurs</button> </a>';
-					echo ' <a href="/Src/Personnels/liste.php"> <button class="bm2">Personnels</button> </a>';
-
+					
 		echo '</div>';
 
 	include'CRUD.php';
