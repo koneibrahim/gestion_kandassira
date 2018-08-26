@@ -7,20 +7,23 @@ if($_POST['mas']=='AA')
 	 {
 	$date_ac=$_POST['date_ac'];
 	$libele=$_POST['libele'];
-	$id_fo=$_POST['id_fo'];
-	$requete="insert into achats (date_ac,libele,id_fo)";
-	$requete.=" values ('$date_ac','$libele',$id_fo)";
+	$id_po=$_POST['id_po'];
+	$nom=$_POST['nom'];
+	$requete="insert into achats (date_ac,libele,id_po)";
+	$requete.=" values ('$date_ac','$libele',$id_po)";
 		if($_POST['valider']=='Valider')
 	$aajouter=pg_query($dbconn,$requete);
 	 }
 
 elseif($_POST['mas']=='AM')
 	 {
-	$id_ac=$_POST['id_ac'];
-	$date_ac=$_POST['date_ac'];
-	$libele=$_POST['libele'];
-	$id_fo=$_POST['id_fo'];
-	$requete="update achats set date_ac='$date_ac',libele='$libele',id_fo=$id_fo ";
+		$date_ac=$_POST['date_ac'];
+	 	$libele=$_POST['libele'];
+	 	$id_po=$_POST['id_po'];
+	 	$nom=$_POST['nom'];
+		$prenom=$_POST['prenom'];
+
+	$requete="update achats set date_ac='$date_ac',libele='$libele',id_po='$id_po',prenom='$prenom',nom='$nom'";
 	$requete.=" where id_ac=$id_ac";
 			if($_POST['valider']=='Valider')
 	$amodifier=pg_query($dbconn,$requete);
@@ -248,11 +251,11 @@ elseif($_POST['mas']=='PS')
 	 }
 	 }
 
-	 $requete="select id_ac,date_ac,libele,etat_liv,etat from achats natural join fournisseurs order by id_ac desc limit 50";
+	 $requete="select id_ac,date_ac,libele,etat_liv,etat,nom from achats natural join personnes order by id_ac desc limit 50";
 	 $listeac=pg_query($dbconn,$requete);
 
-	 $requete2="select id_ac,id_fo,date_ac,libele,nom_fo,montant,montant_paye,etat_liv,etat from
-	 achats natural join fournisseurs where id_ac=$id_ac";
+	 $requete2="select id_ac,id_po,nom,prenom,date_ac,libele,nom,montant,montant_paye,etat_liv,etat from
+	 achats natural join personnes where id_ac=$id_ac";
 	 $achat=pg_query($dbconn,$requete2);
 
  	 $requete4="select id_ac,id_cac,id_ma,nom_ma,prix,qte_ma,qte_liv from
@@ -265,7 +268,7 @@ elseif($_POST['mas']=='PS')
 	 $requete6="select id_ma,prix_ma,nom_ma from matieres";
 	 $ajouter=pg_query($dbconn,$requete6);
 
-	 $requete7="select id_fo,nom_fo from fournisseurs";
+	 $requete7="select id_po,nom,prenom from personnes";
 	 $lfournisseur=pg_query($dbconn,$requete7);
 
    $requete8="select id_ac,id_pay,date_pay,libele,montant from payements where id_ac=$id_ac";

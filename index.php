@@ -34,9 +34,7 @@
 				  			<source src="Images/spotok.mp4" type="video/mp4">
  					 </video><br/>';
 
-					 echo ' <a href="/Src/Reservations/liste.php"><button class="bm2">Reservations</button> </a>';
-					 echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Kodumani</button> </a>';
-					 echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Prestations</button> </a>';
+					
 					 echo'</div>';
 
 	include'./Layout/footer.php';

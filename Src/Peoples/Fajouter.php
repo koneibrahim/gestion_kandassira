@@ -10,10 +10,13 @@
 		  <div id="kheader" class="textcen"><h2 class="titrecform">Ajout nouvelle personne </h2></div><br/><br/><br/>';
 	echo'	<form action="liste.php" method="post">';
 	echo'<input type="hidden" name="mas" value="A"/>';
-	echo '<table cellpadding="3" class="w95" >';
+	echo'<table cellpadding="3" class="w95" >';
 
-	echo'	<tr><td class="textinput" alt="Nom">Nom</td> 		   <td><input type="text" name="nom" class="labinput"></td></tr>';
-	echo'	<tr><td class="textinput">Prénom</td> 	 <td><input type="text" name="prenom" class="labinput"></td></tr>';
+	echo'<tr><td class="textinput">Nom</td><td><input type="text" name="nom" class="labinput"
+				class="butmenu2" title="'.$ligne['nom'].'	'.$ligne['nom'].'">Champ obligatoire</td></tr>';
+
+	echo'	<tr><td class="textinput">Prénom</td> 	 <td><input type="text" name="prenom" class="labinput"
+	class="butmenu2" title="'.$ligne['prenom'].'	'.$ligne['prenom'].'">Champ obligatoire</td></tr>';
 
 	echo '<tr><td class="textinput">Categorie personne</td><td><select name="id_cat" class="labinput">';
 	while ($ligne=pg_fetch_assoc($lcategorie)) {

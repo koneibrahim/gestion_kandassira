@@ -5,10 +5,7 @@
 	include'../../Layout/retour.php';
 
 	  echo '<div id="menu2">';
-				echo ' <a href="/Src/Reservations/liste.php"><button class="bm2">Reservations</button> </a>';
-				echo ' <a href="/Src/Mariages/liste.php"> <button class="bm2">Kodumani</button> </a>';
-				echo ' <a href="/Src/Prestations/liste.php"> <button class="bm2">Prestations</button> </a>';
-				echo ' <a href="/Src/Seminaires/liste.php"> <button class="bm2">Seminaires</button> </a>';
+				
 		echo '</div>';
 
 	include'CRUD.php';

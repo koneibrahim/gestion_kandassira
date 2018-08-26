@@ -1,16 +1,13 @@
  <?php
 
-	$id_ac=$_GET['id_ac'];
-	$date_ac=$_GET['date_ac'];
-	$libele=$_GET['libele'];
-	$id_fo=$_GET['id_fo'];
-	$montant=$_GET['montant'];
-	$montant_paye=$_GET['montant_paye'];
-	$etat_liv=$_GET['etat_liv'];
+   $id_ac=$_GET['id_ac'];
+   $date_ac=$_GET['date_ac'];
+   $libele=$_GET['libele'];
+   $id_po=$_GET['id_po'];
+   $nom=$_GET['nom'];
+   $prenom=$_GET['prenom'];
 
 	include'achat.php';
-
-
 
 				/*------------Debut Amodifier.php-------------*/
 
@@ -31,17 +28,12 @@
 	echo'<tr><td class="textinput">Libele</td><td>
 		<input type="text" name="libele" value="'.$libele.'" class="labinput"></td></tr>';
 
-echo '<tr><td class="textinput">Fournisseur</td><td><select name="id_fo" class="labinput">';
-	while ($ligne=pg_fetch_assoc($lfournisseur)) {
-		if($id_fo==$ligne['id_fo'])
-	echo '<option value="'.$ligne['id_fo'].'"selected>'.$ligne['nom_fo'].'</option>';
-	else
+  echo '<tr><td class="textinput">Fournisseur</td><td><select name="id_po" class="labinput">';
+    while ($ligne=pg_fetch_assoc($lfournisseur)) {
+    echo '<option value="'.$ligne['id_po'].'">'.$ligne['nom'].'  '.$ligne['prenom'].'</option>';
+    }
 
-		echo '<option value="'.$ligne['id_fo'].'">'.$ligne['nom_fo'].'</option>';
-	}
 
-	/*echo'<tr><td class="textinput">Etat livrasion</td><td>
-		<input type="text" name="etat_liv" value="'.$etat_liv.'" class="labinput"></td></tr>';*/
 	echo '</table>';
 
 	echo '<div id="mfooter" class="droite">';
@@ -51,7 +43,6 @@ echo '<tr><td class="textinput">Fournisseur</td><td><select name="id_fo" class="
   	}
 	echo '</form>';
 	echo '</div>';
-
 
 
 					/*------------Fin Amodifier.php-------------*/

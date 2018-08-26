@@ -4,10 +4,12 @@
    $id_ac=$_GET['id_ac'];
    $date_ac=$_GET['date_ac'];
    $libele=$_GET['libele'];
-   $id_fo=$_GET['id_fo'];
+   $nom=$_GET['nom'];
+   $prenom=$_GET['prenom'];
+   $etat=$_GET['etat'];
    $etat_liv=$_GET['etat_liv'];
 
-	include 'listeac.php';
+	include'listeac.php';
 
 
 		/*----------- Debut Aajouter.php----------- */
@@ -26,9 +28,9 @@
 	echo'	<tr><td class="textinput">Libele</td>
 	<td><input type="text" name="libele" class="labinput"></td></tr>';
 
-	echo '<tr><td class="textinput">Fournisseur</td><td><select name="id_fo" class="labinput">';
+	echo '<tr><td class="textinput">Fournisseur</td><td><select name="id_po" class="labinput">';
 	while ($ligne=pg_fetch_assoc($lfournisseur)) {
-	echo '<option value="'.$ligne['id_fo'].'">'.$ligne['nom_fo'].'</option>';
+	echo '<option value="'.$ligne['id_po'].'">'.$ligne['nom'].'  '.$ligne['prenom'].'</option>';
 	}
 
 	echo '</table>';

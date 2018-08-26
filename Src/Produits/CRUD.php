@@ -1,50 +1,40 @@
 <?php
 if($_SESSION['group']=='3') {
-	if($_POST['mas']=='A')
+if($_POST['mas']=='A')
 	 {
-	$id_m=$_POST['id_m'];
-	$nom_m=$_POST['nom_m'];
-	$prenom_m=$_POST['prenom_m'];
-	//$contact=$_POST['contact'];
-	$nom_f=$_POST['nom_f'];
-	$prenom_f=$_POST['prenom_f'];
-	$adresse=$_POST['adresse'];
-	$requete="insert into mariages (nom_m,prenom_m,nom_f,prenom_f,adresse)";
-	$requete.=" values ('$nom_m','$prenom_m','$nom_f','$prenom_f','$adresse')";
-			if($_POST['valider']=='Valider')
+	$nom_ma=$_POST['nom_ma'];
+	$unite=$_POST['unite'];
+	$prix_ma=$_POST['prix_ma'];
+	$requete="insert into matieres (nom_ma,unite,prix_ma)";
+	$requete.="values ('$nom_ma','$unite',$prix_ma)";
+		if($_POST['valider']=='Valider')
 	$resultat=pg_query($dbconn,$requete);
-	 }
 
-	              /*CRUD pour  Fmodifier */
+	 }
 
 elseif($_POST['mas']=='M')
 	 {
-		 $id_m=$_POST['id_m'];
- 		$nom_m=$_POST['nom_m'];
- 		$prenom_m=$_POST['prenom_m'];
- 		//$contact=$_POST['contact'];
- 		$nom_f=$_POST['nom_f'];
- 		$prenom_f=$_POST['prenom_f'];
- 		$adresse=$_POST['adresse'];
-	$requete="update mariages set nom_m='$nom_m',prenom_m='$prenom_m',nom_f='$nom_f',prenom_f='$prenom_f',adresse='$adresse'";
-	$requete.="  where id_m='$id_m'";
-			if($_POST['valider']=='Valider')
+	$id_ma=$_POST['id_ma'];
+	$nom_ma=$_POST['nom_ma'];
+	$unite=$_POST['unite'];
+	$prix_ma=$_POST['prix_ma'];
+	$requete="update matieres set nom_ma='$nom_ma',unite='$unite',prix_ma=$prix_ma";
+	$requete.=" where id_ma=$id_ma";
+		if($_POST['valider']=='Valider')
 	$resultat=pg_query($dbconn,$requete);
-	 }
 
-	 				  /*CRUD pour  Fsupprimer */
+	}
 
 elseif($_POST['mas']=='S')
 	{
-	$id_m=$_POST['id_m'];
+	$id_ma=$_POST['id_ma'];
 	$valider=$_POST['valider'];
- if($valider=='Oui') {
-	$requete="delete from mariages where id_m='$id_m'";
+	if($valider=='Oui') {
+	$requete="delete from matieres where id_ma=$id_ma";
 	$resultat=pg_query($dbconn,$requete);
-
-	 		}
-	 	 }
-	$requete="select * from produits";
+	 }
+	}
+   $requete="select nom_pro,nom_catpro from produits  natural join categorie_pro ";
 	$resultat=pg_query($dbconn,$requete);
 }
 ?>

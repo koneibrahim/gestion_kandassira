@@ -1,8 +1,10 @@
  <?php
 
        $id_ac=$_GET['id_ac'];
+       $id_po=$_GET['id_po'];
        $date_ac=$_GET['date_ac'];
        $libele=$_GET['libele'];
+       $nom=$_GET['nom'];
        $etat=$_GET['etat'];
 
          function etat_liv($e) {
@@ -31,7 +33,7 @@
 
         	echo '<tr>';
             	echo '<td>Fournisseur</td>';
-            	echo '<td>'.$ligne['nom_fo'].'</td>';
+            	echo '<td>'.$ligne['nom'].' '.$ligne['prenom'].'</td>';
         	echo '</tr>';
 
         	echo '<tr>';
@@ -58,9 +60,9 @@
         	echo'<td class="textcen"><a href="Amodifier.php?id_ac='.$id_ac.
         			'&date_ac='.$ligne['date_ac'].
         			'&libele='.$ligne['libele'].
-        			'&id_fo='.$ligne['id_fo'].
-        			'&etat='.$ligne['etat'].
-        			'&etat_liv='.$ligne['etat_liv'].'">
+        			'&id_po='.$ligne['id_po'].
+              '&nom='.$ligne['nom'].
+              '&prenom='.$ligne['prenom'].'">
         			<img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier">';
 
         			echo'<td class="textcen"><a href="../html2pdf_v4.03/examples/exemple03.php?id_ac='.$id_ac.'">
