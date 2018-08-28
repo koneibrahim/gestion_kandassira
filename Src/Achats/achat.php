@@ -2,7 +2,8 @@
 
        $id_ac=$_GET['id_ac'];
        $id_po=$_GET['id_po'];
-       $date_ac=$_GET['date_ac'];
+       $id_cac=$_GET['id_cac'];
+//       $date_ac=$_GET['date_ac'];
        $libele=$_GET['libele'];
        $nom=$_GET['nom'];
        $etat=$_GET['etat'];
@@ -76,11 +77,13 @@
 
         	echo'<tr>';
         	echo'<td colspan="2  class="textgau"><a href="contenuac.php?id_ac='.$id_ac.
-              //'&id_pro='.$ligne['id_pro'].
-              //'&nom_pro='.$ligne['nom_pro'].
+            //  '&id_cac='.$ligne['id_cac'].
+            //  '&id_pro='.$ligne['id_pro'].
+            //  '&nom_pro='.$ligne['nom_pro'].
+            // '&qte_pro='.$ligne['qte_pro'].
              //'&date_ac='.$ligne['date_ac'].
         			 '&libele='.$ligne['libele'].
-        			 '&etat='.$ligne['etat'].
+        		//	 '&etat='.$ligne['etat'].
         			'"><button class="butachat">Contenu</button></a></td>';
         	echo'</tr>';
 

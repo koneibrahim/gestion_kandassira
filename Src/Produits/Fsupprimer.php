@@ -17,8 +17,8 @@
 
 	echo '<div id="sform"><div id="sform2">
 	<div id="sheader" class="titrecform">Suppression</div><br/><br/><br/><br/><br/>
-		 <p class="textcen" >Voulez vous supprimer le produit  '.$nom_pro.'
-		  <b class="crouge"> don le prix est  '.$prix_vente.'<sup>F</sup>?</b></p>
+		 <p class="textcen" >Voulez vous supprimer le produit <b class="crouge"> '.$nom_pro.'
+		   don le prix est  '.$prix_vente.'<sup>F</sup>?</b></p>
 
 	 <div id="sfooter">';
 	if($_SESSION['utilisateur']=='Identifie') {

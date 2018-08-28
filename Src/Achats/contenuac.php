@@ -1,6 +1,7 @@
 <?php
 
   $id_ac=$_GET['id_ac'];
+  $id_cac=$_GET['id_cac'];
   $id_pro=$_GET['id_pro'];
   $nom_pro=$_GET['nom_pro'];
   $qte_pro=$_GET['qte_pro'];
@@ -46,9 +47,9 @@
       	if ($etat==0) {
          echo'<td class="textcen"><a href="Cmodifier.php?id_ac='.$id_ac.
          		'&id_cac='.$ligne['id_cac'].
-      			'&nom_ma='.$ligne['nom_ma'].
-      			'&id_ma='.$ligne['id_ma'].
-      			'&qte_ma='.$ligne['qte_ma'].
+      			'&id_pro='.$ligne['id_pro'].
+            '&prix_acha='.$ligne['prix_acha'].
+      			'&qte_pro='.$ligne['qte_pro'].
       			'"><img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
       echo'<td class="textcen"><a href="Csupprimer.php?id_ac='.$id_ac.
          		'&id_cac='.$ligne['id_cac'].

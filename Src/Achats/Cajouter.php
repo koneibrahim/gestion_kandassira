@@ -2,9 +2,10 @@
 <?php
 
    $id_ac=$_GET['id_ac'];
-   //$id_pro=$_GET['id_pro'];
-   //$nom_pro=$_GET['nom_pro'];
-   //$qte_pro=$_GET['qte_pro'];
+   $id_cac=$_GET['id_cac'];
+   $id_pro=$_GET['id_pro'];
+   $prix_acha=$_GET['prix_acha'];
+   $qte_pro=$_GET['qte_pro'];
    $libele=$_GET['libele'];
    	include'contenuac.php';
 	/*-----Debut Cajouter.php------------*/
@@ -16,16 +17,16 @@
 	echo' <form action="contenuac.php" method="POST">';
 	echo' <input type="hidden" name="mas" value="CA"/>';
 	echo' <input type="hidden" name="id_ac" value="'.$id_ac.'"/>';
-	echo' <input type="hidden" name="libele" value="'.$libele.'"/>';
+  echo' <input type="hidden" name="id_cac" value="'.$id_cac.'"/>';
+	//echo' <input type="hidden" name="libele" value="'.$libele.'"/>';
 	echo '<table cellpadding="3" class="w95">';
-	//Composant Liste déroulante prosuits
 
-	echo '<tr><td class="textinput">Nom produit</td><td><select name="id_pro" class="labinput">';
-	while ($ligne=pg_fetch_assoc($lpro)) {
-	echo '<option value="'.$ligne['id_pro'].' '.$ligne['nom_pro'].'"></option>';
+  echo '<tr><td class="textinput"> Produit </td><td><select name="id_catpro" class="labinput">';
+  while ($ligne=pg_fetch_assoc($lproduit)) {
+  echo '<option value="'.$ligne['id_pro'].'">'.$ligne['nom_pro'].'</option>';
   }
 
-  echo'	<tr><td class="textinput">Prix achat</td><td><input type="text" name="prix_achat" class="labinput"></td></tr>';
+  echo'	<tr><td class="textinput">Prix achat</td><td><input type="text" name="prix_acha" class="labinput"></td></tr>';
 
 	echo'	<tr><td class="textinput">Quantité</td><td><input type="text" name="qte_pro" class="labinput"></td></tr>';
 	echo '</table>';

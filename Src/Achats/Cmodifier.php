@@ -1,10 +1,11 @@
 
  <?php
 
-   $id_ac=$_GET['id_ac'];
-   $id_cac=$_GET['id_cac'];
-  	$id_ma=$_GET['id_ma'];
-  	$qte_ma=$_GET['qte_ma'];
+  $id_ac=$_GET['id_ac'];
+  $id_cac=$_GET['id_cac'];
+  $id_pro=$_GET['id_pro'];
+  $prix_vente=$_GET['prix_vente'];
+  $qte_pro=$_GET['qte_pro'];
 
 
 	include'contenuac.php';
@@ -18,14 +19,21 @@
 	echo'<form action="contenuac.php" method="POST">';
 	echo'<input type="hidden" name="mas" value="CM"/>';
 	echo'<input type="hidden" name="id_ac" value="'.$id_ac.'">';
-	echo'<input type="hidden" name="id_ma" value="'.$id_ma.'">';
-	echo'<input type="hidden" name="qte_ma_orig" value="'.$qte_ma.'">';
-	echo'<input type="hidden" name="id_cac" value="'.$id_cac.'">';
+  echo'<input type="hidden" name="id_cac" value="'.$id_cac.'">';
+	echo'<input type="hidden" name="qte_pro_orig" value="'.$qte_pro.'">';
 
 	echo '<table cellpadding="3" class="w95">';
 
-	echo'	<tr><td class="textinput">Quantité article</td><td>
-		<input type="text" name="qte_ma" value="'.$qte_ma.'" class="labinput"></td></tr>';
+  echo '<tr><td class="textinput"> Produit </td><td><select name="id_pro" class="labinput">';
+  while ($ligne=pg_fetch_assoc($lproduit)) {
+  echo '<option value="'.$ligne['id_pro'].'">'.$ligne['nom_pro'].'</option>';
+  }
+
+  echo'	<tr><td class="textinput"> Prix achat produit </td>
+            <td><input type="text" name="prix_acha" value="'.$prix_acha.'" class="labinput"></td></tr>';
+
+  echo'	<tr><td class="textinput"> Quantité produit </td>
+            <td><input type="text" name="qte_pro" value="'.$qte_pro.'" class="labinput"></td></tr>';
 
 	echo '</table>';
 	echo '<div id="mfooter" class="droite">';

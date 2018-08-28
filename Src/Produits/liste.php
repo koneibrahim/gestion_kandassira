@@ -42,8 +42,8 @@
 			'&prix_vente='.$ligne['prix_vente'].
 			'"><img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
 	echo'<td class="textcen"><a href="Fsupprimer.php?id_pro='.$ligne['id_pro'].
-//			'&nom_pro='.$ligne['nom_pro'].
-		//	'&prix_vente='.$ligne['prix_vente'].
+			'&nom_pro='.$ligne['nom_pro'].
+		  '&prix_vente='.$ligne['prix_vente'].
 			'"><img src="/Images/supprimer.png" width="25px"height="25px" class="img" title="Supprimer"></a></td>';
 	echo'</tr>';
 	$i++;
