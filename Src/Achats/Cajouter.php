@@ -7,9 +7,9 @@
    $prix_acha=$_GET['prix_acha'];
    $qte_pro=$_GET['qte_pro'];
    $libele=$_GET['libele'];
+
    	include'contenuac.php';
 	/*-----Debut Cajouter.php------------*/
-  include'CRUD.php';
 
 	echo '<div id="contvert2">';
 	echo '<div id="cform"><div id="cform2">  <div id="cheader">
@@ -25,10 +25,12 @@
   while ($ligne=pg_fetch_assoc($lproduit)) {
   echo '<option value="'.$ligne['id_pro'].'">'.$ligne['nom_pro'].'</option>';
   }
+  echo'	<tr><td class="textinput">Prix achat</td>
+            <td><input type="text" name="prix_acha" class="labinput"></td></tr>';
 
-  echo'	<tr><td class="textinput">Prix achat</td><td><input type="text" name="prix_acha" class="labinput"></td></tr>';
+	echo'	<tr><td class="textinput">Quantité</td>
+            <td><input type="text" name="qte_pro" class="labinput"></td></tr>';
 
-	echo'	<tr><td class="textinput">Quantité</td><td><input type="text" name="qte_pro" class="labinput"></td></tr>';
 	echo '</table>';
 	echo '<div id="cfooter" class="textdro">';
 		if($_SESSION['utilisateur']=='Identifie') {
@@ -40,5 +42,4 @@
 	include'../../Layout/footer.php';
 
 		/*-----Fin Fajouter.php------------*/
-
 ?>

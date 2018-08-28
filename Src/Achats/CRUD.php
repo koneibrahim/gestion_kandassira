@@ -66,19 +66,19 @@ elseif($etat=='1') {
 	$id_pro=$_POST['id_pro'];
 	$prix_acha=$_POST['prix_acha'];
 	$qte_pro=$_POST['qte_pro'];
-	$requete="insert into contenu_acha (id_cac,id_ac,id_pro,prix_acha,qte_pro)";
-	$requete.=" values ('$id_cac','$id_ac','$id_pro',$prix_acha','$qte_pro')";
+	$requete="insert into contenu_acha (id_ac,id_pro,prix_acha,qte_pro)";
+	$requete.=" values ('$id_cac','$id_ac','$id_pro','$prix_acha','$qte_pro')";
 		if($_POST['valider']=='Valider')
 	$resultat=pg_query($dbconn,$requete);
 	 }
 
 elseif($_POST['mas']=='CM')
 	 {
-	  $id_cac=$_POST['id_cac'];
-	 	$id_ac=$_POST['id_ac'];
-	 	$id_pro=$_POST['id_pro'];
-	 	$prix_acha=$_POST['prix_acha'];
-	 	$qte_pro=$_POST['qte_pro'];
+  $id_cac=$_POST['id_cac'];
+	$id_ac=$_POST['id_ac'];
+	$id_pro=$_POST['id_pro'];
+	$prix_acha=$_POST['prix_acha'];
+	$qte_pro=$_POST['qte_pro'];
 	$qte_pro_orig=$_POST['qte_pro_orig'];
 	$requete="update contenu_acha set id_pro=$id_pro,qte_pro=$qte_pro,prix_acha='$qte_acha'";
 	$requete.=" where id_ac=$id_ac";
