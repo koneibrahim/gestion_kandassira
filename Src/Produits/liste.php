@@ -6,7 +6,7 @@
 	include'../../Layout/retour.php';
 
 		echo '<div id="menu2">';
-				
+
 		echo '</div>';
 
 	include'CRUD.php';
@@ -22,7 +22,7 @@
 	echo'<tr>';
 	echo'<th class="thtable textcen">N°</th>';
 	echo'<th class="thtable textgau">Nom article </th>';
-	echo'<th class="thtable textdro">Prix</th>';
+	echo'<th class="thtable textdro">Prix vente</th>';
 	echo'<th class="thtable textcen">Categorie produit</th>';
 
 	echo'<th colspan="2" class="thtable">Action</th>';
@@ -33,18 +33,17 @@
 	echo'<tr class="ld'.($i%2).'">';
   echo'<td class="textcen">'.$i.'</td>';
 	echo'<td class="textgau">'.$ligne['nom_pro'].'</td>';
-	echo'<td class="textdro ">'.number_format($ligne['prix'],0,' ',' ').'<sup>F</sup></td>';
+	echo'<td class="textdro ">'.number_format($ligne['prix_vente'],0,' ',' ').'<sup>F</sup></td>';
 	echo'<td class="textcen">'.$ligne['nom_catpro'].'</td>';
 
-	echo'<td class="textcen"><a href="Fmodifier.php?id_ma='.$ligne['id_ma'].
-			'&nom_ma='.$ligne['nom_ma'].
-			'&unite='.$ligne['unite'].
-			'&prix_ma='.$ligne['prix_ma'].
+	echo'<td class="textcen"><a href="Fmodifier.php?id_pro='.$ligne['id_pro'].
+			'&id_catpro='.$ligne['id_catpro'].
+			'&nom_pro='.$ligne['nom_pro'].
+			'&prix_vente='.$ligne['prix_vente'].
 			'"><img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
-	echo'<td class="textcen"><a href="Fsupprimer.php?id_ma='.$ligne['id_ma'].
-			'&nom_ma='.$ligne['nom_ma'].
-			'&unite='.$ligne['unite'].
-			'&prix_ma='.$ligne['prix_ma'].
+	echo'<td class="textcen"><a href="Fsupprimer.php?id_pro='.$ligne['id_pro'].
+//			'&nom_pro='.$ligne['nom_pro'].
+		//	'&prix_vente='.$ligne['prix_vente'].
 			'"><img src="/Images/supprimer.png" width="25px"height="25px" class="img" title="Supprimer"></a></td>';
 	echo'</tr>';
 	$i++;

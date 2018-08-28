@@ -1,9 +1,12 @@
 
 <?php
 
+	$id_pro=$_GET['id_pro'];
+	$nom_pro=$_GET['nom_pro'];
+	$prix_vente=$_GET['prix_vente'];
+	$id_catpro=$_GET['id_catpro'];
 
 	include'liste.php';
-
 
 	/*-----Debut Fajouter.php------------*/
 
@@ -15,31 +18,23 @@
 	echo'<input type="hidden" name="mas" value="A"/>';
 	echo '<table cellpadding="3" class="w95">';
 
-	echo'	<tr><td class="textinput">Nom</td><td><input type="text" name="nom_ma" class="labinput"></td></tr>';
+	echo'	<tr><td class="textinput">Nom produit</td>
+				<td><input type="text" name="nom_pro" class="labinput"></td></tr>';
+	echo'	<tr><td class="textinput">Prix vente</td>
+				<td><input type="text" name="prix_vente" class="labinput"></td></tr>';
 
-	echo '<tr><td class="textinput">Taille - Type</td><td><select name="unite" class="labinput">';
-	echo '<option value="Audio">Audio</option>';
-	echo '<option value="Video">Vidéo</option>';
+				echo '<tr><td class="textinput">Categorie produit</td><td><select name="id_catpro" class="labinput">';
+				while ($ligne=pg_fetch_assoc($lcatpro)) {
+				echo '<option value="'.$ligne['id_catpro'].'">'.$ligne['nom_catpro'].'</option>';
+				}
 
-	echo '<option value="2Go">2 Giga</option>';
-	echo '<option value="4Go">4 Giga</option>';
-	echo '<option value="8Go">8 Giga</option>';
-	echo '<option value="16Go">16 Giga</option>';
-	echo '<option value="32Go">32 Giga</option>';
-	echo '<option value="64Go">64 Giga</option>';
-	echo '<option value="CD"> CD_R</option>';
-	echo '<option value="DVD"> DVD-R</option>';
-
-	echo'</select></td></tr>';
-
-	echo'	<tr><td class="textinput">Prix achat</td><td><input type="text" name="prix_ma" class="labinput"></td></tr>';
 	echo '</table>';
 
 	echo '<div id="cfooter" class="textdro">';
 	if($_SESSION['utilisateur']=='Identifie') {
 	echo'<input type="submit" name="valider" value="Valider"  class="bvalid">&nbsp;&nbsp;
 		  <input type="submit" name="valider" value="Annuler"  class="bannul"></div></div></div>';
-	}
+				}
   	echo '</form>';
 	echo '</div>';
 	include'../../Layout/footer.php';

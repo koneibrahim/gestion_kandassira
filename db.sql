@@ -541,7 +541,7 @@ ALTER SEQUENCE public.personnes_id_p_seq OWNED BY public.personnes.id_po;
 CREATE TABLE public.produits (
     id_pro integer NOT NULL,
     nom_pro character varying(50),
-    prix integer,
+    prix_vente integer,
     id_catpro integer
 );
 
@@ -760,17 +760,10 @@ ALTER TABLE ONLY public.ventes ALTER COLUMN id_ve SET DEFAULT nextval('public.ve
 --
 
 COPY public.achats (id_ac, date_ac, montant, montant_paye, etat_liv, libele, etat, id_po) FROM stdin;
-171	2018-08-21	60000	60000	T	Achat Duniya	1	\N
-172	2018-08-21	6000	6000	T	Fatoumata	1	\N
-173	2018-08-22	60000	60000	T	Achat fourniture	1	\N
-174	2018-08-23	30000	0	N	Beneko	0	\N
-175	2018-08-24	12000	0	N	TOURE	0	\N
-176	2018-08-25	\N	0	N	gggggg	0	7
-177	2018-08-25	\N	0	N	Moulaye	0	14
-178	2018-08-25	\N	0	N	KOKO	0	9
-179	2018-08-25	\N	0	N	SONOS	0	20
-180	2018-08-25	\N	0	N	FAKOLY	0	10
-181	2018-08-25	\N	0	N	Test achat	0	21
+186	2018-08-27	\N	0	N	hhere	0	28
+187	2018-08-27	\N	0	N	Achat de cle USB	0	32
+190	2018-08-27	\N	0	N	Carte memeoire	0	29
+191	2018-08-28	\N	0	N	dddsz	0	28
 \.
 
 
@@ -778,7 +771,7 @@ COPY public.achats (id_ac, date_ac, montant, montant_paye, etat_liv, libele, eta
 -- Name: achats_id_ac_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.achats_id_ac_seq', 181, true);
+SELECT pg_catalog.setval('public.achats_id_ac_seq', 191, true);
 
 
 --
@@ -822,11 +815,8 @@ SELECT pg_catalog.setval('public.categorie_prod_id_catpro_seq', 2, true);
 --
 
 COPY public.contenu_acha (id_cac, id_ac, prix_acha, qte_pro, qte_liv, id_pro) FROM stdin;
-263	171	6000	10	10	\N
-264	172	6000	1	1	\N
-265	173	6000	10	10	\N
-266	174	6000	5	0	\N
-267	175	6000	2	0	\N
+268	190	400	10	0	7
+269	190	1000	20	0	6
 \.
 
 
@@ -834,7 +824,7 @@ COPY public.contenu_acha (id_cac, id_ac, prix_acha, qte_pro, qte_liv, id_pro) FR
 -- Name: contenu_acha_id_cac_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 267, true);
+SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 269, true);
 
 
 --
@@ -842,9 +832,6 @@ SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 267, true);
 --
 
 COPY public.contenu_liv (id_cliv, id_liv, id_cac, qte_l) FROM stdin;
-246	97	263	10
-247	98	264	1
-248	99	265	10
 \.
 
 
@@ -924,9 +911,6 @@ SELECT pg_catalog.setval('public.liv_vente_id_liv_seq', 1, true);
 --
 
 COPY public.livraisons (id_liv, id_ac, date_liv, libele) FROM stdin;
-97	171	2018-08-21	qq
-98	172	2018-08-21	Fatoumata
-99	173	2018-08-22	Achat fourniture
 \.
 
 
@@ -957,10 +941,6 @@ SELECT pg_catalog.setval('public.pay_vente_id_pve_seq', 1, true);
 --
 
 COPY public.payements (id_pay, id_ac, date_pay, montant, libele) FROM stdin;
-110	171	2018-08-21	50000	
-111	171	2018-08-21	10000	
-112	172	2018-08-21	6000	
-113	173	2018-08-22	60000	
 \.
 
 
@@ -976,22 +956,15 @@ SELECT pg_catalog.setval('public.payements_id_pay_seq', 113, true);
 --
 
 COPY public.personnes (id_po, nom, prenom, adresse, tel, nom_f, prenom_f, date, tel2, id_cat, poste) FROM stdin;
-7	Siaka	COULIBALY	Golf	99160123	\N	\N	2018-08-25	50889900	1	Reporter
-8	Boucar	DIGUE	Toro	88160123	\N	\N	2018-08-25	60889900	3	\N
-9	Sekou	DIAKANA	Sabalibougou	88160123	\N	\N	2018-08-25	66889900	3	\N
-10	Mounir	KABORE	Bobo	82160123	\N	\N	2018-08-25	90889900	1	\N
-11	Soueymane	PARE	Tomikoro	99160123	\N	\N	\N	63889900	2	\N
-12	Star	commerce	Dabanani	69160123	\N	\N	\N	77889900	2	\N
-13	Salim	KANTE	Djico	66160123	Sanata	SIDBE	2018-08-25	70889900	4	\N
-14	Boudou	DIAWARA	ACI2000	66160123	Lala	SANKORE	2018-08-25	60889900	4	\N
-15	Ibrahim	KONE	Faladiè Socoro	66160123	Saly	DOUMBIA	2018-10-25	90904699	3	Directeur
-16	Sambou	SIDBE	Lafia	66442930	Kadidja	SANKARE	\N	76442930	3	Directeur général
-17	Pate	KOÎTA	Djicoroni para	88996677			\N	90908866	1	
-18	Samba	DIALLO	Lassa	66102233			\N	44223311	1	
-19	Samba	DIALLO	Lassa	66102233			\N	44223311	1	
-20	Kassim	TENEPO	Bolibana	77885566			\N	20901122	1	
-21	Aly	TOURE	Touba coura	77 66 77 22			\N	89897711	1	
-22	Djibril	SIDIBE	Lafiabougou	77886655			\N	5099887	3	Reporter
+25	Ibrahim	KONE	ssssssssss	sssssss	sssssssss	sssssssssssss	\N	sssssss	3	ssss
+26	Sambou	SIDBE					\N		1	
+27	Ada	DEMBE	Lafiabougou	99009900	Fanta	DIALLO	\N	88990989	4	
+28	Mami	SACKO					\N		3	
+29	Hamsa	KONE	Faladiè Socoro	77662232			\N	98987766	1	
+30	hhhhhhhh	hhhhhhhhhhh	hhhhhhhhhhh		hhhhhhhhhh	hhhhhhhhhhhhh	\N	hhhhhhhhh	1	hhhhhhhhh
+31	BAMA	COULI	Faladiè Socoro	7887789999			\N	999899088	1	
+32	SAID	FO	Faladiè Socoro	90909090			\N	60606060	4	
+33	SALIF	TOGOLA	Bolibana	20666666	SATA	DIATA	\N	23554455	4	
 \.
 
 
@@ -999,21 +972,25 @@ COPY public.personnes (id_po, nom, prenom, adresse, tel, nom_f, prenom_f, date, 
 -- Name: personnes_id_p_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.personnes_id_p_seq', 22, true);
+SELECT pg_catalog.setval('public.personnes_id_p_seq', 33, true);
 
 
 --
 -- Data for Name: produits; Type: TABLE DATA; Schema: public; Owner: ikone
 --
 
-COPY public.produits (id_pro, nom_pro, prix, id_catpro) FROM stdin;
-5	DVD-R	\N	1
+COPY public.produits (id_pro, nom_pro, prix_vente, id_catpro) FROM stdin;
 6	Cle usb	\N	1
 7	Carte memoire	\N	1
-8	Papier ram	\N	1
 9	Reportage	2000	2
 10	Animation	25000	2
 11	Reportage	50000	2
+12	Sonorisation Grand	20000	2
+14	CD-R	500	1
+15	Cle USB 32Go	14000	1
+16	Carte mémoire 4Go	3000	1
+22	Seminaire Kodumani	3000	2
+23	Seminaire Tie kura	2000	2
 \.
 
 
@@ -1021,7 +998,7 @@ COPY public.produits (id_pro, nom_pro, prix, id_catpro) FROM stdin;
 -- Name: produits_id_prod_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.produits_id_prod_seq', 11, true);
+SELECT pg_catalog.setval('public.produits_id_prod_seq', 23, true);
 
 
 --
@@ -1264,6 +1241,22 @@ ALTER TABLE ONLY public.payements
 
 ALTER TABLE ONLY public.achats
     ADD CONSTRAINT personne_fkey FOREIGN KEY (id_po) REFERENCES public.personnes(id_po);
+
+
+--
+-- Name: produitfkey; Type: FK CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.contenu_acha
+    ADD CONSTRAINT produitfkey FOREIGN KEY (id_pro) REFERENCES public.produits(id_pro);
+
+
+--
+-- Name: produitfkey2; Type: FK CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.produits
+    ADD CONSTRAINT produitfkey2 FOREIGN KEY (id_catpro) REFERENCES public.categorie_pro(id_catpro);
 
 
 --

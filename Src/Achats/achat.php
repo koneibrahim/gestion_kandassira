@@ -12,7 +12,7 @@
         	elseif ($e=='P') return 'Partiellement livré';
         	else return 'Totalement livré';
         	 }
-          	include 'listeac.php';
+          	include'listeac.php';
         		/*------------Debut Achat.php-------------*/
         	echo'<div id="contvert">';
 
@@ -32,7 +32,7 @@
         	echo '</tr>';
 
         	echo '<tr>';
-            	echo '<td>Fournisseur</td>';
+            	echo '<td>Fournisseur </td>';
             	echo '<td>'.$ligne['nom'].' '.$ligne['prenom'].'</td>';
         	echo '</tr>';
 
@@ -60,32 +60,31 @@
         	echo'<td class="textcen"><a href="Amodifier.php?id_ac='.$id_ac.
         			'&date_ac='.$ligne['date_ac'].
         			'&libele='.$ligne['libele'].
-        			'&id_po='.$ligne['id_po'].
-              '&nom='.$ligne['nom'].
-              '&prenom='.$ligne['prenom'].'">
+        			'&id_po='.$ligne['id_po'].'">
         			<img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier">';
-
         			echo'<td class="textcen"><a href="../html2pdf_v4.03/examples/exemple03.php?id_ac='.$id_ac.'">
         			<img src="/Images/imprim.png" width="35px"height="35px" class="img" title="Imprimé"></a>';
 
         			//if($ligne['etat']==0) {
-              if($_SESSION['group']=='3') {
+            //  if($_SESSION['group']=='3') {
           			echo'<a href="Asupprimer.php?id_ac='.$ligne['id_ac'].
           			'&date_ac='.$ligne['date_ac'].'&libele='.$ligne['libele'].'">
           			<img src="/Images/supprimer.png" width="25px"height="25px" class="img" title="Supprimer"></a></td>';
           		//	 }
-            }
+          //  }
         	echo'</tr>';
 
         	echo'<tr>';
         	echo'<td colspan="2  class="textgau"><a href="contenuac.php?id_ac='.$id_ac.
-        			'&date_ac='.$ligne['date_ac'].
-        			'&libele='.$ligne['libele'].
-        			'&etat='.$ligne['etat'].
+              //'&id_pro='.$ligne['id_pro'].
+              //'&nom_pro='.$ligne['nom_pro'].
+             //'&date_ac='.$ligne['date_ac'].
+        			 '&libele='.$ligne['libele'].
+        			 '&etat='.$ligne['etat'].
         			'"><button class="butachat">Contenu</button></a></td>';
         	echo'</tr>';
 
-        	if($ligne['etat']==1) {
+        	//if($ligne['etat']==1) {
 
         	echo'<tr>';
 
@@ -104,8 +103,8 @@
         			'"><button class="butachat">Payement</button></a></td>';
 
         			echo'</tr>';
-        	     }
-        	else {
+        	     //}
+        	//else {
         		echo'<tr>';
         	echo'<td colspan="2" class="textgau"><a href="valider.php?id_ac='.$ligne['id_ac'].
         			'&date_ac='.$ligne['date_ac'].
@@ -113,7 +112,7 @@
         			'&etat='.$ligne['etat'].
         		   '"><button class="butachat">Validation</button></a></td>';
         	echo'</tr>';
-        	     }
+        	    // }
         	echo'</table>';
         	echo'</div>';
         	include'../../Layout/footer.php';

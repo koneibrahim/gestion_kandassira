@@ -21,7 +21,8 @@
 							echo	'<th class="thtable textgau">Nom </th>';
 							echo	'<th class="thtable textgau">Prénom </th>';
 							echo	'<th class="thtable textcen">Poste </th>';
-							echo	'<th class="thtable textcen">Téléphone </th>';
+							echo	'<th class="thtable textcen">Téléphone 1</th>';
+							echo	'<th class="thtable textcen">Téléphone 2</th>';
 							echo	'<th class="thtable textcen">Addresse </th>';
 							echo'</tr>';
 							$i=1;
@@ -33,6 +34,7 @@
 							echo'<td class="textgau">'.$ligne['prenom'].'</td>';
 							echo'<td class="textgau">'.$ligne['poste'].'</td>';
 							echo'<td class="textcen">'.$ligne['tel'].'<sup></sup></td>';
+							echo'<td class="textcen">'.$ligne['tel2'].'<sup></sup></td>';
 							echo'<td class="textcen">'.$ligne['adresse'].'</td>';
 							/*
 							echo'<td class="textcen"><a href="lmodifier.php?id_cli='.$ligne['id_cli'].

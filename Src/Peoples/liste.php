@@ -5,7 +5,7 @@
 	include'../../Layout/retour.php';
 
 	  echo '<div id="menu2">';
-					
+
 		echo '</div>';
 
 	include'CRUD.php';
@@ -24,11 +24,11 @@
 	echo	'<th class="thtable textcen">Téléphone 1</th>';
 	echo	'<th class="thtable textcen">Téléphone 2</th>';
 	echo	'<th class="thtable textcen">Addresse </th>';
-	echo	'<th class="thtable textcen">Type </th>';
+	echo	'<th class="thtable textcen">Categorie </th>';
 	echo	'<th colspan="2" class="thtable">Action</th>';
 	echo'</tr>';
 	$i=1;
-	while($ligne=pg_fetch_assoc($personneperso))
+	while($ligne=pg_fetch_assoc($lpersonne))
 	{
 	echo'<tr class="ld'.($i%2).'">';
   echo'<td class="textcen">'.$i.'</td>';
@@ -38,11 +38,12 @@
 	echo'<td class="textcen">'.$ligne['tel2'].'<sup></sup></td>';
 	echo'<td class="textcen">'.$ligne['adresse'].'</td>';
 	echo'<td class="textcen">'.$ligne['nom_cat'].'<sup></sup></td>';
-	echo'<td class="textcen"><a href="Fmodifier.php?id_p='.$ligne['id_p'].
-			'&nom_p='.$ligne['nom_p'].
-			'&prenom_p='.$ligne['prenom_p'].
-			'&fonction='.$ligne['fonction'].
+	echo'<td class="textcen"><a href="Fmodifier.php?id_po='.$ligne['id_po'].
+			'&nom='.$ligne['nom'].
+			'&prenom='.$ligne['prenom'].
+			'&id_cat='.$ligne['id_cat'].
 			'&tel='.$ligne['tel'].
+			'&tel2='.$ligne['tel2'].
 			'&adresse='.$ligne['adresse'].
 			'"><img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
 	echo'<td class="textcen"><a href="Fsupprimer.php?id_po='.$ligne['id_po'].

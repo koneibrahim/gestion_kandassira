@@ -2,11 +2,11 @@
 if($_SESSION['group']=='3') {
 if($_POST['mas']=='A')
 	 {
-	$nom_ma=$_POST['nom_ma'];
-	$unite=$_POST['unite'];
-	$prix_ma=$_POST['prix_ma'];
-	$requete="insert into matieres (nom_ma,unite,prix_ma)";
-	$requete.="values ('$nom_ma','$unite',$prix_ma)";
+	$nom_pro=$_POST['nom_pro'];
+	$prix_vente=$_POST['prix_vente'];
+	$id_catpro=$_POST['id_catpro'];
+	$requete="insert into produits (nom_pro,prix_vente,id_catpro)";
+	$requete.="values ('$nom_pro','$prix_vente','$id_catpro')";
 		if($_POST['valider']=='Valider')
 	$resultat=pg_query($dbconn,$requete);
 
@@ -14,12 +14,12 @@ if($_POST['mas']=='A')
 
 elseif($_POST['mas']=='M')
 	 {
-	$id_ma=$_POST['id_ma'];
-	$nom_ma=$_POST['nom_ma'];
-	$unite=$_POST['unite'];
-	$prix_ma=$_POST['prix_ma'];
-	$requete="update matieres set nom_ma='$nom_ma',unite='$unite',prix_ma=$prix_ma";
-	$requete.=" where id_ma=$id_ma";
+	$id_pro=$_POST['id_pro'];
+	$nom_pro=$_POST['nom_pro'];
+	$prix_vente=$_POST['prix_vente'];
+	$id_catpro=$_POST['id_catpro'];
+	$requete="update produits set nom_pro='$nom_pro',prix_vente='$prix_vente',id_catpro='$id_catpro'";
+	$requete.=" where id_pro=$id_pro";
 		if($_POST['valider']=='Valider')
 	$resultat=pg_query($dbconn,$requete);
 
@@ -27,14 +27,20 @@ elseif($_POST['mas']=='M')
 
 elseif($_POST['mas']=='S')
 	{
-	$id_ma=$_POST['id_ma'];
+	$id_pro=$_POST['id_pro'];
 	$valider=$_POST['valider'];
 	if($valider=='Oui') {
-	$requete="delete from matieres where id_ma=$id_ma";
+	$requete="delete from produits where id_pro=$id_pro";
 	$resultat=pg_query($dbconn,$requete);
 	 }
 	}
-   $requete="select nom_pro,nom_catpro from produits  natural join categorie_pro ";
+   $requete="select id_pro,id_catpro,nom_pro,prix_vente,nom_catpro from produits
+	  				 natural join categorie_pro order by id_pro desc ";
 	$resultat=pg_query($dbconn,$requete);
+
+	$requete7="select id_catpro,nom_catpro from categorie_pro";
+	$lcatpro=pg_query($dbconn,$requete7);
+
+
 }
 ?>

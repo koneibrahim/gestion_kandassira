@@ -17,12 +17,12 @@ if($_POST['mas']=='AA')
 
 elseif($_POST['mas']=='AM')
 	 {
+		$id_ac=$_POST['id_ac'];
+		$id_po=$_POST['id_po'];
 		$date_ac=$_POST['date_ac'];
 	 	$libele=$_POST['libele'];
-	 	$id_po=$_POST['id_po'];
 	 	$nom=$_POST['nom'];
 		$prenom=$_POST['prenom'];
-
 	$requete="update achats set date_ac='$date_ac',libele='$libele',id_po='$id_po',prenom='$prenom',nom='$nom'";
 	$requete.=" where id_ac=$id_ac";
 			if($_POST['valider']=='Valider')
@@ -61,28 +61,15 @@ elseif($etat=='1') {
  	 if($_POST['mas']=='CA')
 	 {
 	$id_ac=$_POST['id_ac'];
-	$id_ma=$_POST['id_ma'];
-	$libele=$_POST['libele'];
-	$qte_ma=$_POST['qte_ma'];
-	$rprix="select prix_ma from matieres where id_ma=$id_ma";
-	$eprix=pg_query($dbconn,$rprix);
-	$ligne=pg_fetch_assoc($eprix);
-	$prix_ma=$ligne['prix_ma'];
-	$requete="insert into contenu_acha (id_ma,qte_ma,id_ac,prix) values ($id_ma,$qte_ma,$id_ac,$prix_ma)";
+	$id_pro=$_POST['id_pro'];
+	$prix_pro=$_POST['prix_pro'];
+	$qte_pro=$_POST['qte_pro'];
+	$requete="insert into contenu_acha (id_ac,id_pro,prix_pro,qte_pro)";
+	$requete.=" values ('$id_ac','$id_pro','$prix_pro','$qte_pro')";
 		if($_POST['valider']=='Valider')
-		{
-			$cajouter=pg_query($dbconn,$requete);
-
-			$requete="update achats set montant= t.smontant from (select sum(prix*qte_ma) as smontant from
-			contenu_acha where id_ac=$id_ac) as t where id_ac=$id_ac";
-			$cajouter=pg_query($dbconn,$requete);
-
-			$requete="update matieres set qte_vir=qte_vir+$qte_ma where id_ma=$id_ma";
-	 	   $resultat=pg_query($dbconn,$requete);
-
-		}
-
+	$resultat=pg_query($dbconn,$requete);
 	 }
+
 
 elseif($_POST['mas']=='CM')
 	 {
@@ -251,22 +238,21 @@ elseif($_POST['mas']=='PS')
 	 }
 	 }
 
-	 $requete="select id_ac,date_ac,libele,etat_liv,etat,nom from achats natural join personnes order by id_ac desc limit 50";
+	 $requete="select id_ac,date_ac,libele,nom from achats natural join personnes order by id_ac desc limit 50";
 	 $listeac=pg_query($dbconn,$requete);
 
 	 $requete2="select id_ac,id_po,nom,prenom,date_ac,libele,nom,montant,montant_paye,etat_liv,etat from
 	 achats natural join personnes where id_ac=$id_ac";
 	 $achat=pg_query($dbconn,$requete2);
 
- 	 $requete4="select id_ac,id_cac,id_ma,nom_ma,prix,qte_ma,qte_liv from
-	  contenu_acha natural join matieres natural join achats where id_ac=$id_ac";
+ 	 $requete4="select nom_pro,qte_pro,prix_acha,qte_liv from  contenu_acha natural join produits natural join achats where id_ac=$id_ac ";
 	 $contenuac=pg_query($dbconn,$requete4);
 
 	 $requete5="select * from contenu_acha natural join matieres";
 	 $jointure=pg_query($dbconn,$requete5);
 
-	 $requete6="select id_ma,prix_ma,nom_ma from matieres";
-	 $ajouter=pg_query($dbconn,$requete6);
+	 $requete6="select id_pro,nom_pro from produits";
+	 $lpro=pg_query($dbconn,$requete6);
 
 	 $requete7="select id_po,nom,prenom from personnes";
 	 $lfournisseur=pg_query($dbconn,$requete7);

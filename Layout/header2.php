@@ -13,7 +13,7 @@
 		echo ' <a href="/Src/Clients/liste.php"> <button class="bmh2">Clients</button> </a>';
 		echo ' <a href="/Src/Fournisseurs/liste.php"> <button class="bmh2">Fournisseurs</button> </a>';
 		echo ' <a href="/Src/Personnels/liste.php"> <button class="bmh2">Personnels</button> </a>';
-		echo ' <a href="/Src/Prestations/liste.php"> <button class="bmh2">Prestations</button> </a>';
+		echo ' <a href="/Src/Mariages/liste.php"> <button class="bmh2">Mariages</button> </a>';
 
 		}
 
