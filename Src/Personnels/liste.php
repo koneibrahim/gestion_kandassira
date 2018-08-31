@@ -26,13 +26,13 @@
 							echo	'<th class="thtable textcen">Addresse </th>';
 							echo'</tr>';
 							$i=1;
-							while($ligne=pg_fetch_assoc($personneperso))
+							while($ligne=pg_fetch_assoc($lperso))
 							{
 							echo'<tr class="ld'.($i%2).'">';
 						  echo'<td class="textcen">'.$i.'</td>';
 							echo'<td class="textgau">'.$ligne['nom'].'</td>';
 							echo'<td class="textgau">'.$ligne['prenom'].'</td>';
-							echo'<td class="textgau">'.$ligne['poste'].'</td>';
+							echo'<td class="textcen">'.$ligne['poste'].'</td>';
 							echo'<td class="textcen">'.$ligne['tel'].'<sup></sup></td>';
 							echo'<td class="textcen">'.$ligne['tel2'].'<sup></sup></td>';
 							echo'<td class="textcen">'.$ligne['adresse'].'</td>';

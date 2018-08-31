@@ -6,7 +6,7 @@
 	include'../../Layout/retour.php';
 
 		echo '<div id="menu2">';
-
+	
 		echo '</div>';
 
 	include'CRUD.php';

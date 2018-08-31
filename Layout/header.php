@@ -13,8 +13,8 @@
 	$dbconn=pg_connect("dbname=kandassira user=ikone password=okokok host=localhost port=5432");
 
 	echo '<div id="header">';
-	echo '<h1 class="titreh1"> G-STORE  </h1>';
-	echo '<h5 class="titreh5">HAMDALLAYE ACI 2000  Tel: 00 00 00 00 / 00 00 00 00
-	E-mai:xxxxxxxxxxx@xxxx.com</h5>';
+	echo '<h1 class="titreh1"> G-KANDASSIRA  </h1>';
+	echo '<h5 class="titreh5">HAMDALLAYE ACI 2000  Tel: 20 22 46 00 / 20 71 06 60
+	Site : www.kandasira.com</h5>';
 	echo '</div>';
 ?>

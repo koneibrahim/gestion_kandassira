@@ -61,7 +61,9 @@
         	echo'<td class="textcen"><a href="Amodifier.php?id_ac='.$id_ac.
         			'&date_ac='.$ligne['date_ac'].
         			'&libele='.$ligne['libele'].
-        			'&id_po='.$ligne['id_po'].'">
+        			//'&id_po='.$ligne['id_po'].
+
+              '">
         			<img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier">';
         			echo'<td class="textcen"><a href="../html2pdf_v4.03/examples/exemple03.php?id_ac='.$id_ac.'">
         			<img src="/Images/imprim.png" width="35px"height="35px" class="img" title="Imprimé"></a>';

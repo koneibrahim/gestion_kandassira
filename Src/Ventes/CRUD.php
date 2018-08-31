@@ -4,19 +4,20 @@ if($_POST['mas']=='VA')
 	 {
 		$date_ve=$_POST['date_ve'];
 		$libele=$_POST['libele'];
-		$id_cli=$_POST['id_cli'];
-		$requete="insert into ventes (date_ve,libele,id_cli)";
-		$requete.=" values ('$date_ve','$libele',$id_cli)";
+		$id_po=$_POST['id_po'];
+		$requete="insert into ventes (date_ve,libele,id_po)";
+		$requete.=" values ('$date_ve','$libele',$id_po)";
 			if($_POST['valider']=='Valider')
 		$vajouter=pg_query($dbconn,$requete);
 	}
 elseif($_POST['mas']=='VM')
 	 {
 		$id_ve=$_POST['id_ve'];
+		$id_po=$_POST['id_po'];
 		$date_ve=$_POST['date_ve'];
 		$libele=$_POST['libele'];
 		$id_cli=$_POST['id_cli'];
-		$requete="update ventes set date_ve='$date_ve',libele='$libele',id_cli=$id_cli ";
+		$requete="update ventes set date_ve='$date_ve',libele='$libele',id_po=$id_po";
 		$requete.=" where id_ve=$id_ve";
 				if($_POST['valider']=='Valider')
 		$vmodifier=pg_query($dbconn,$requete);
@@ -66,13 +67,15 @@ if($_POST['valider']=='Valider')
 
 // -----LES DIFFERENTS SELECTS---------//
 
-	 $requete="select id_ve,tel,nom_cli,date_ve,libele,etat from ventes natural join clients order by id_ve desc";
+	 $requete="select id_ve,date_ve,libele,id_po,tel,nom,prenom from ventes natural join personnes order by id_ve desc";
       $listeve=pg_query($dbconn,$requete);
-   $requete2="select id_ve,id_cli,date_ve,libele,nom_cli,pre_cli,tel,montant,montant_paye,montant_res,etat from
-	             ventes natural join clients where id_ve=$id_ve";
+
+   $requete2="select id_ve,id_po,date_ve,libele,nom,prenom,tel,tel2,montant,montant_paye,montant_res,etat from
+	            ventes natural join personnes where id_ve=$id_ve";
 	    $vente=pg_query($dbconn,$requete2);
-   $requete3="select id_cli,nom_cli,pre_cli,adresse_cli from clients";
-      $lclient=pg_query($dbconn,$requete3);
+
+   $requete3="select id_po,nom,prenom,adresse from personnes";
+      $lpersonne=pg_query($dbconn,$requete3);
 
 	 $requete4="select id_ve,id_cve,id_ma,nom_ma,prix,qte_v,qte_liv from
 	 		contenu_ve natural join matieres natural join prestations natural join ventes where id_ve=$id_ve ";

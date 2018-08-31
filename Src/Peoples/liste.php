@@ -12,6 +12,16 @@
 	echo'<div id="content">';
 
 	echo'<h3 class="titrecform textgau">Liste des peoples</h3><br/>';
+
+	echo'<tr  class="textcen">';
+	echo'<td>';
+		echo ' <a href="/Src/Clients/liste.php"> <button class="bmh2">Tri->Clients</button> </a>';
+		echo ' <a href="/Src/Fournisseurs/liste.php"> <button class="bmh2">Tri->Fournisseurs</button> </a>';
+		echo ' <a href="/Src/Personnels/liste.php"> <button class="bmh2">Tri->Personnels</button> </a>';
+		echo ' <a href="/Src/Mariages/liste.php"> <button class="bmh2">Tri->Mariages</button> </a><br/><br/><br/>';
+  echo'</td>';
+	echo '</tr>';
+
 	echo '<table cellpadding="3" border="0" class="w90">';
 	echo '<tr class="thajouter">';
 	echo '<th colspan="12" class="textdro thtable"><a href="Fajouter.php">
@@ -59,6 +69,7 @@
 	/*	echo'<td class="textcen"><a href="yogotterahma/Src/html2pdf_v4.03/examples/exemple04.php"><button> helo</button></a>';*/
 
 	echo'</table>';
+
 	echo'</div>';
 	include'../../Layout/footer.php';
 

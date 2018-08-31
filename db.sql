@@ -760,10 +760,9 @@ ALTER TABLE ONLY public.ventes ALTER COLUMN id_ve SET DEFAULT nextval('public.ve
 --
 
 COPY public.achats (id_ac, date_ac, montant, montant_paye, etat_liv, libele, etat, id_po) FROM stdin;
-186	2018-08-27	\N	0	N	hhere	0	28
-187	2018-08-27	\N	0	N	Achat de cle USB	0	32
-190	2018-08-27	\N	0	N	Carte memeoire	0	29
-191	2018-08-28	\N	0	N	dddsz	0	28
+192	2018-08-28	\N	0	N	Cle USB	0	34
+193	2018-08-28	\N	0	N	Carte mémoire	0	35
+195	2018-08-30	\N	0	N	PRESTATION	0	27
 \.
 
 
@@ -771,7 +770,7 @@ COPY public.achats (id_ac, date_ac, montant, montant_paye, etat_liv, libele, eta
 -- Name: achats_id_ac_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.achats_id_ac_seq', 191, true);
+SELECT pg_catalog.setval('public.achats_id_ac_seq', 196, true);
 
 
 --
@@ -815,8 +814,8 @@ SELECT pg_catalog.setval('public.categorie_prod_id_catpro_seq', 2, true);
 --
 
 COPY public.contenu_acha (id_cac, id_ac, prix_acha, qte_pro, qte_liv, id_pro) FROM stdin;
-268	190	400	10	0	7
-269	190	1000	20	0	6
+271	192	1500	10	0	24
+272	193	500	30	0	25
 \.
 
 
@@ -824,7 +823,7 @@ COPY public.contenu_acha (id_cac, id_ac, prix_acha, qte_pro, qte_liv, id_pro) FR
 -- Name: contenu_acha_id_cac_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 269, true);
+SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 272, true);
 
 
 --
@@ -911,6 +910,7 @@ SELECT pg_catalog.setval('public.liv_vente_id_liv_seq', 1, true);
 --
 
 COPY public.livraisons (id_liv, id_ac, date_liv, libele) FROM stdin;
+100	192	2018-08-28	cxcv
 \.
 
 
@@ -918,7 +918,7 @@ COPY public.livraisons (id_liv, id_ac, date_liv, libele) FROM stdin;
 -- Name: livraisons_id_liv_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.livraisons_id_liv_seq', 99, true);
+SELECT pg_catalog.setval('public.livraisons_id_liv_seq', 100, true);
 
 
 --
@@ -956,15 +956,16 @@ SELECT pg_catalog.setval('public.payements_id_pay_seq', 113, true);
 --
 
 COPY public.personnes (id_po, nom, prenom, adresse, tel, nom_f, prenom_f, date, tel2, id_cat, poste) FROM stdin;
-25	Ibrahim	KONE	ssssssssss	sssssss	sssssssss	sssssssssssss	\N	sssssss	3	ssss
-26	Sambou	SIDBE					\N		1	
 27	Ada	DEMBE	Lafiabougou	99009900	Fanta	DIALLO	\N	88990989	4	
-28	Mami	SACKO					\N		3	
 29	Hamsa	KONE	Faladiè Socoro	77662232			\N	98987766	1	
-30	hhhhhhhh	hhhhhhhhhhh	hhhhhhhhhhh		hhhhhhhhhh	hhhhhhhhhhhhh	\N	hhhhhhhhh	1	hhhhhhhhh
 31	BAMA	COULI	Faladiè Socoro	7887789999			\N	999899088	1	
-32	SAID	FO	Faladiè Socoro	90909090			\N	60606060	4	
-33	SALIF	TOGOLA	Bolibana	20666666	SATA	DIATA	\N	23554455	4	
+34	STALION	INFORMATIQUE	Marché Dibidani	20 44 55 67			\N	99 22 33 44	2	
+35	DUNIYA	INFORMATIQUE	Marché Coura	77 66 66 22			\N	90 99 11 22	2	
+36	Ibrahim	TOURE	Faladiè Socoro	44 55 66 77	Fanta	DIALLO	\N	99 00 66 55	4	
+33	SALIF	BAMBA	Bolibana	20666666	SATA	DIATA	\N	23554455	1	
+37	Ibrahim	KONE	Faladiè Socoro	66 16 01 23			\N	90 90 46 99	3	Directeur général
+38	Sambou	SIDBE	Lafiabougou	66 44 29 30			\N	76 44 29 30	3	Directeur adjoint
+39	Moussa 	COULIBALY	Djicoroni chatto perdu	76 42 10 11	Adja	BAMBA	\N	90 88 44 32	4	
 \.
 
 
@@ -972,7 +973,7 @@ COPY public.personnes (id_po, nom, prenom, adresse, tel, nom_f, prenom_f, date, 
 -- Name: personnes_id_p_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.personnes_id_p_seq', 33, true);
+SELECT pg_catalog.setval('public.personnes_id_p_seq', 40, true);
 
 
 --
@@ -980,17 +981,18 @@ SELECT pg_catalog.setval('public.personnes_id_p_seq', 33, true);
 --
 
 COPY public.produits (id_pro, nom_pro, prix_vente, id_catpro) FROM stdin;
-6	Cle usb	\N	1
-7	Carte memoire	\N	1
-9	Reportage	2000	2
-10	Animation	25000	2
-11	Reportage	50000	2
 12	Sonorisation Grand	20000	2
 14	CD-R	500	1
-15	Cle USB 32Go	14000	1
-16	Carte mémoire 4Go	3000	1
-22	Seminaire Kodumani	3000	2
-23	Seminaire Tie kura	2000	2
+24	Cle 4Go	3000	1
+25	Carte mémoire 4Go	2000	1
+26	DVD-R	1000	1
+27	K7 60	500	1
+28	Carte memoire 32Go	6000	1
+10	Animation mariage G	25000	2
+9	Reportage soirée	25000	2
+11	Reportage matinale	50000	2
+22	Seminaire Furusira	3000	2
+30	K7 90	750	2
 \.
 
 
@@ -998,7 +1000,7 @@ COPY public.produits (id_pro, nom_pro, prix_vente, id_catpro) FROM stdin;
 -- Name: produits_id_prod_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.produits_id_prod_seq', 23, true);
+SELECT pg_catalog.setval('public.produits_id_prod_seq', 31, true);
 
 
 --
@@ -1137,6 +1139,30 @@ ALTER TABLE ONLY public.produits
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT uniq_1 UNIQUE (nom_user);
+
+
+--
+-- Name: uniqkey; Type: CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.produits
+    ADD CONSTRAINT uniqkey UNIQUE (nom_pro);
+
+
+--
+-- Name: uniqkey1; Type: CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.personnes
+    ADD CONSTRAINT uniqkey1 UNIQUE (tel);
+
+
+--
+-- Name: uniqkey2; Type: CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.personnes
+    ADD CONSTRAINT uniqkey2 UNIQUE (tel2);
 
 
 --

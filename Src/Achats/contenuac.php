@@ -8,6 +8,7 @@
   $qte_liv=$_GET['qte_liv'];
   $date_ac=$_GET['date_ac'];
   $etat=$_GET['etat'];
+
   include'achat.php';
 
       			/*-------Debut Contenuac-----------*/
@@ -43,8 +44,7 @@
       	echo'<td class="textcen">'.$ligne['prix_acha'].'</td>';
       	echo'<td class="textcen">'.$ligne['qte_pro'].'</td>';
         echo'<td class="textcen">'.$ligne['qte_liv'].'</td>';
-
-      	if ($etat==0) {
+      	//if ($etat==0) {
          echo'<td class="textcen"><a href="Cmodifier.php?id_ac='.$id_ac.
          		'&id_cac='.$ligne['id_cac'].
       			'&id_pro='.$ligne['id_pro'].
@@ -52,14 +52,12 @@
       			'&qte_pro='.$ligne['qte_pro'].
       			'"><img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
       echo'<td class="textcen"><a href="Csupprimer.php?id_ac='.$id_ac.
-         		'&id_cac='.$ligne['id_cac'].
-      			'&nom_ma='.$ligne['nom_ma'].
-      			'&id_ma='.$ligne['id_ma'].
-      			'&qte_ma='.$ligne['qte_ma'].
-      			'&date_ac='.$ligne['date_ac'].
+            '&id_cac='.$ligne['id_cac'].
+            '&id_pro='.$ligne['id_pro'].
+            '&prix_acha='.$ligne['prix_acha'].
+            '&qte_pro='.$ligne['qte_pro'].
       			'"><img src="/Images/supprimer.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
-         }
-
+         //}
       echo'</tr>';
 
       	$i++;
@@ -68,6 +66,5 @@
 
       	echo'</div>';
 	include'../../Layout/footer.php';
-
 
 ?>

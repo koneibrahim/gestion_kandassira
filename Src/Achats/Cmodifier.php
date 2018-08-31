@@ -1,12 +1,12 @@
 
  <?php
 
-  $id_ac=$_GET['id_ac'];
-  $id_cac=$_GET['id_cac'];
-  $id_pro=$_GET['id_pro'];
-  $prix_vente=$_GET['prix_vente'];
-  $qte_pro=$_GET['qte_pro'];
-
+ $id_ac=$_GET['id_ac'];
+ $id_cac=$_GET['id_cac'];
+ $id_pro=$_GET['id_pro'];
+ $prix_acha=$_GET['prix_acha'];
+ $qte_pro=$_GET['qte_pro'];
+ $libele=$_GET['libele'];
 
 	include'contenuac.php';
 
@@ -20,7 +20,8 @@
 	echo'<input type="hidden" name="mas" value="CM"/>';
 	echo'<input type="hidden" name="id_ac" value="'.$id_ac.'">';
   echo'<input type="hidden" name="id_cac" value="'.$id_cac.'">';
-	echo'<input type="hidden" name="qte_pro_orig" value="'.$qte_pro.'">';
+  echo'<input type="hidden" name="id_pro" value="'.$id_pro.'">';
+	//echo'<input type="hidden" name="qte_pro_orig" value="'.$qte_pro.'">';
 
 	echo '<table cellpadding="3" class="w95">';
 
