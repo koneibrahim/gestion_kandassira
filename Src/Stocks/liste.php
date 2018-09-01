@@ -5,15 +5,18 @@
 	include'../../Layout/header2.php';
 	include'../../Layout/retour.php';
 
+			echo '<div id="logo">';
+
+			echo '</div>';
 					echo '<div id="menu2">';
-								
+
 					echo '</div>';
 				include'CRUD.php';
 				if($_SESSION['group']=='3'||$_SESSION['group']=='2') {
 
 				echo'<div id="content">';
 
-				echo'<h3 class="titrecform textgau">Etat de stock des articles </h3><br/>';
+				echo'<h3 class="titrecform textgau">Etat de stock des produits </h3><br/>';
 				echo'<table cellpadding="13" class="w90">';
 				echo'<tr class="thtable">';
 				echo'<th colspan="5" class="textdro thtable"></th></a></th>';

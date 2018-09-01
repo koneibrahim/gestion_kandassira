@@ -7,7 +7,6 @@
 		$date_ac=$_POST['date_ac'];
 		$libele=$_POST['libele'];
 		$id_po=$_POST['id_po'];
-		$nom=$_POST['nom'];
 		$requete="insert into achats (date_ac,libele,id_po)";
 		$requete.=" values ('$date_ac','$libele','$id_po')";
 			if($_POST['valider']=='Valider')
@@ -213,17 +212,11 @@
 		 $listeac=pg_query($dbconn,$requete);
 
 		 $requete2="select id_ac,id_po,nom,prenom,date_ac,libele,nom,montant,montant_paye,etat_liv,etat from
-		 achats natural join personnes where id_ac=$id_ac";
+		 					achats natural join personnes where id_ac=$id_ac";
 		 $achat=pg_query($dbconn,$requete2);
 
-	 	 $requete4="select nom_pro,qte_pro,prix_acha,qte_liv from  contenu_acha natural join produits natural join achats where id_ac=$id_ac ";
-		 $contenuac=pg_query($dbconn,$requete4);
-
-		 $requete5="select * from contenu_acha natural join matieres";
-		 $jointure=pg_query($dbconn,$requete5);
-
-		 $requete6="select id_pro,nom_pro from produits";
-		 $lpro=pg_query($dbconn,$requete6);
+		 //$requete6="select id_pro,nom_pro from produits";
+		// $lpro=pg_query($dbconn,$requete6);
 
 		 $requete7="select id_po,nom,prenom from personnes order by nom asc";
 		 $lfournisseur=pg_query($dbconn,$requete7);
@@ -231,7 +224,7 @@
 		 $requete13="select id_pro,nom_pro from  produits natural join categorie_pro where id_catpro=1 ";
 		 $lproduit=pg_query($dbconn,$requete13);
 
-	   $requete8="select id_ac,id_pay,date_pay,libele,montant from payements where id_ac=$id_ac";
+	   /*$requete8="select id_ac,id_pay,date_pay,libele,montant from payements where id_ac=$id_ac";
 		 $payement=pg_query($dbconn,$requete8);
 
 		 $requete9="select id_ac,id_liv,date_liv,libele from livraisons where id_ac=$id_ac";
@@ -245,6 +238,6 @@
 		 $pachat=pg_query($dbconn,$requete11);
 
 		 $requete12="select id_ac, sum(montant) from achats group by id_ac";
-		 $tachat=pg_query($dbconn,$requete12);
+		 $tachat=pg_query($dbconn,$requete12);*/
 	 }
 	?>

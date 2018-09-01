@@ -5,8 +5,12 @@
 	include'../../Layout/header2.php';
 	include'../../Layout/retour.php';
 
-		echo '<div id="menu2">';
+	echo '<div id="logo">';
+
+	echo '</div>';
 	
+		echo '<div id="menu2">';
+
 		echo '</div>';
 
 	include'CRUD.php';

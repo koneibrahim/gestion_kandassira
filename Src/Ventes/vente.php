@@ -58,9 +58,7 @@
                 //   if($ligne['etat']==0) {
            echo'<a href="Vsupprimer.php?id_ve='.$ligne['id_ve'].
                '&date_ve='.$ligne['date_ve'].
-               '&libele='.$ligne['libele'].
-               '&nom='.$ligne['nom'].
-               '&prenom='.$ligne['prenom'].'">
+               '&libele='.$ligne['libele'].'">
           <img src="/Images/supprimer.png" width="25px"height="25px" class="img" title="Supprimer"></a></td>';
               //  }
            echo'</tr>';
@@ -68,7 +66,7 @@
                echo'<td colspan="2  class="textgau"><a href="contenuve.php?id_ve='.$id_ve.
                    '&date_ve='.$ligne['date_ve'].
                    '&libele='.$ligne['libele'].'">
-                   <button class="butachat">Contenu de la vente</button></a></td>';
+                   <button class="butachat"> Contenu de la commande </button></a></td>';
            echo'</tr>';
         //   if($ligne['etat']==0) {
            echo'<tr>';

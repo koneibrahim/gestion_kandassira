@@ -26,10 +26,9 @@
       	echo '</table>';
 
       	echo '<div id="cfooter" class="textdro">';
-      		if($_SESSION['utilisateur']=='Identifie') {
       	echo'<input type="submit" name="valider" value="Valider"  class="bvalid">&nbsp;&nbsp;
       			 <input type="submit" name="valider" value="Annuler"  class="bannul"></div></div></div>';
-      	}
+
         	echo '</form>';
       	echo '</div>';
 	include'../../Layout/footer.php';
