@@ -79,12 +79,7 @@
 
         	echo'<tr>';
         	echo'<td colspan="2  class="textgau"><a href="contenuac.php?id_ac='.$id_ac.
-            //  '&id_cac='.$ligne['id_cac'].
-            //  '&id_pro='.$ligne['id_pro'].
-            //  '&nom_pro='.$ligne['nom_pro'].
-            // '&qte_pro='.$ligne['qte_pro'].
-             //'&date_ac='.$ligne['date_ac'].
-        			 '&libele='.$ligne['libele'].
+              '&libele='.$ligne['libele'].
         		//	 '&etat='.$ligne['etat'].
         			'"><button class="butachat">Contenu</button></a></td>';
         	echo'</tr>';

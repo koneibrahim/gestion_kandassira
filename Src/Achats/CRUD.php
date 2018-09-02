@@ -55,42 +55,39 @@
 
 	 	 if($_POST['mas']=='CA')
 		 {
-		$id_cac=$_POST['id_cac'];
 		$id_ac=$_POST['id_ac'];
 		$id_pro=$_POST['id_pro'];
 		$prix_acha=$_POST['prix_acha'];
 		$qte_pro=$_POST['qte_pro'];
-		$requete="insert into contenu_acha (id_cac,id_ac,id_pro,prix_acha,qte_pro)";
-		$requete.=" values ('$id_cac','$id_ac','$id_pro','$prix_acha','$qte_pro')";
+		$requete="insert into contenu_acha (id_ac,id_pro,prix_acha,qte_pro)";
+		$requete.=" values ($id_ac,$id_pro,$prix_acha,$qte_pro)";
 			if($_POST['valider']=='Valider')
 		$resultat=pg_query($dbconn,$requete);
 		 }
 	elseif($_POST['mas']=='CM')
 		 {
-	  $id_cac=$_POST['id_cac'];
+		$id_cac=$_POST['id_cac'];
 		$id_ac=$_POST['id_ac'];
 		$id_pro=$_POST['id_pro'];
 		$prix_acha=$_POST['prix_acha'];
 		$qte_pro=$_POST['qte_pro'];
-		$requete="update contenu_acha set id_pro='$id_pro',qte_pro='$qte_pro',prix_acha='$prix_acha'";
-		$requete.=" where id_ac=$id_ac";
+		$requete="update contenu_acha set id_pro=$id_pro,qte_pro=$qte_pro,prix_acha=$prix_acha";
+		$requete.=" where id_pro=$id_pro";
 				if($_POST['valider']=='Valider')
 			$cmodifier=pg_query($dbconn,$requete);
 		 }
 		 elseif($_POST['mas']=='CS')
-		 {
-		$id_ac=$_POST['id_ac'];
-		$id_cac=$_POST['id_cac'];
-	   $qte_ma=$_POST['qte_ma'];
-		$id_ma=$_POST['id_ma'];
-		$valider=$_POST['valider'];
-		if($valider=='Oui') {
-					$requete="delete from contenu_acha where id_cac=$id_cac";
-					$asupprimer=pg_query($dbconn,$requete);
-					$requete="update matieres set qte_vir=qte_vir-$qte_ma where id_ma=$id_ma";
-				   $resultat=pg_query($dbconn,$requete);
-		 }
-		 }
+	 		 {
+			$id_cac=$_POST['id_cac'];
+	 		$id_ac=$_POST['id_ac'];
+			$id_pro=$_POST['id_pro'];
+			$qte_pro=$_POST['qte_pro'];
+	 		$valider=$_POST['valider'];
+	 		if($valider=='Oui') {
+	 		$requete="delete from contenu_acha where id_cac=$id_cac";
+	 		$asupprimer=pg_query($dbconn,$requete);
+	 		 }
+	 		 }
 		 /*
 	 	  	 //----------LIVRAISON-----------
 	 	if($_POST['mas']=='LVA')
@@ -215,14 +212,17 @@
 		 					achats natural join personnes where id_ac=$id_ac";
 		 $achat=pg_query($dbconn,$requete2);
 
-		 //$requete6="select id_pro,nom_pro from produits";
-		// $lpro=pg_query($dbconn,$requete6);
+		 $requete6="select id_cac,id_pro,nom_pro,prix_acha,qte_pro,qte_liv from contenu_acha natural join produits where id_ac=$id_ac order by nom_pro desc ";
+				$contenuac=pg_query($dbconn,$requete6);
 
 		 $requete7="select id_po,nom,prenom from personnes order by nom asc";
 		 $lfournisseur=pg_query($dbconn,$requete7);
 
 		 $requete13="select id_pro,nom_pro from  produits natural join categorie_pro where id_catpro=1 ";
 		 $lproduit=pg_query($dbconn,$requete13);
+
+		 $requete14="select id_pro,nom_pro from  produits natural join categorie_pro where id_pro=$id_pro  ";
+		 $lprod=pg_query($dbconn,$requete14);
 
 	   /*$requete8="select id_ac,id_pay,date_pay,libele,montant from payements where id_ac=$id_ac";
 		 $payement=pg_query($dbconn,$requete8);

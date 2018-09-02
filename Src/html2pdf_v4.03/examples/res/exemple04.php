@@ -1,7 +1,4 @@
 
-
-
-
 <style type="text/css">
 <!--
 div.special { margin: auto; width:95%; border:1px solid #000000; padding: 2px; }
@@ -90,7 +87,7 @@ div.special table { width:100%; border:1px solid #000000; font-size:10px; border
             </tr>
         </table>
     </div>
-    
+
     <?php
 echo'<page backtop="10mm" backbottom="10mm" backleft="5mm" backright="5mm">';
       //page_header
@@ -98,42 +95,41 @@ echo'<page_header>
         <table style="width: 100%; border: solid 1px blue;">
             <tr>
                 <td style="text-align: left;    width: 33%"></td>
-               <td style="text-align: center;    width: 34%">LAAF-Pressing Sise à Quinzembougou sur la route de Sotiba BAMAKO
-               Rue: Titi Niare dans l\'immeuble de Dossolo Traore
-					Téléphone :(+233) 76 14 71 00 </td>
+               <td style="text-align: center;    width: 34%"> KANDASSIRA
+					Téléphone :(+233) 20 22 46 00 / 20 71 06 60 </td>
                 <td style="text-align: right;    width: 33%"></td>
             </tr>
         </table>
     </page_header>';
-    
+
  echo'   <page_footer>
         <table style="width: 100%; border: solid 1px black;">
             <tr>
-                <td style="text-align: left;    width: 50%">LAAF-Pressing</td>
+                <td style="text-align: left;    width: 50%"> KANDASSIRA </td>
                 <td style="text-align: right;    width: 50%">page [[page_cu]]/[[page_nb]]</td>
             </tr>
         </table>
     </page_footer>';
     /*
   echo'  <span style="font-size: 20px; font-weight: bold">
-   LAAF-Pressing Sise à Quinzembougou sur la route de Sotiba BAMAKO 
+   LAAF-Pressing Sise à Quinzembougou sur la route de Sotiba BAMAKO
 Rue: Titi Niare dans l\'immeuble de Dossolo Traore
 Tel :(+233) 76 14 71 00 Site :www.laafpressing.com</span><br>*/
-  
+
     echo'<br>
     <br>
     <br><br><br>
     <br><br>';
-    
-  $dbconn=pg_connect("dbname=yogotte user=kone password=azerty host=localhost port=5432");
+
+  $dbconn=pg_connect("dbname=kandassira user=ikone password=okokok host=localhost port=5432");
   $id_ac=$_GET['id_ac'];
-  
-	 $requete="select id_ac,id_fo,date_ac,libele,nom_fo,montant,montant_paye,etat_liv,etat from 
+
+	 $requete="select id_ac,id_fo,date_ac,libele,nom_fo,montant,montant_paye,etat_liv,etat from
 	 			achats natural join fournisseurs where id_ac=$id_ac";
 	 $achat=pg_query($dbconn,$requete);
 	 	//echo 	'<page backtop="14mm" backbottom="14mm" backleft="10mm" backright="10mm" style="font-size: 12pt">';
 	 $ligne=pg_fetch_assoc($achat);
-	 
+
 /*$requete3="select id_fa,id_dfa,id_pr,id_ar,id_la,id_pr,quantite,prix_uni,designation,type_la,type,total_li,observation from detail_facture natural join
  prix natural join articles natural join lavages natural join factures where id_fa=$id_fa  ";
 $dfacture=pg_query($lpressing,$requete3);
@@ -141,9 +137,9 @@ $dfacture=pg_query($lpressing,$requete3);
 $facture=pg_fetch_assoc($pfacture);*/
 
  echo'<table style="width: 50%;border: solid 1px black; border-collapse: collapse" align="left" >';
-      
+
  echo  '<thead >';
-    
+
  echo'<tr>
 	<th class="">Désignation</th>
 	<th>Type de lavage</th>
@@ -152,9 +148,9 @@ $facture=pg_fetch_assoc($pfacture);*/
 	<th class="">Total livraison</th>
 	<th class="	">Observation</th>
   </tr>';
-          
+
   echo'</thead>
-       
+
         <tbody >';
 
    echo '<tr class="">';
@@ -162,7 +158,7 @@ $facture=pg_fetch_assoc($pfacture);*/
 	echo '</tr>';
 	echo '<tr class="">';
 		echo '	<td colspan="2" style=" line-height: 50%;margin-top=15%">Date de depôt <b>: '.$facture['date_depot'].'</b></td>';
-	//echo '<td class="gau ff"></td>';	
+	//echo '<td class="gau ff"></td>';
 	echo '</tr>';
 	echo '<tr class="">';
 		echo '<td class="">Adresse <b  class="Fimp4">: '. ucfirst($facture['adresse']).'</b>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -181,8 +177,8 @@ $facture=pg_fetch_assoc($pfacture);*/
 		<th  style=" text-align: center; border: solid 1px black">Total livraison</th>
 		<th  style=" text-align: left; border: solid 1px black">Observation</th>
      </tr>';
-  
-  
+
+
   while($ligne=pg_fetch_assoc($dfacture)){
 	echo'<tr>';
   		echo'<td style="width: 30%; text-align: left; border: solid 1px black">'.$ligne['designation'].'</td>';
@@ -192,7 +188,7 @@ $facture=pg_fetch_assoc($pfacture);*/
 		echo'<td style="width: 30%; text-align: center; border: solid 1px black">'.$ligne['quantite'].'</td>';
 		echo'<td style="width: 30%; text-align: center; border: solid 1px black">'.$ligne['total_li'].'</td>';
 		echo'<td style="width: 30%; text-align: left; border: solid 1px black">'.$ligne['observation'].'</td>';
-	
+
 	echo'</tr>';
 		}
 	echo'<br>
@@ -208,7 +204,7 @@ $facture=pg_fetch_assoc($pfacture);*/
 		echo '<td class="ll" colspan="6" style=" text-align: left; border: solid 1px black">Montant Payé <b  class="Fimp4">: '.number_format($facture['mont_paye'],0,' ',' ').'<sup>F</sup></b></td>';
 	echo '</tr>';
 	echo '<tr>';
-	
+
 	$reste = $facture['mont_total'] - $facture['mont_paye'];
 		echo '<td class="ll" colspan="6" style=" text-align: left; border: solid 1px black">Reste à payer <b  class="Fimp4">: '.number_format($reste,0,' ',' ').'<sup>F</sup></b></td>';
 	echo '</tr>';
@@ -226,7 +222,7 @@ $facture=pg_fetch_assoc($pfacture);*/
 	echo '</tr>';
 	echo'</tbody>';
    echo'<tfoot>';
-  
+
  						/*
  					echo'           <tr>
                 <th style="width: 30%; text-align: left; border: solid 1px #337722; background: #CCFFCC">Footer 1</th>
@@ -247,5 +243,3 @@ echo'</page>';
 
 
 </page>
-
-

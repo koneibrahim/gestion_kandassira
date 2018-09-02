@@ -2,7 +2,6 @@
 <?php
 
    $id_ac=$_GET['id_ac'];
-   $id_cac=$_GET['id_cac'];
    $id_pro=$_GET['id_pro'];
    $prix_acha=$_GET['prix_acha'];
    $qte_pro=$_GET['qte_pro'];

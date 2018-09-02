@@ -26,7 +26,7 @@
 	echo '<table cellpadding="3" class="w95">';
 
   echo '<tr><td class="textinput"> Produit </td><td><select name="id_pro" class="labinput">';
-  while ($ligne=pg_fetch_assoc($lproduit)) {
+  while ($ligne=pg_fetch_assoc($lprod)) {
   echo '<option value="'.$ligne['id_pro'].'">'.$ligne['nom_pro'].'</option>';
   }
 

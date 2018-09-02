@@ -13,7 +13,7 @@
 	echo '<div id="content">';
 
 	echo '<div id="cform"><div id="cform2">
-	 <div id="cheader"><h2 class="titrecform">Ajout Nouvelle matière</h2></div><br/><br/><br/>';
+	 <div id="cheader"><h2 class="titrecform"> Ajout Nouveau produit </h2></div><br/><br/><br/>';
 	echo'	<form action="liste.php" method="POST">';
 	echo'<input type="hidden" name="mas" value="A"/>';
 	echo '<table cellpadding="3" class="w95">';

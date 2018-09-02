@@ -1,15 +1,15 @@
 <?php
 
-  $id_ac=$_GET['id_ac'];
-  $id_cac=$_GET['id_cac'];
-  $id_pro=$_GET['id_pro'];
-  $nom_pro=$_GET['nom_pro'];
-  $qte_pro=$_GET['qte_pro'];
-  $qte_liv=$_GET['qte_liv'];
-  $date_ac=$_GET['date_ac'];
-  $etat=$_GET['etat'];
+    $id_ac=$_GET['id_ac'];
+    $id_cac=$_GET['id_cac'];
+    $id_pro=$_GET['id_pro'];
+    $nom_pro=$_GET['nom_pro'];
+    $qte_pro=$_GET['qte_pro'];
+    $qte_liv=$_GET['qte_liv'];
+    $date_ac=$_GET['date_ac'];
+    $etat=$_GET['etat'];
 
-  include'achat.php';
+    include'achat.php';
 
       			/*-------Debut Contenuac-----------*/
 
@@ -50,12 +50,14 @@
       			'&id_pro='.$ligne['id_pro'].
             '&prix_acha='.$ligne['prix_acha'].
       			'&qte_pro='.$ligne['qte_pro'].
+            '&nom_pro='.$ligne['nom_pro'].
       			'"><img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
       echo'<td class="textcen"><a href="Csupprimer.php?id_ac='.$id_ac.
             '&id_cac='.$ligne['id_cac'].
             '&id_pro='.$ligne['id_pro'].
             '&prix_acha='.$ligne['prix_acha'].
             '&qte_pro='.$ligne['qte_pro'].
+            '&nom_pro='.$ligne['nom_pro'].
       			'"><img src="/Images/supprimer.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
          //}
       echo'</tr>';

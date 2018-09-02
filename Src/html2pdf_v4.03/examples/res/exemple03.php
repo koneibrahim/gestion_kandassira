@@ -7,27 +7,27 @@ echo'<page_header>
             <tr>
                <td style="text-align: left;    width: 33%"></td>
                <td style="text-align: center;    width: 34%">
-               
-              LAITERIE YOGOTTE RAHMA Sise à Fadjiguila
-              Tel: 64 30 30 33 / 60 50 59 79
-              E-mail:yogotterahma@gmail.com 
-              
+
+              KANDASSIRA
+              Tel: 20 22 46 00 / 20 71 06 60
+              E-mail: kandassira@gmail.com
+
 					</td>
                 <td style="text-align: right;    width: 33%"></td>
             </tr>
         </table>
     </page_header>';
-    
+
  echo'<page_footer>
          <table style="width: 100%; border: solid 1px black;margin: 0px;">
             <tr>
-                <td style="text-align: left;    width: 50%">Laiterie YOGOTTE RAHMA Site :www.yogotterahma.com</td>
+                <td style="text-align: left;    width: 50%"> KANDASSIRA Site :www.kandasira.com</td>
                 <td style="text-align: right;   width: 50%">page [[page_cu]]/[[page_nb]]</td>
             </tr>
         </table>
     </page_footer>';
-    
-    //---------------------//  
+
+    //---------------------//
     echo'<br>
     		<br>
     		<br>
@@ -35,30 +35,30 @@ echo'<page_header>
     		<br>
    		<br>
    		<br>';
-    
-  	 $dbconn=pg_connect("dbname=yogotte user=kone password=azerty host=localhost port=5432");
-    $id_ac=$_GET['id_ac'];
-  
-	 $requete="select id_ac,id_fo,date_ac,libele,nom_fo,montant,montant_paye,etat_liv,etat from 
-	 			achats natural join fournisseurs where id_ac=$id_ac";
-	 $achat=pg_query($dbconn,$requete);
 
-	 $ligne=pg_fetch_assoc($achat);
-	 
+  $dbconn=pg_connect("dbname=kandassira user=ikone password=okokok host=localhost port=5432");
+  $id_ac=$_GET['id_ac'];
+
+	 $requete="select id_ac,id_po,date_ac,libele,nom,montant,montant_paye,etat_liv,etat from
+	 			achats natural join personnes where id_ac=$id_ac";
+	 $fachat=pg_query($dbconn,$requete);
+
+	 $ligne=pg_fetch_assoc($fachat);
+
 	//--------------------//
 
-  echo'<table style="width: 100%; border: 1px;font-size: 16px;" >';   
+  echo'<table style="width: 100%; border: 1px;font-size: 16px;" >';
   echo'<thead >';
-    
+
   echo'<tr>';
   echo'<th style="width: 100%; text-align: center; border: solid 0px black;"> FACTURE ACHAT </th>';
   echo'<th> </th>';
   echo'</tr>';
-          
+
   echo'</thead>';
 
    echo' <tbody >';
-      
+
    echo '<tr class="">';
 		echo '<td colspan="6" style="width: 30%; text-align: left; border: solid 0.2px black;">Achat N°:<b class="rouge" style="color:red"> '.$id_ac.'</b></td>';
 	echo '</tr>';
@@ -67,9 +67,9 @@ echo'<page_header>
 	echo '</tr>';
 	echo '<tr class="">';
 		echo '<td colspan="6" style="width: 30%; text-align: left; border: solid 0.2px black;">Libelle <b class="Fimp4">: '. ucfirst($ligne['libele']).'</b></td>';
-	echo '</tr>';  
+	echo '</tr>';
    echo '<tr class="">';
-		echo'<td colspan="6" style="width: 30%; text-align: left; border: solid 0.2px black;">Fournisseur <b  class="Fimp4">: '.$ligne['nom_fo'].'</b></td>';
+		echo'<td colspan="6" style="width: 30%; text-align: left; border: solid 0.2px black;">Fournisseur <b  class="Fimp4">: '.$ligne['nom'].' '.$ligne['prenom'].'</b></td>';
 	echo '</tr>';
 	echo '<tr class="">';
 		echo '<td colspan="6" style="width: 30%; text-align: left; border: solid 0.2px black;">Montant<b  class="Fimp4">: '. ucwords($ligne['montant']).'</b></td>';
@@ -83,7 +83,7 @@ echo'<page_header>
 	echo '<tr class="">';
 		echo '<td colspan="6" style="width: 30%; text-align: left; border: solid 0.2px black;">Etat livraison<b  class="Fimp4">: '. ucwords($ligne['etat_liv']).'</b></td>';
 	echo '</tr>';
-	
+
 	echo'<br>
     		<br>
     		<br>
@@ -91,12 +91,12 @@ echo'<page_header>
     		<br>
    		<br>
    		<br>';
-	
+
 	echo'<td>Imprimé le, "'.date('d-m-Y').'" </td>';
 	//--------------------------
 /*
 	echo'<tr border: solid 1px black" >
-	
+
 		<th  style=" text-align: left; border: solid 1px black border-top: solid 1px black"">Désignation</th>
 		<th  style=" text-align: left; border: solid 1px black; border-right: solid 1px black">Type de lavage</th>
 		<th  style="text-align: center; border: solid 1px black">Prix unitaire</th>
@@ -104,11 +104,11 @@ echo'<page_header>
 		<th  style=" text-align: center; border: solid 1px black">Total livraison</th>
 		<th  style=" text-align: left; border: solid 1px black">Observation</th>
      </tr>';
-  
-  
+
+
   while($ligne=pg_fetch_assoc($achat)){
 	echo'<tr>';
-	
+
   		echo'<td style="width: 30%; text-align: left; border: solid 1px black">'.$ligne['date_ac'].'</td>';
 		echo'<td style="width: 30%; text-align: left; border: solid 1px black>'.$ligne['libele'].'</td>';
 		echo'<td style="width: 30%; text-align: left; border: solid 1px black>'.$ligne['nom_fo'].'</td>';
@@ -116,10 +116,10 @@ echo'<page_header>
 		echo'<td style="width: 30%; text-align: center; border: solid 1px black>'.number_format($ligne['montant_paye'],0,' ',' ').'<sup>FCFA</sup></td>';
 		echo'<td style="width: 30%; text-align: center; border: solid 1px black>'.number_format($ligne['montant'],0,' ',' ').'<sup>FCFA</sup></td>';
 		echo'<td style="width: 30%; text-align: center; border: solid 1px black">'.$ligne['etat_liv'].'</td>';
-	
+
 	echo'</tr>';
 		}
-		
+
 	echo'<br>
     	  <br>
         <br>
@@ -134,7 +134,7 @@ echo'<page_header>
 		echo '<td class="ll" colspan="6" style=" text-align: left; border: solid 1px black">Montant Payé <b  class="Fimp4">: '.number_format($facture['mont_paye'],0,' ',' ').'<sup>F</sup></b></td>';
 	echo '</tr>';
 	echo '<tr>';
-	
+
 	$reste = $facture['mont_total'] - $facture['mont_paye'];
 		echo '<td class="ll" colspan="6" style=" text-align: left; border: solid 1px black">Reste à payer <b  class="Fimp4">: '.number_format($reste,0,' ',' ').'<sup>F</sup></b></td>';
 	echo '</tr>';
@@ -153,7 +153,7 @@ echo'<page_header>
 	*/
 	echo'</tbody>';
    echo'<tfoot>';
-  
+
  						/*
  					echo'           <tr>
                 <th style="width: 30%; text-align: left; border: solid 1px #337722; background: #CCFFCC">Footer 1</th>
@@ -162,10 +162,6 @@ echo'<page_header>
            			 */
  echo' </tfoot>
     </table>';
- 										
+
 echo'</page>';
 ?>
-
-
-
-
