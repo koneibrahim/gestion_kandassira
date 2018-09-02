@@ -3,7 +3,7 @@
        $id_ac=$_GET['id_ac'];
        $id_po=$_GET['id_po'];
        $id_cac=$_GET['id_cac'];
-//       $date_ac=$_GET['date_ac'];
+       $date_ac=$_GET['date_ac'];
        $libele=$_GET['libele'];
        $nom=$_GET['nom'];
        $etat=$_GET['etat'];
@@ -90,9 +90,9 @@
 
         	echo'<td colspan="2" class="textgau"><a href="listeliv.php?id_ac='.$ligne['id_ac'].
         				'&date_ac='.$ligne['date_ac'].
-        				'&libele='.$ligne['libele'].
-        				'&date_liv='.$ligne['date_liv'].
-        				'&etat='.$ligne['etat'].
+        				//'&libele='.$ligne['libele'].
+        				//'&date_liv='.$ligne['date_liv'].
+        				//'&etat='.$ligne['etat'].
         				'"><button class="butachat">Livraison</button></a></td>';
         			echo'</tr>';
         	echo'<tr>';

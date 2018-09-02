@@ -63,6 +63,7 @@
 		$requete.=" values ($id_ac,$id_pro,$prix_acha,$qte_pro)";
 			if($_POST['valider']=='Valider')
 		$resultat=pg_query($dbconn,$requete);
+		$resultat=pg_query($dbconn, "update  achats set montant=montant+(prix_acha*qte_pro  where id_ac=$id_ac ");
 		 }
 	elseif($_POST['mas']=='CM')
 		 {
@@ -211,6 +212,7 @@
 		 $requete2="select id_ac,id_po,nom,prenom,date_ac,libele,nom,montant,montant_paye,etat_liv,etat from
 		 					achats natural join personnes where id_ac=$id_ac";
 		 $achat=pg_query($dbconn,$requete2);
+
 
 		 $requete6="select id_cac,id_pro,nom_pro,prix_acha,qte_pro,qte_liv from contenu_acha natural join produits where id_ac=$id_ac order by nom_pro desc ";
 				$contenuac=pg_query($dbconn,$requete6);
