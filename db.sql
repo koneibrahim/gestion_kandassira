@@ -66,13 +66,12 @@ SET default_with_oids = false;
 CREATE TABLE public.achats (
     id_ac integer NOT NULL,
     date_ac date DEFAULT now() NOT NULL,
-    montant integer,
+    montant integer DEFAULT 0,
     montant_paye integer DEFAULT 0 NOT NULL,
     etat_liv character(1) DEFAULT 'N'::bpchar,
     libele character varying(70),
     etat integer DEFAULT 0,
     id_po integer,
-    CONSTRAINT check_montant CHECK ((montant > 0)),
     CONSTRAINT etat_liv_check CHECK (((etat_liv = 'N'::bpchar) OR (etat_liv = 'P'::bpchar) OR (etat_liv = 'T'::bpchar))),
     CONSTRAINT montant_pay_check CHECK (((montant_paye >= 0) AND (montant_paye <= montant)))
 );
@@ -285,10 +284,8 @@ CREATE TABLE public.contenu_vente (
     id_ve integer,
     id_pro integer,
     qte_v integer,
-    prix_v integer,
-    qte_liv integer,
-    id_ma integer,
-    id_pres integer
+    qte_liv integer DEFAULT 0,
+    prix_v integer DEFAULT 0
 );
 
 
@@ -612,8 +609,8 @@ CREATE TABLE public.ventes (
     id_ve integer NOT NULL,
     date_ve date,
     libele character varying(70),
-    id_cli integer,
-    montant integer,
+    id_po integer,
+    montant integer DEFAULT 0,
     montant_paye integer,
     montant_res integer DEFAULT 0,
     etat integer DEFAULT 0
@@ -760,9 +757,12 @@ ALTER TABLE ONLY public.ventes ALTER COLUMN id_ve SET DEFAULT nextval('public.ve
 --
 
 COPY public.achats (id_ac, date_ac, montant, montant_paye, etat_liv, libele, etat, id_po) FROM stdin;
-192	2018-08-28	\N	0	N	Cle USB	0	34
-193	2018-08-28	\N	0	N	Carte mémoire	0	35
-195	2018-08-30	\N	0	N	PRESTATION	0	27
+197	2018-08-29	\N	0	N	Achat Cle Usb	0	37
+193	2018-08-28	\N	0	N	Carte mémoire	0	41
+234	2018-09-02	0	0	N	Support	0	36
+232	2018-09-01	0	0	N	Support cle	0	34
+235	2018-09-02	0	0	N	Carte mémoire	0	37
+236	2018-09-02	0	0	N	hgjg	0	27
 \.
 
 
@@ -770,7 +770,7 @@ COPY public.achats (id_ac, date_ac, montant, montant_paye, etat_liv, libele, eta
 -- Name: achats_id_ac_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.achats_id_ac_seq', 196, true);
+SELECT pg_catalog.setval('public.achats_id_ac_seq', 236, true);
 
 
 --
@@ -814,8 +814,20 @@ SELECT pg_catalog.setval('public.categorie_prod_id_catpro_seq', 2, true);
 --
 
 COPY public.contenu_acha (id_cac, id_ac, prix_acha, qte_pro, qte_liv, id_pro) FROM stdin;
-271	192	1500	10	0	24
-272	193	500	30	0	25
+318	232	6700	10	0	24
+319	232	450	20	0	14
+320	232	1600	10	0	25
+322	235	700	3	0	14
+323	235	700	3	0	14
+324	235	700	3	0	14
+325	235	700	3	0	14
+326	235	9	2	0	26
+327	235	9	2	0	26
+328	235	9	2	0	26
+329	236	700	44	0	33
+331	236	655	4	0	14
+332	236	900	3	0	33
+333	236	350	50	0	27
 \.
 
 
@@ -823,7 +835,7 @@ COPY public.contenu_acha (id_cac, id_ac, prix_acha, qte_pro, qte_liv, id_pro) FR
 -- Name: contenu_acha_id_cac_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 272, true);
+SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 333, true);
 
 
 --
@@ -860,14 +872,25 @@ SELECT pg_catalog.setval('public.contenu_liv_vente_id_cliv_seq', 1, false);
 -- Name: contenu_ve_id_cve_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.contenu_ve_id_cve_seq', 20, true);
+SELECT pg_catalog.setval('public.contenu_ve_id_cve_seq', 37, true);
 
 
 --
 -- Data for Name: contenu_vente; Type: TABLE DATA; Schema: public; Owner: ikone
 --
 
-COPY public.contenu_vente (id_cve, id_ve, id_pro, qte_v, prix_v, qte_liv, id_ma, id_pres) FROM stdin;
+COPY public.contenu_vente (id_cve, id_ve, id_pro, qte_v, qte_liv, prix_v) FROM stdin;
+30	36	25	2	0	3000
+22	30	28	40	\N	8000
+35	39	25	22	0	2850
+28	34	12	10	0	4000
+29	36	12	10	0	4000
+31	38	12	10	0	4000
+32	30	12	10	0	4000
+33	38	12	10	0	4000
+34	37	12	10	0	4000
+36	39	12	10	0	4000
+37	39	12	10	0	4000
 \.
 
 
@@ -910,7 +933,6 @@ SELECT pg_catalog.setval('public.liv_vente_id_liv_seq', 1, true);
 --
 
 COPY public.livraisons (id_liv, id_ac, date_liv, libele) FROM stdin;
-100	192	2018-08-28	cxcv
 \.
 
 
@@ -966,6 +988,7 @@ COPY public.personnes (id_po, nom, prenom, adresse, tel, nom_f, prenom_f, date, 
 37	Ibrahim	KONE	Faladiè Socoro	66 16 01 23			\N	90 90 46 99	3	Directeur général
 38	Sambou	SIDBE	Lafiabougou	66 44 29 30			\N	76 44 29 30	3	Directeur adjoint
 39	Moussa 	COULIBALY	Djicoroni chatto perdu	76 42 10 11	Adja	BAMBA	\N	90 88 44 32	4	
+41	GESTO	MALI	Marché Dibidani	77 99 99 00			\N	20 43 43 11	1	
 \.
 
 
@@ -973,7 +996,7 @@ COPY public.personnes (id_po, nom, prenom, adresse, tel, nom_f, prenom_f, date, 
 -- Name: personnes_id_p_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.personnes_id_p_seq', 40, true);
+SELECT pg_catalog.setval('public.personnes_id_p_seq', 41, true);
 
 
 --
@@ -983,16 +1006,18 @@ SELECT pg_catalog.setval('public.personnes_id_p_seq', 40, true);
 COPY public.produits (id_pro, nom_pro, prix_vente, id_catpro) FROM stdin;
 12	Sonorisation Grand	20000	2
 14	CD-R	500	1
-24	Cle 4Go	3000	1
 25	Carte mémoire 4Go	2000	1
 26	DVD-R	1000	1
 27	K7 60	500	1
-28	Carte memoire 32Go	6000	1
 10	Animation mariage G	25000	2
 9	Reportage soirée	25000	2
 11	Reportage matinale	50000	2
 22	Seminaire Furusira	3000	2
 30	K7 90	750	2
+28	Carte memoire 32Go	3000	1
+32	Location bache	20000	2
+33	Carte mémoire 64Go	8000	1
+24	Cle usb 4Go	3000	1
 \.
 
 
@@ -1000,7 +1025,7 @@ COPY public.produits (id_pro, nom_pro, prix_vente, id_catpro) FROM stdin;
 -- Name: produits_id_prod_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.produits_id_prod_seq', 31, true);
+SELECT pg_catalog.setval('public.produits_id_prod_seq', 33, true);
 
 
 --
@@ -1026,7 +1051,13 @@ SELECT pg_catalog.setval('public.users_id_user_seq', 4, true);
 -- Data for Name: ventes; Type: TABLE DATA; Schema: public; Owner: ikone
 --
 
-COPY public.ventes (id_ve, date_ve, libele, id_cli, montant, montant_paye, montant_res, etat) FROM stdin;
+COPY public.ventes (id_ve, date_ve, libele, id_po, montant, montant_paye, montant_res, etat) FROM stdin;
+30	2018-08-31	Prestation	33	\N	\N	0	0
+34	2018-09-02	Prestation	37	\N	\N	0	0
+36	2018-09-03	Commande bache	36	\N	\N	0	0
+37	2018-09-03	Commande xxx	36	\N	\N	0	0
+38	2018-09-03	 okokok	27	\N	\N	0	0
+39	2018-09-04	Lol	33	\N	\N	0	0
 \.
 
 
@@ -1034,7 +1065,7 @@ COPY public.ventes (id_ve, date_ve, libele, id_cli, montant, montant_paye, monta
 -- Name: ventes_id_ve_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.ventes_id_ve_seq', 22, true);
+SELECT pg_catalog.setval('public.ventes_id_ve_seq', 39, true);
 
 
 --
@@ -1195,6 +1226,14 @@ ALTER TABLE ONLY public.contenu_liv
 
 ALTER TABLE ONLY public.contenu_liv
     ADD CONSTRAINT contenu_liv_fkey2 FOREIGN KEY (id_cac) REFERENCES public.contenu_acha(id_cac) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: cvente_fkey2; Type: FK CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.contenu_vente
+    ADD CONSTRAINT cvente_fkey2 FOREIGN KEY (id_pro) REFERENCES public.produits(id_pro);
 
 
 --

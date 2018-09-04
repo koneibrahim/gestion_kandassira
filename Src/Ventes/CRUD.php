@@ -34,29 +34,51 @@ elseif($_POST['mas']=='VS')
 
  	 //-----CONTENU VENTE-----------
 
-if($_POST['mas']=='CVA')
-	 {
+      if($_POST['mas']=='CVA')
+	    {
 			$id_cve=$_POST['id_cve'];
 			$id_ve=$_POST['id_ve'];
 			$id_pro=$_POST['id_pro'];
+			$prix_v=$_POST['prix_v'];
 			$qte_v=$_POST['qte_v'];
-			$requete="insert into contenu_vente (id_ve,id_pro,qte_v)";
-			$requete.=" values ($id_ve,$id_pro,$qte_v)";
+			$requete="select prix_v from contenu_vente where id_pro=$id_pro";
+			$pro=pg_query($dbconn,$requete);
+		  $ligne=pg_fetch_assoc($pro);
+			$prix_v=$ligne['prix_v'];
+			if($qte_v>=10){
+				$requete="insert into contenu_vente (id_ve,id_pro,qte_v,prix_v)";
+				$requete.=" values ($id_ve,$id_pro,$qte_v,$prix_v*0.95)";
+		  }
+			else
+		   {
+				$requete="insert into contenu_vente (id_ve,id_pro,qte_v,prix_v)";
+				$requete.=" values ($id_ve,$id_pro,$qte_v,$prix_v)";
+		   }
 				if($_POST['valider']=='Valider')
 			$CVajouter=pg_query($dbconn,$requete);
 			}
 			elseif($_POST['mas']=='CVM')
-				 {
+		  {
 			$id_cve=$_POST['id_cve'];
 			$id_ve=$_POST['id_ve'];
 			$id_pro=$_POST['id_pro'];
+			$prix_v=$_POST['prix_v'];
 			$qte_v=$_POST['qte_v'];
-			$requete="update contenu_vente set id_pro='$id_pro',qte_v='$qte_v'";
-			$requete.=" where id_cve=$id_cve";
+			$requete="update contenu_vente set id_pro=$id_pro,qte_v=$qte_v,prix_v=$prix_v";
+			$requete.=" where id_pro=$id_pro";
 				if($_POST['valider']=='Valider')
 			$vmodifier=pg_query($dbconn,$requete);
-				  }
-
+			 }
+			elseif($_POST['mas']=='CVS')
+			{
+			$id_cve=$_POST['id_cve'];
+			$id_ve=$_POST['id_ve'];
+			$valider=$_POST['valider'];
+				if($valider=='Oui') {
+			$requete="delete from contenu_vente where id_pro=$id_pro";
+			$vsupprimer=pg_query($dbconn,$requete);
+			}
+			}
 
 // -----LES DIFFERENTS SELECTS---------//
 
@@ -70,11 +92,14 @@ if($_POST['mas']=='CVA')
 		   $requete3="select id_po,nom,prenom,adresse from personnes";
 		      $lpersonne=pg_query($dbconn,$requete3);
 
-			 $requete4="select id_cve,id_ve,id_pro,nom_pro,qte_v,qte_liv,prix_vente from
-			 		contenu_vente natural join produits natural join achats  where id_ve=$id_ve ";
+			 $requete4="select id_cve,id_ve,id_pro,nom_pro,qte_v,qte_liv,prix_v from
+			 		        contenu_vente natural join produits natural join achats  where id_ve=$id_ve ";
 					$contenuve=pg_query($dbconn,$requete4);
 
-		   $requete5="select id_liv,id_ve,date_liv,libele from liv_vente";
+			 $requete5="select id_pro,nom_pro from  produits  ";
+		 		  $lproduit=pg_query($dbconn,$requete5);
+
+		  /* $requete5="select id_liv,id_ve,date_liv,libele from liv_vente";
 					$livvente=pg_query($dbconn,$requete5);
 
 		   $requete6="select id_pro,id_ve,id_cve,id_cliv,nom_pro,qte_pro,qte_liv,id_liv
@@ -84,15 +109,8 @@ if($_POST['mas']=='CVA')
 			 $requete7="select id_ve,id_pve,date_pve,libele,montant_pve from payvente where id_ve=$id_ve";
 			 	  $payement=pg_query($dbconn,$requete7);
 
-			 $requete9="select id_pro,nom_pro from produits" ;
-			 	  $lproduit=pg_query($dbconn,$requete9);
-
-			 $requete10="select prix from produits" ;
-					$lprix=pg_query($dbconn,$requete10);
-
 			 $requete11="select id_ma,prix_ma,nom_ma from matieres";
 			 	  $larticle=pg_query($dbconn,$requete11);
+     */
 
-			 $requete12="select id_pres,nom_pres,prix from prestations";
-			 	  $lprestation=pg_query($dbconn,$requete12);
 ?>

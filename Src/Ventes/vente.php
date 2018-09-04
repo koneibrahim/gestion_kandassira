@@ -14,7 +14,7 @@
    /*------------Debut Vente.php-------------*/
  echo'<div id="contvert">';
            $ligne=pg_fetch_assoc($vente);
-     echo'<h2 class="titrecform textcen"> Details de la vente </h2>';
+     echo'<h2 class="titrecform textcen"> Details de la commande </h2>';
      echo '<table  cellpadding="5" class="w90">';
            echo'<tr class="ld'.($i%2).'">';
                echo '<td> Date vente </td>';

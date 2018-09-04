@@ -25,6 +25,8 @@
       while ($ligne=pg_fetch_assoc($lproduit)) {
       echo '<option value="'.$ligne['id_pro'].'">'.$ligne['nom_pro'].'</option>';
       }
+      echo'	<tr><td class="textinput"> Prix </td>
+                <td><input type="text" name="prix_v" value="'.$prix_v.'" class="labinput"></td></tr>';
       echo'	<tr><td class="textinput"> Quantité vendu </td>
                 <td><input type="text" name="qte_v" value="'.$qte_v.'" class="labinput"></td></tr>';
 
