@@ -29,8 +29,10 @@ elseif($_POST['mas']=='M')
 		//$poste=$_POST['poste'];
  		$tel=$_POST['tel'];
 		$tel2=$_POST['tel2'];
+		$nom_f=$_POST['nom_f'];
+ 		$prenom_f=$_POST['prenom_f'];
  		$adresse=$_POST['adresse'];
-	$requete="update personnes set id_cat='$id_cat',nom='$nom',prenom='$prenom',tel='$tel',tel2='$tel2',adresse='$adresse'";
+	$requete="update personnes set id_cat=$id_cat,nom='$nom',prenom='$prenom',tel='$tel',tel2='$tel2',nom_f='$nom_f',prenom_f='$prenom_f',adresse='$adresse'";
 	$requete.="  where id_po='$id_po'";
 			if($_POST['valider']=='Valider')
 	$resultat=pg_query($dbconn,$requete);

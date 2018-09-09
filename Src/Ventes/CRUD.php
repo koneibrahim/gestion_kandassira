@@ -45,11 +45,12 @@ elseif($_POST['mas']=='VS')
 			$pro=pg_query($dbconn,$requete);
 		  $ligne=pg_fetch_assoc($pro);
 			$prix_v=$ligne['prix_v'];
-			if($qte_v>=10){
+			if($qte_v >=10){
+					//$prix_v=$prix_v*5/100;
 				$requete="insert into contenu_vente (id_ve,id_pro,qte_v,prix_v)";
 				$requete.=" values ($id_ve,$id_pro,$qte_v,$prix_v*0.95)";
 		  }
-			else
+	else
 		   {
 				$requete="insert into contenu_vente (id_ve,id_pro,qte_v,prix_v)";
 				$requete.=" values ($id_ve,$id_pro,$qte_v,$prix_v)";
@@ -57,7 +58,7 @@ elseif($_POST['mas']=='VS')
 				if($_POST['valider']=='Valider')
 			$CVajouter=pg_query($dbconn,$requete);
 			}
-			elseif($_POST['mas']=='CVM')
+	elseif($_POST['mas']=='CVM')
 		  {
 			$id_cve=$_POST['id_cve'];
 			$id_ve=$_POST['id_ve'];
@@ -69,7 +70,7 @@ elseif($_POST['mas']=='VS')
 				if($_POST['valider']=='Valider')
 			$vmodifier=pg_query($dbconn,$requete);
 			 }
-			elseif($_POST['mas']=='CVS')
+	elseif($_POST['mas']=='CVS')
 			{
 			$id_cve=$_POST['id_cve'];
 			$id_ve=$_POST['id_ve'];
@@ -79,7 +80,6 @@ elseif($_POST['mas']=='VS')
 			$vsupprimer=pg_query($dbconn,$requete);
 			}
 			}
-
 // -----LES DIFFERENTS SELECTS---------//
 
 			 $requete="select id_ve,date_ve,libele,id_po,tel,nom,prenom from ventes natural join personnes order by id_ve desc";
@@ -93,7 +93,7 @@ elseif($_POST['mas']=='VS')
 		      $lpersonne=pg_query($dbconn,$requete3);
 
 			 $requete4="select id_cve,id_ve,id_pro,nom_pro,qte_v,qte_liv,prix_v from
-			 		        contenu_vente natural join produits natural join achats  where id_ve=$id_ve ";
+			 		        contenu_vente natural join produits natural join ventes  where id_ve=$id_ve ";
 					$contenuve=pg_query($dbconn,$requete4);
 
 			 $requete5="select id_pro,nom_pro from  produits  ";

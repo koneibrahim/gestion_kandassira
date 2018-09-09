@@ -5,10 +5,9 @@
    $id_cac=$_GET['id_cac'];
    $libele=$_GET['libele'];
    $date_liv=$_GET['date_liv'];
-   $qte_ma=$_GET['qte_ma'];
+   $qte_pro=$_GET['qte_pro'];
 
    include'listeliv.php';
-
    		/*------------Debut  Livraison.php-------------*/
 
 	echo'<div id="contliv2">';
@@ -28,12 +27,10 @@
 			<td><h3 class="titrecform textdro"> '.$libele.' '.$date_liv.' </h3><Ltd>
 			</td>';
 	echo'</tr>';
-
 	echo'<table cellpadding="10" colspan="6" class="w90">';
-
 	echo'<tr>';
 	echo'<th class="thtable textcen">N°</th>';
-	echo'<th class="thtable textcen">Article </th>';
+	echo'<th class="thtable textcen">Produit </th>';
 	echo'<th class="thtable textcen">Quantité achetée</th>';
 	echo'<th class="thtable textcen">Quantité livrée</th>';
 	echo'<th class="thtable textcen colspan="2">Action</th>';
@@ -42,19 +39,16 @@
 	while($ligne=pg_fetch_assoc($livraison))
 	{
 	echo'<tr class="ld'.($i%2).'">';
-   echo'<td class="textcen">'.$i.'</td>';
-	echo'<td class="textgau">'.$ligne['nom_ma'].'</td>';
-	echo'<td class="textcen">'.$ligne['qte_ma'].'</td>';
+  echo'<td class="textcen">'.$i.'</td>';
+	echo'<td class="textgau">'.$ligne['nom_pro'].'</td>';
+	echo'<td class="textcen">'.$ligne['qte_pro'].'</td>';
 	echo'<td class="textcen">'.$ligne['qte_l'].'</td>';
-   echo'<td class="textcen"><a href="Lmodifier.php?id_ac='.$id_ac.
-      	'&id_liv='.$ligne['id_liv'].
-   		'&id_cac='.$ligne['id_cac'].
-   	   '&id_cliv='.$ligne['id_cliv'].
-			'&qte_l='.$ligne['qte_l'].
-			'&id_ma='.$ligne['id_ma'].
-			'&qte_liv='.$ligne['qte_liv'].'">
+  echo'<td class="textcen"><a href="Lmodifier.php?id_ac='.$id_ac.
+      '&id_cac='.$ligne['id_cac'].
+      '&id_liv='.$ligne['id_liv'].
+      '&id_cliv='.$ligne['id_cliv'].
+			'&qte_l='.$ligne['qte_l'].'">
 			<img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
-
 	echo'</tr>';
 	$i++;
 	}
@@ -62,8 +56,5 @@
 	echo'</div>';
 	include'../../Layout/footer.php';
 
-
 		/*------------Livraison.php----------*/
-
-
 ?>

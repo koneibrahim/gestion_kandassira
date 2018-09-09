@@ -4,6 +4,7 @@
    $id_cve=$_GET['id_cve'];
    $id_ve=$_GET['id_ve'];
    $id_pro=$_GET['id_pro'];
+   $prix_v=$_GET['prix_v'];
    $qte_v=$_GET['qte_v'];
    $date_ve=$_GET['date_ve'];
    $libele=$_GET['libele'];
@@ -19,7 +20,7 @@
     	echo'<input type="hidden" name="mas" value="CVM"/>';
     	echo'<input type="hidden" name="id_ac" value="'.$id_ac.'">';
       echo'<input type="hidden" name="id_cac" value="'.$id_cac.'">';
-      echo'<input type="hidden" name="id_pro" value="'.$id_pro.'">';
+    //  echo'<input type="hidden" name="id_pro" value="'.$id_pro.'">';
     	echo '<table cellpadding="3" class="w95">';
       echo '<tr><td class="textinput"> Produit </td><td><select name="id_pro" class="labinput">';
       while ($ligne=pg_fetch_assoc($lproduit)) {

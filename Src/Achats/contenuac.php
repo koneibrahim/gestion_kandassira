@@ -31,6 +31,8 @@
       	echo'<th class="thtable textcen">Prix achat</th>';
       	echo'<th class="thtable textcen">Quantité</th>';
       	echo'<th class="thtable textcen">Quantité livré</th>';
+        echo'<th class="thtable textcen">Montant</th>';
+
       		//if ($etat==0) {
       	echo'<th class="thtable textcen" colspan="2">Action</th>';
           //}
@@ -44,6 +46,8 @@
       	echo'<td class="textcen">'.$ligne['prix_acha'].'</td>';
       	echo'<td class="textcen">'.$ligne['qte_pro'].'</td>';
         echo'<td class="textcen">'.$ligne['qte_liv'].'</td>';
+        echo'<td class="textcen">'.$ligne['montant'].'</td>';
+
       	//if ($etat==0) {
          echo'<td class="textcen"><a href="Cmodifier.php?id_ac='.$id_ac.
          		'&id_cac='.$ligne['id_cac'].

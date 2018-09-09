@@ -5,9 +5,8 @@
 	include'../../Layout/retour.php';
 
 	echo '<div id="logo">';
-
 	echo '</div>';
-	
+
 	  echo '<div id="menu2">';
 
 		echo '</div>';
@@ -58,6 +57,8 @@
 			'&id_cat='.$ligne['id_cat'].
 			'&tel='.$ligne['tel'].
 			'&tel2='.$ligne['tel2'].
+			'&nom_f='.$ligne['nom_f'].
+			'&prenom_f='.$ligne['prenom_f'].
 			'&adresse='.$ligne['adresse'].
 			'"><img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
 	echo'<td class="textcen"><a href="Fsupprimer.php?id_po='.$ligne['id_po'].
@@ -73,7 +74,6 @@
 	/*	echo'<td class="textcen"><a href="yogotterahma/Src/html2pdf_v4.03/examples/exemple04.php"><button> helo</button></a>';*/
 
 	echo'</table>';
-
 	echo'</div>';
 	include'../../Layout/footer.php';
 

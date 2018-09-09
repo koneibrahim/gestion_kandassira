@@ -10,7 +10,7 @@
 
 	include'CRUD.php';
 	echo'<div id="content">';
-				echo'<h3 class="titrecform textgau">Liste des clients</h3><br/>';
+				echo'<h3 class="titrecform textgau">Liste des mariés</h3><br/>';
 				echo'<table cellpadding="3" border="0" class="w90">';
 							echo'<tr class="thajouter">';
 						//	echo'<th colspan="12" class="textdro thtable"><a href="lajouter.php">
