@@ -10,6 +10,7 @@
 		echo ' <a href="/Src/Stocks/liste.php"> <button class="bmh2">Etat stock</button> </a>';
 		echo ' <a href="/Src/Ventes/listevente.php"> <button class="bmh2">Commandes</button> </a>';
 		echo ' <a href="/Src/Peoples/liste.php"> <button class="bmh2">Peoples</button> </a>';
+		echo ' <a href="/Src/Telimanis/liste.php"> <button class="bmh2">Telimani</button> </a>';
 
 		}
 

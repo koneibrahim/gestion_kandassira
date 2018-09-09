@@ -6,7 +6,11 @@
 	echo '<head>';
 	echo '<meta charset="utf-8" />';
 	echo '<title></title>';
+
+  echo '<link href="/Bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">';
+  echo '<script type="text/javascript" src="/Bootstrap/js/bootstrap.js"> </script>';
 	echo '<link href="/Style/style.css" type="text/css" rel="stylesheet">';
+
 	echo '</head>';
 	echo '<body>';
 

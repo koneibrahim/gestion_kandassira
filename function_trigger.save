@@ -1,0 +1,12 @@
+CREATE OR REPLACE FUNCTION montant()
+  RETURNS trigger AS
+$BODY$
+BEGIN
+ IF NEW.nom_pro <> OLD.nom_pro THEN
+ INSERT INTO contenu_acha(id_cac,nom_pro,changed_on)
+ VALUES(OLD.id_cac,OLD.nom_pro,now());
+ END IF;
+ 
+ RETURN NEW;
+END;
+$BODY$
