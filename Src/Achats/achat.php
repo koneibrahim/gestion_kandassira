@@ -98,7 +98,6 @@
             	echo'<td colspan="2"  class="textgau"><a href="payement.php?id_ac='.$id_ac.
             				'&date_ac='.$ligne['date_ac'].
             				'&libele='.$ligne['libele'].
-            				'&etat='.$ligne['etat'].
             			'"><button class="butachat">Payement</button></a></td>';
             			echo'</tr>';
         	     }

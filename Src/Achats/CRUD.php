@@ -85,7 +85,6 @@
 	 		$asupprimer=pg_query($dbconn,$requete);
 	 		 }
 	 		 }
-
 	 	  	 //----------LIVRAISONS-----------
 
 	 	if($_POST['mas']=='LVA')
@@ -160,22 +159,21 @@
 		if($leliv['nb']==0) $r=pg_query($dbconn,"update achats set etat_liv='T' where id_ac=$id_ac");
 	 	}
 	 	}
-	 	/*
-
-	 	 //-----PAYEMENT----------------
-	 	  if($_POST['mas']=='PA')
+	 //------------PAYEMENT----------------
+	  if($_POST['mas']=='PA')
 		 {
 		$id_ac=$_POST['id_ac'];
 		$date_pay=$_POST['date_pay'];
-		$montant=$_POST['montant'];
+		$somme=$_POST['somme'];
 		$libele=$_POST['libele'];
-		$requete="insert into payements (id_ac,montant,libele) values ($id_ac,$montant,'$libele')";
+		$requete="insert into payements (id_ac,somme,libele) values ($id_ac,$somme,'$libele')";
 			if($_POST['valider']=='Valider'){
-				if(pg_query($dbconn,"update achats set montant_paye=montant_paye+$montant where id_ac=$id_ac")) {
+				if(pg_query($dbconn,"update achats set montant_paye=montant_paye+$total where id_ac=$id_ac")) {
 				$pajouter=pg_query($dbconn,$requete);
 				}
 			}
 		 }
+		 /*
 	elseif($_POST['mas']=='PM')
 		 {
 		$id_ac=$_POST['id_ac'];
@@ -208,25 +206,25 @@
 			montant_paye,etat_liv,etat";
 		 $achat=pg_query($dbconn,$requete2);
 
-
 		 $requete6="select id_cac,id_pro,nom_pro,prix_acha,qte_pro,prix_acha*qte_pro as montant,qte_liv from contenu_acha natural join produits where id_ac=$id_ac order by nom_pro desc ";
 				$contenuac=pg_query($dbconn,$requete6);
 
 		 $requete7="select id_po,nom,prenom from personnes order by nom asc";
-		 $lfournisseur=pg_query($dbconn,$requete7);
+		 		$lfournisseur=pg_query($dbconn,$requete7);
 
 		 $requete13="select * from  produits natural join categorie_pro where id_catpro=1 ";
-		 $lproduit=pg_query($dbconn,$requete13);
+		 		$lproduit=pg_query($dbconn,$requete13);
 
-	   /*$requete8="select id_ac,id_pay,date_pay,libele,montant from payements where id_ac=$id_ac";
-		 $payement=pg_query($dbconn,$requete8);
-*/
 		 $requete9="select id_ac,id_liv,date_liv,libele from livraisons where id_ac=$id_ac";
-		 $listeliv=pg_query($dbconn,$requete9);
+		 		$listeliv=pg_query($dbconn,$requete9);
 
 		 $requete10="select id_liv,id_cac,id_cliv,id_ac,nom_pro,qte_pro,qte_l from contenu_liv
 		 			natural join contenu_acha natural join produits where id_ac=$id_ac; ";
-		 $livraison=pg_query($dbconn,$requete10);
+		 		$livraison=pg_query($dbconn,$requete10);
+
+		 $requete8="select id_pay,id_ac,somme,libele from payements where id_ac=$id_ac";
+		 		$payement=pg_query($dbconn,$requete8);
+
 /*
 		 $requete11="select id_ac,libele,date_ac from achats where id_ac=$id_ac" ;
 		 $pachat=pg_query($dbconn,$requete11);
