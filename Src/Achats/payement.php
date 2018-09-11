@@ -1,8 +1,8 @@
 <?php
   $id_ac=$_GET['id_ac'];
 	$date_ac=$_GET['date_ac'];
-	$libele=$_GET['libele'];
   $date_pay=$_GET['date_pay'];
+  $agent=$_GET['agent'];
    include'achat.php';
 	/*-------Debut Payement.php------------*/
 
@@ -19,6 +19,7 @@
 	echo'<th class="thtable textcen"> N° </th>';
 	echo'<th class="thtable textcen"> Date </th>';
 	echo'<th class="thtable textcen"> Somme </th>';
+  echo'<th class="thtable textcen"> Agent </th>';
 	echo'<th class="thtable textcen" colspan="2"> Action </th>';
 	echo'</tr>';
 	$i=1;
@@ -28,15 +29,16 @@
       echo'<td class="textcen">'.$i.'</td>';
     	echo'<td class="textcen">'.$ligne['date_pay'].'</td>';
     	echo'<td class="textcen">'.$ligne['somme'].'</td>';
+      echo'<td class="textcen">'.$ligne['agent'].'</td>';
     	echo'<td class="textcen"><a href="Pmodifier.php?id_ac='.$id_ac.
           '&id_pay='.$ligne['id_pay'].
     			'&date_pay='.$ligne['date_pay'].
-    			'&montant='.$ligne['montant'].
+    			'&somme='.$ligne['somme'].
+          '&agent='.$ligne['agent'].
     			'"><img src="/Images/modifier.png" width="25px"height="25px" class="img" title="Modifier"></a></td>';
     	echo'<td class="textcen"><a href="Psupprimer.php?id_ac='.$id_ac.
     			'&id_pay='.$ligne['id_pay'].
     			'&date_pay='.$ligne['date_pay'].
-    			'&montant='.$ligne['montant'].
     			'"><img src="/Images/supprimer.png" width="25px"height="25px" class="img" title="Supprimer"></a></td>';
     	echo'</tr>';
     	$i++;

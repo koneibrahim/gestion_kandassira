@@ -11,13 +11,13 @@
          function etat_liv($e) {
         	if($e=='N') return 'Non livré';
         	elseif ($e=='P') return 'Partiellement livré';
-        	else return 'Totalement livré';
+        	 else return 'Totalement livré';
         	 }
           	include'listeac.php';
         		/*------------Debut Achat.php-------------*/
         	echo'<div id="contvert">';
 
-        	$ligne=pg_fetch_assoc($achat);
+        	$ligne=pg_fetch_assoc($lachat);
 
         	echo'<h2 class="titrecform textcen"> Details de l\'achat </h2>';
         	echo '<table  cellpadding="5" class="w90">';

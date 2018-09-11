@@ -177,7 +177,7 @@ CREATE TABLE public.contenu_acha (
     qte_pro integer,
     qte_liv integer DEFAULT 0,
     id_pro integer,
-    CONSTRAINT check_qte_ma CHECK ((qte_pro > 0))
+    CONSTRAINT check_qte_liv CHECK (((qte_liv >= 0) AND (qte_liv <= qte_pro)))
 );
 
 
@@ -213,7 +213,8 @@ CREATE TABLE public.contenu_liv (
     id_liv integer NOT NULL,
     id_cac integer,
     qte_l integer DEFAULT 0,
-    CONSTRAINT check_qliv CHECK ((qte_l >= 0))
+    CONSTRAINT check_qliv CHECK ((qte_l >= 0)),
+    CONSTRAINT check_qte_pro CHECK ((qte_l >= 0))
 );
 
 
@@ -460,9 +461,9 @@ CREATE TABLE public.payements (
     id_pay integer NOT NULL,
     id_ac integer,
     date_pay date DEFAULT now() NOT NULL,
-    montant integer DEFAULT 0,
-    libele character varying(70),
-    CONSTRAINT montant_check CHECK ((montant >= 0))
+    somme integer DEFAULT 0,
+    agent character varying(70),
+    CONSTRAINT montant_check CHECK ((somme >= 0))
 );
 
 
@@ -564,6 +565,41 @@ ALTER TABLE public.produits_id_prod_seq OWNER TO ikone;
 --
 
 ALTER SEQUENCE public.produits_id_prod_seq OWNED BY public.produits.id_pro;
+
+
+--
+-- Name: telimanis; Type: TABLE; Schema: public; Owner: ikone
+--
+
+CREATE TABLE public.telimanis (
+    id_t integer NOT NULL,
+    nom_t character varying(25),
+    prenom_t character varying(25),
+    tel character varying(50)
+);
+
+
+ALTER TABLE public.telimanis OWNER TO ikone;
+
+--
+-- Name: telimanis_id_t_seq; Type: SEQUENCE; Schema: public; Owner: ikone
+--
+
+CREATE SEQUENCE public.telimanis_id_t_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.telimanis_id_t_seq OWNER TO ikone;
+
+--
+-- Name: telimanis_id_t_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ikone
+--
+
+ALTER SEQUENCE public.telimanis_id_t_seq OWNED BY public.telimanis.id_t;
 
 
 --
@@ -739,6 +775,13 @@ ALTER TABLE ONLY public.produits ALTER COLUMN id_pro SET DEFAULT nextval('public
 
 
 --
+-- Name: id_t; Type: DEFAULT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.telimanis ALTER COLUMN id_t SET DEFAULT nextval('public.telimanis_id_t_seq'::regclass);
+
+
+--
 -- Name: id_user; Type: DEFAULT; Schema: public; Owner: ikone
 --
 
@@ -757,12 +800,15 @@ ALTER TABLE ONLY public.ventes ALTER COLUMN id_ve SET DEFAULT nextval('public.ve
 --
 
 COPY public.achats (id_ac, date_ac, montant, montant_paye, etat_liv, libele, etat, id_po) FROM stdin;
-197	2018-08-29	\N	0	N	Achat Cle Usb	0	37
-193	2018-08-28	\N	0	N	Carte mémoire	0	41
-234	2018-09-02	0	0	N	Support	0	36
-232	2018-09-01	0	0	N	Support cle	0	34
-235	2018-09-02	0	0	N	Carte mémoire	0	37
-236	2018-09-02	0	0	N	hgjg	0	27
+236	2018-09-02	0	0	T	hgjg	0	27
+238	2018-09-08	0	0	N	bvnfhhff	0	29
+239	2018-09-09	0	0	N	Support	0	29
+240	2018-09-09	0	0	T	Support karango	1	41
+241	2018-09-09	0	0	T	Sup	1	27
+245	2018-09-11	0	0	N	Support Article	0	37
+246	2018-09-11	0	0	T	lol	1	27
+247	2018-09-11	0	0	T	kokokok	1	29
+248	2018-09-11	0	0	N	lkuftdfgv	0	27
 \.
 
 
@@ -770,7 +816,7 @@ COPY public.achats (id_ac, date_ac, montant, montant_paye, etat_liv, libele, eta
 -- Name: achats_id_ac_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.achats_id_ac_seq', 236, true);
+SELECT pg_catalog.setval('public.achats_id_ac_seq', 248, true);
 
 
 --
@@ -814,20 +860,16 @@ SELECT pg_catalog.setval('public.categorie_prod_id_catpro_seq', 2, true);
 --
 
 COPY public.contenu_acha (id_cac, id_ac, prix_acha, qte_pro, qte_liv, id_pro) FROM stdin;
-318	232	6700	10	0	24
-319	232	450	20	0	14
-320	232	1600	10	0	25
-322	235	700	3	0	14
-323	235	700	3	0	14
-324	235	700	3	0	14
-325	235	700	3	0	14
-326	235	9	2	0	26
-327	235	9	2	0	26
-328	235	9	2	0	26
-329	236	700	44	0	33
-331	236	655	4	0	14
-332	236	900	3	0	33
-333	236	350	50	0	27
+367	240	3000	20	20	25
+366	240	200	10	10	14
+368	241	3000	11	11	24
+369	241	2500	20	0	14
+375	246	555	10	10	14
+376	247	55	12	12	14
+337	236	2333	12	0	14
+340	236	400	20	0	27
+349	238	2500	20	0	24
+339	236	6000	23	0	25
 \.
 
 
@@ -835,7 +877,7 @@ COPY public.contenu_acha (id_cac, id_ac, prix_acha, qte_pro, qte_liv, id_pro) FR
 -- Name: contenu_acha_id_cac_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 333, true);
+SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 376, true);
 
 
 --
@@ -843,6 +885,11 @@ SELECT pg_catalog.setval('public.contenu_acha_id_cac_seq', 333, true);
 --
 
 COPY public.contenu_liv (id_cliv, id_liv, id_cac, qte_l) FROM stdin;
+276	112	366	0
+277	112	367	0
+278	114	368	0
+285	120	375	10
+286	121	376	12
 \.
 
 
@@ -850,7 +897,7 @@ COPY public.contenu_liv (id_cliv, id_liv, id_cac, qte_l) FROM stdin;
 -- Name: contenu_liv_id_cliv_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.contenu_liv_id_cliv_seq', 248, true);
+SELECT pg_catalog.setval('public.contenu_liv_id_cliv_seq', 286, true);
 
 
 --
@@ -872,7 +919,7 @@ SELECT pg_catalog.setval('public.contenu_liv_vente_id_cliv_seq', 1, false);
 -- Name: contenu_ve_id_cve_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.contenu_ve_id_cve_seq', 37, true);
+SELECT pg_catalog.setval('public.contenu_ve_id_cve_seq', 63, true);
 
 
 --
@@ -880,17 +927,17 @@ SELECT pg_catalog.setval('public.contenu_ve_id_cve_seq', 37, true);
 --
 
 COPY public.contenu_vente (id_cve, id_ve, id_pro, qte_v, qte_liv, prix_v) FROM stdin;
-30	36	25	2	0	3000
-22	30	28	40	\N	8000
-35	39	25	22	0	2850
-28	34	12	10	0	4000
-29	36	12	10	0	4000
-31	38	12	10	0	4000
-32	30	12	10	0	4000
-33	38	12	10	0	4000
-34	37	12	10	0	4000
-36	39	12	10	0	4000
-37	39	12	10	0	4000
+40	43	32	14	0	-1
+41	43	10	20	0	-1
+42	43	28	12	0	-1
+44	42	25	25	0	-1
+45	42	9	25	0	-1
+50	42	30	23	0	0
+53	43	11	22	0	0
+58	43	14	12	0	0
+59	43	22	25	0	0
+54	43	27	50	0	100000
+46	42	12	20	0	4550
 \.
 
 
@@ -933,6 +980,12 @@ SELECT pg_catalog.setval('public.liv_vente_id_liv_seq', 1, true);
 --
 
 COPY public.livraisons (id_liv, id_ac, date_liv, libele) FROM stdin;
+109	236	2018-09-08	hohohoho
+112	240	2018-09-09	Liv2
+113	239	2018-09-09	liv3
+114	241	2018-09-09	liv4
+120	246	2018-09-11	Liv1
+121	247	2018-09-11	LIv2
 \.
 
 
@@ -940,7 +993,7 @@ COPY public.livraisons (id_liv, id_ac, date_liv, libele) FROM stdin;
 -- Name: livraisons_id_liv_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.livraisons_id_liv_seq', 100, true);
+SELECT pg_catalog.setval('public.livraisons_id_liv_seq', 121, true);
 
 
 --
@@ -962,7 +1015,8 @@ SELECT pg_catalog.setval('public.pay_vente_id_pve_seq', 1, true);
 -- Data for Name: payements; Type: TABLE DATA; Schema: public; Owner: ikone
 --
 
-COPY public.payements (id_pay, id_ac, date_pay, montant, libele) FROM stdin;
+COPY public.payements (id_pay, id_ac, date_pay, somme, agent) FROM stdin;
+116	247	2018-09-10	24000	Payement speed
 \.
 
 
@@ -970,7 +1024,7 @@ COPY public.payements (id_pay, id_ac, date_pay, montant, libele) FROM stdin;
 -- Name: payements_id_pay_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.payements_id_pay_seq', 113, true);
+SELECT pg_catalog.setval('public.payements_id_pay_seq', 116, true);
 
 
 --
@@ -989,6 +1043,7 @@ COPY public.personnes (id_po, nom, prenom, adresse, tel, nom_f, prenom_f, date, 
 38	Sambou	SIDBE	Lafiabougou	66 44 29 30			\N	76 44 29 30	3	Directeur adjoint
 39	Moussa 	COULIBALY	Djicoroni chatto perdu	76 42 10 11	Adja	BAMBA	\N	90 88 44 32	4	
 41	GESTO	MALI	Marché Dibidani	77 99 99 00			\N	20 43 43 11	1	
+42	Baylal	DIGUE	Banakabougou	66 99 77 66	Bintou	KONARE	\N	90 90 88 33	4	
 \.
 
 
@@ -996,7 +1051,7 @@ COPY public.personnes (id_po, nom, prenom, adresse, tel, nom_f, prenom_f, date, 
 -- Name: personnes_id_p_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.personnes_id_p_seq', 41, true);
+SELECT pg_catalog.setval('public.personnes_id_p_seq', 42, true);
 
 
 --
@@ -1004,7 +1059,6 @@ SELECT pg_catalog.setval('public.personnes_id_p_seq', 41, true);
 --
 
 COPY public.produits (id_pro, nom_pro, prix_vente, id_catpro) FROM stdin;
-12	Sonorisation Grand	20000	2
 14	CD-R	500	1
 25	Carte mémoire 4Go	2000	1
 26	DVD-R	1000	1
@@ -1018,6 +1072,9 @@ COPY public.produits (id_pro, nom_pro, prix_vente, id_catpro) FROM stdin;
 32	Location bache	20000	2
 33	Carte mémoire 64Go	8000	1
 24	Cle usb 4Go	3000	1
+34	Cle usb 16Go	6000	1
+35	Carte mémoire 2Go	2000	1
+12	Sonorisation Grande	20000	2
 \.
 
 
@@ -1025,7 +1082,26 @@ COPY public.produits (id_pro, nom_pro, prix_vente, id_catpro) FROM stdin;
 -- Name: produits_id_prod_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.produits_id_prod_seq', 33, true);
+SELECT pg_catalog.setval('public.produits_id_prod_seq', 35, true);
+
+
+--
+-- Data for Name: telimanis; Type: TABLE DATA; Schema: public; Owner: ikone
+--
+
+COPY public.telimanis (id_t, nom_t, prenom_t, tel) FROM stdin;
+1	Oumar	DRAMERA	77889922
+2	Aly	GAMBY	50889922
+3	Bintou	CISSOKO	99889922
+4	Kadjatou	DOLO	66889923
+\.
+
+
+--
+-- Name: telimanis_id_t_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
+--
+
+SELECT pg_catalog.setval('public.telimanis_id_t_seq', 4, true);
 
 
 --
@@ -1052,12 +1128,10 @@ SELECT pg_catalog.setval('public.users_id_user_seq', 4, true);
 --
 
 COPY public.ventes (id_ve, date_ve, libele, id_po, montant, montant_paye, montant_res, etat) FROM stdin;
-30	2018-08-31	Prestation	33	\N	\N	0	0
-34	2018-09-02	Prestation	37	\N	\N	0	0
-36	2018-09-03	Commande bache	36	\N	\N	0	0
-37	2018-09-03	Commande xxx	36	\N	\N	0	0
-38	2018-09-03	 okokok	27	\N	\N	0	0
-39	2018-09-04	Lol	33	\N	\N	0	0
+41	2018-09-05	Support	42	0	\N	0	0
+40	2018-09-05	Test	27	0	\N	0	0
+42	2018-09-06	Cle USB	36	0	\N	0	0
+43	2018-09-06	Virtual host	27	0	\N	0	0
 \.
 
 
@@ -1065,7 +1139,7 @@ COPY public.ventes (id_ve, date_ve, libele, id_po, montant, montant_paye, montan
 -- Name: ventes_id_ve_seq; Type: SEQUENCE SET; Schema: public; Owner: ikone
 --
 
-SELECT pg_catalog.setval('public.ventes_id_ve_seq', 39, true);
+SELECT pg_catalog.setval('public.ventes_id_ve_seq', 43, true);
 
 
 --
@@ -1082,6 +1156,14 @@ ALTER TABLE ONLY public.achats
 
 ALTER TABLE ONLY public.categorie_pro
     ADD CONSTRAINT categoriepkey PRIMARY KEY (id_catpro);
+
+
+--
+-- Name: contenu_acha_id_pro_id_ac; Type: CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.contenu_acha
+    ADD CONSTRAINT contenu_acha_id_pro_id_ac UNIQUE (id_pro, id_ac);
 
 
 --
@@ -1162,6 +1244,14 @@ ALTER TABLE ONLY public.personnes
 
 ALTER TABLE ONLY public.produits
     ADD CONSTRAINT produitpkey PRIMARY KEY (id_pro);
+
+
+--
+-- Name: unik2; Type: CONSTRAINT; Schema: public; Owner: ikone
+--
+
+ALTER TABLE ONLY public.contenu_vente
+    ADD CONSTRAINT unik2 UNIQUE (id_pro);
 
 
 --

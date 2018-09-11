@@ -198,15 +198,22 @@
 		 }
 		 }
 		 */
-		 $requete="select id_ac,date_ac,libele,id_po,nom,prenom,tel from achats natural join personnes order by id_ac desc limit 50";
-		 $listeac=pg_query($dbconn,$requete);
+		 $requete="select id_ac,date_ac,libele,id_po,nom,prenom,tel from achats natural join
+		 			personnes order by id_ac desc limit 50";
+		 		$listeac=pg_query($dbconn,$requete);
 
-		 $requete2="select id_ac,id_po,nom,prenom,date_ac,libele,nom,montant,montant_paye,etat_liv,etat,sum(prix_acha*qte_pro) as total from
- 	 		achats natural join personnes natural join contenu_acha where id_ac=$id_ac group by id_ac,id_po,nom,prenom,date_ac,libele,nom,montant,
-			montant_paye,etat_liv,etat";
-		 $achat=pg_query($dbconn,$requete2);
+		 $requete="select id_ac,id_po,nom,prenom,date_ac,libele,nom,montant,montant_paye,etat_liv,etat
+				from achats natural join personnes where id_ac=$id_ac";
+					 $lachat=pg_query($dbconn,$requete);
 
-		 $requete6="select id_cac,id_pro,nom_pro,prix_acha,qte_pro,prix_acha*qte_pro as montant,qte_liv from contenu_acha natural join produits where id_ac=$id_ac order by nom_pro desc ";
+		 $requete2="select id_ac,id_po,nom,prenom,date_ac,libele,nom,montant,montant_paye,etat_liv,etat,
+				    sum(prix_acha*qte_pro) as total from	achats natural join personnes natural join contenu_acha
+						where id_ac=$id_ac group by id_ac,id_po,nom,prenom,date_ac,libele,nom,montant,
+					  montant_paye,etat_liv,etat";
+		 	 $achat=pg_query($dbconn,$requete2);
+
+		 $requete6="select id_cac,id_pro,nom_pro,prix_acha,qte_pro,prix_acha*qte_pro as montant,qte_liv
+		 			from contenu_acha natural join produits where id_ac=$id_ac order by nom_pro desc ";
 				$contenuac=pg_query($dbconn,$requete6);
 
 		 $requete7="select id_po,nom,prenom from personnes order by nom asc";
@@ -222,9 +229,8 @@
 		 			natural join contenu_acha natural join produits where id_ac=$id_ac; ";
 		 		$livraison=pg_query($dbconn,$requete10);
 
-		 $requete8="select id_pay,id_ac,somme,libele from payements where id_ac=$id_ac";
-		 		$payement=pg_query($dbconn,$requete8);
-
+		 $requete12="select id_pay,id_ac,date_pay,somme,agent from payements where id_ac=$id_ac";
+		 		$payement=pg_query($dbconn,$requete12);
 /*
 		 $requete11="select id_ac,libele,date_ac from achats where id_ac=$id_ac" ;
 		 $pachat=pg_query($dbconn,$requete11);
