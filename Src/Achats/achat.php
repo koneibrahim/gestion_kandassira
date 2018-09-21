@@ -113,6 +113,5 @@
         	echo'</table>';
         	echo'</div>';
         	include'../../Layout/footer.php';
-
         			/*------------Fin du fichier Achat.php-------------*/
 ?>
