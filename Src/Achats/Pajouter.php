@@ -14,7 +14,6 @@
 				echo'<input type="hidden" name="mas" value="PA"/>';
 				echo'<input type="hidden" name="id_ac" value="'.$id_ac.'"/>';
 				echo '<table cellpadding="3" class="w95">';
-
 				echo'<tr><td class="textinput"> Date payement </td>
 					  	 <td><input type="text" name="date_pay" class="labinput" value="'.date('Y-m-d').'"></td></tr>';
 				echo'<tr><td class="textinput"> Somme </td>
